@@ -1,0 +1,9 @@
+.productsGrid__wrapper {
+    margin-top: 64px;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 8px;
+}

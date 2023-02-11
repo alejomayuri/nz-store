@@ -1,0 +1,67 @@
+.topBar {
+    justify-content: flex-end;
+    padding: 8px 64px;
+    box-sizing: border-box;
+    border-bottom: solid 2px #fff;
+    background-color: #BFD8D0;
+}
+
+.topBar > div {
+    align-items: center;
+    display: flex;
+    margin: 0 10px;
+}
+
+.middleBar {
+    justify-content: space-between;
+    padding: 8px 128px;
+    box-sizing: border-box;
+    background-color: #F49394;
+}
+
+.logoContainer {
+    background-color: #fff;
+}
+
+.logoContainer > div {
+    width: 225px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.logoContainer > div > img {
+    width: 100%;
+}
+
+.navBar {
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.navBar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #fff;
+    margin: 0 128px;
+    border-top: solid 2px #F49394;
+    border-bottom: solid 2px #F49394;
+}
+
+.navBar li {
+    display: inline-block;
+    margin: 0 10px;
+    list-style: none;
+    font-size: 18px;
+}
+
+.navBar a:link { 
+    text-decoration: none;
+    color: #222;
+}
+.navBar a:visited {
+text-decoration: none;
+}

@@ -1,0 +1,10 @@
+.cartBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}

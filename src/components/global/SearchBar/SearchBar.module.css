@@ -1,0 +1,25 @@
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 10px;
+  transition: box-shadow 0.2s ease-in-out;
+  width: 230px;
+  height: 40px;
+  background: #fff;
+}
+
+.searchBar form {
+  margin-left: 8px;
+  height: 100%;
+}
+
+.searchBar input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 14px;
+}
