@@ -1,0 +1,30 @@
+.container {
+    padding: 16px;
+    margin-top: 64px;
+    background-color: #F9C38F;
+    padding-bottom: 32px;
+}
+
+.colection__slide {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 8px;
+}
+
+.slider__wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.text {
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.title {
+    text-align: center;
+    font-size: 30px;
+}

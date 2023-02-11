@@ -1,4 +1,3 @@
-import style from "./MainSlider.module.css";
 import Slider from "react-slick";
 
 const IMAGES = [
@@ -17,7 +16,7 @@ const MainSlider = () => {
     });
     
     const settings = {
-        dots: true,
+        dots: false,
         autoplay: true,
         speed: 1000,
         autoplaySpeed: 5000

@@ -7,3 +7,9 @@
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 8px;
 }
+
+.cardsGrid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.productsGrid__title {font-size: 26px;}

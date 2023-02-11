@@ -1,0 +1,8 @@
+.middleBanner {
+    width: 100%;
+    margin-top: 64px;
+}
+
+.middleBanner__image img {
+    width: 100%;
+}
