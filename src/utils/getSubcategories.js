@@ -2,10 +2,12 @@ const getSubcategories = (products) => {
     let subcategories = [];
 
     products.forEach(product => {
-        if (product.subcategory.split(', ').length > 1) {
-            subcategories = [...subcategories, ...product.subcategory.split(', ')]
-        } else {
-            subcategories.push(product.subcategory)
+        if (product.subcategory) {
+            if (product.subcategory.split(', ').length > 1) {
+                subcategories = [...subcategories, ...product.subcategory.split(', ')]
+            } else {
+                subcategories.push(product.subcategory)
+            }
         }
     });
     
