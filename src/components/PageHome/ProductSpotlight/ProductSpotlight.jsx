@@ -1,10 +1,10 @@
 import style from './ProductSpotlight.module.css'
 import Slider from "react-slick";
-import { useProducts } from "@/components/hooks/useProducts"
+import { useProducts } from "@/hooks/useProducts"
 import { ProductCard } from "@/components/global/ProductCard/ProductCard"
 
 const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
-    const products = useProducts({ category: null, subcategory: type })
+    const products = useProducts({ category: type })
 
     let productsPerSlide = 4
     let arrayOfProducts = null

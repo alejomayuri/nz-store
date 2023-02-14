@@ -1,5 +1,5 @@
 import style from './ProductsGrid.module.css'
-import { useProducts } from '@/components/hooks/useProducts'
+import { useProducts } from '@/hooks/useProducts'
 import { ProductCard } from '@/components/global/ProductCard/ProductCard'
 
 const ProductsGrid = ({ type, title, cards = false }) => {

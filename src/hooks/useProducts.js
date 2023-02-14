@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchProducts } from '@/firebase/client'
 
-export const useProducts = ({ category, subcategory } = { category: null, subcategory: null }) => {
+export const useProducts = ({ category } = { category: null }) => {
     const [products, setProducts] = useState([])
     
     useEffect(() => {
@@ -11,12 +11,8 @@ export const useProducts = ({ category, subcategory } = { category: null, subcat
     }, [])
 
     if (category) {
-        return products.filter((product) => product.category === category)
+        return products.filter((product) => product?.category?.split(', ')?.includes(category))
     }
 
-    if (subcategory) {
-        return products?.filter((product) => product?.subcategory?.split(', ')?.includes(subcategory))
-    }
-    
     return products
 }

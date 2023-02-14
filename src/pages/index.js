@@ -10,10 +10,10 @@ export default function Home() {
     <>
       <Layout>
         <MainSlider />
-        <ProductsGrid type="juguete" title="Juguetes para tu engreido" />
-        <ProductsGrid type="bandana" title="Lo nuevo en Bandanas" />
+        <ProductsGrid type="juguetes" title="Juguetes para tu engreido" />
+        <ProductsGrid type="bandanas" title="Lo nuevo en Bandanas" />
         <ProductSpotlight type="colection" title="Colección de Verano" background="#F9C38F" subtitle="Colección" />
-        <ProductsGrid type="bandana" title="Ropa" />
+        <ProductsGrid type="bandanas" title="Ropa" />
         <MiddleBanner />
         <ProductsGrid type="giftcard" title="Gift Cards" cards />
         <ProductSpotlight type="offer" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />

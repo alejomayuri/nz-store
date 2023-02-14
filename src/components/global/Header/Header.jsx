@@ -34,7 +34,7 @@ const Header = () => {
             <div className={style.navBar}>
                 <nav>
                     <ul>
-                        <li><a href="#">Lo nuevo</a></li>
+                        <li><a href="#">Colección de Verano</a></li>
                         <li><a href="#">Ropa</a></li>
                         <li><a href="#">Juguetes</a></li>
                         <li><a href="#">Gift Cards</a></li>
