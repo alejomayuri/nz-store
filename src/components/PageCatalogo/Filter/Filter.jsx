@@ -1,3 +1,4 @@
+import style from "./Filter.module.css";
 const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersActive }) => {
 
     let handlerSet = (element) => {
@@ -8,39 +9,32 @@ const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersAc
             handlerSetFilters([...filtersActive, element])
         }
     }
-    console.log("filtersActive", filtersActive)
-    console.log("filters", filters)
     
     return (
-        <div className="filter">
-            <h3>
-                Filtrar por:
-            </h3>
-
-            {
-                subcats.map((item, index) => {
-                    return (
-                        <div key={index} onClick={() => handlerSubCats(item)}>
-                            <h4>{item}</h4>
-                        </div>
-                    )
-                })
-            }
-
+        <div className={style.filter}>
+            <h3>Filtrar por:</h3>
+            <ul>
+                {
+                    subcats.map((item, index) => {
+                        return (
+                            <li className={style.subcat} key={index} onClick={() => handlerSubCats(item)}>
+                                <h4>{item}</h4>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
             {
                 filters.map((item, index) => {
                     return (
-                        <div key={index}>
-                            <h4>{item.name}</h4>
+                        <div className={style.filterContainer} key={index}>
+                            <h4 className={style.filterTitle}>{item.name}</h4>
                             <ul>
                                 {
                                     item.values.map((option, index) => {
                                         return (
                                             <li key={index}>
-                                                <input onClick={
-                                                        () => handlerSet({ name: item.name, value: option })
-                                                    } type="checkbox" id={option} name={option} value={option} />
-                                                <label htmlFor={option}>{option}</label>
+                                                <button onClick={() => handlerSet({ name: item.name, value: option })}>{option}</button>
                                             </li>
                                         )
                                     })
@@ -50,6 +44,21 @@ const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersAc
                     )
                 })
             }
+            { filtersActive.length > 0 && (
+                <div className={style.filtersActive__wrapper}>
+                    <h3>Filtros activos</h3>
+                    <div className={style.filterBox}>
+                    {
+                        filtersActive.map((item, index) => 
+                                <div key={index} className={style.filterBoxItem}>
+                                    <p>{item.value}</p>
+                                    <button onClick={() => handlerSetFilters(filtersActive.filter(filter => filter.name !== item.name || filter.value !== item.value))}>X</button>
+                                </div>
+                        )
+                    }
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

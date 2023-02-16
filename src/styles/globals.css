@@ -220,3 +220,20 @@ main {
         padding: 15px;
     }
 }
+
+/*page catalogo*/
+
+.catalogo__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalogo__title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 29px;
+    color: #000000;
+    text-transform: capitalize;
+    margin-bottom: 24px;
+}

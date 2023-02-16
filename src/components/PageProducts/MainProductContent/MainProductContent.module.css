@@ -1,0 +1,15 @@
+.productWrapper {
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.imageSite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 715px;
+}

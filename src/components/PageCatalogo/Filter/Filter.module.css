@@ -1,0 +1,107 @@
+.filter {
+    max-width: 300px;
+    width: 100%;
+    padding-right: 32px;
+    margin-right: 32px;
+    border-right: solid 1px #e5e5e5;
+}
+
+.filter ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+} 
+
+.subcat {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    color: #4a4a4a;
+    padding: 16px 0;
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.subcat:hover {
+    color: #000;
+}
+
+.subcat > h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.filterContainer {
+    margin-top: 40px;
+}
+
+.filterTitle {
+    font-size: 15px;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.filterContainer > ul {
+    margin-top: 16px;
+}
+
+.filterContainer > ul > li >button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    margin: 12px 0;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: #4a4a4a;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filterContainer > ul > li >button:hover {
+    color: #000;
+}
+
+.filtersActive__wrapper {
+    margin-top: 32px;
+}
+
+.filterBox {
+    display: grid;
+    background-color: #cfcfcf;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 16px;
+}
+
+.filterBox > div {
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 12px;
+}
+
+.filterBox > div > p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.filterBox > div > button {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #676767;
+    transition: all 0.3s ease;
+}
+
+.filterBox > div > button:hover {
+    color: #000;
+}

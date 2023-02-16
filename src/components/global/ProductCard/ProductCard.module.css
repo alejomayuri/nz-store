@@ -3,6 +3,7 @@
     flex-direction: column;
     padding: 4px;
     cursor: pointer;
+    max-width: 260px;
 }
 
 .productCard:hover {

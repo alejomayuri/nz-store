@@ -13,22 +13,42 @@ const Catalogo = () => {
     const { cat } = router.query;
     const products = useProducts({ category: cat });
 
-    const [filtersActive, setFiltersActive] = useState([]);
-
-    let x = router?.asPath.split('?cat=')[1];
-    const [subCatActive, setSubCatActive] = useState(
-        x ? x : null
-    );
-
     let filtersList = [];
     let subCatList = [];
 
+    let initURL = router?.asPath.split('?cat=')[1];
     let productsToShow = [];
     let productsPerSubCat = [];
 
+    //filtrado por subcategoria y por filtros
+    
+    const [subCatActive, setSubCatActive] = useState(initURL ? initURL : null);
+
+    const [filtersActive, setFiltersActive] = useState([]);
+
+    useEffect(() => {
+        if (router) {
+            setSubCatActive(initURL)
+        }
+    }, [router, initURL])
+
+    useEffect(() => {
+        if (subCatActive) {
+            Router.push({
+                pathname: '/catalogo/[cat]',
+                query: { cat: subCatActive },
+            }, `/catalogo/${cat}?cat=${subCatActive}`);
+        }
+        setFiltersActive([])
+    }, [subCatActive, cat,initURL]);
+
     if (products) {
         if (subCatActive) {
-            productsPerSubCat = products.filter((product) => product.subcategory.includes(subCatActive));
+            productsPerSubCat = products.filter((product) => {
+                if (product.subcategory) {
+                    return product.subcategory.includes(subCatActive)
+                }
+            });
         } else {
             productsPerSubCat = products;
         }
@@ -49,32 +69,18 @@ const Catalogo = () => {
             productsToShow = productsPerSubCat;
         }
     }
-    
-    useEffect(() => {
-        if (router) {
-            setSubCatActive(x)
-        }
-    }, [router, x])
+
+    //obtener subcategorias y filtros
 
     if (products.length > 0) {
         filtersList = getFilters(productsPerSubCat);
         subCatList = getSubcategories(products);
     }
 
-    useEffect(() => {
-        if (subCatActive) {
-            Router.push({
-                pathname: '/catalogo/[cat]',
-                query: { cat: subCatActive },
-            }, `/catalogo/${cat}?cat=${subCatActive}`);
-        }
-        setFiltersActive([])
-    }, [subCatActive, cat,x]);
-
     return (
         <Layout>
-            <h1>{subCatActive ? subCatActive : cat}</h1>
-            <div>
+            <h1 className="catalogo__title">{subCatActive ? subCatActive : cat}</h1>
+            <div className="catalogo__container">
                 <Filter filtersActive={filtersActive} subcats={subCatList} filters={filtersList} handlerSetFilters={setFiltersActive} handlerSubCats={setSubCatActive} />
                 <ProductList products={productsToShow} />
             </div>
