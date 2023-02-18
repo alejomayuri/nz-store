@@ -6,16 +6,9 @@ import { Image } from '@/components/global/Image/Image'
 const MainImage = ({ mainImage, title }) => {
     const mainImg = useRef(null)
     const [showImage, setShowImage] = useState(true)
-    // const deviceWidth = useDeviceWidth()
     let backgroundStyle = {
         backgroundImage: `url(${mainImage})`
     };
-
-    // if (deviceWidth > 1024) {
-    //     backgroundStyle = {
-    //         backgroundImage: `url(${mainImage})`
-    //     }
-    // }
 
     const productZoom = (e) => {
         const img = mainImg.current

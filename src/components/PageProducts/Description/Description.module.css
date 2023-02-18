@@ -1,0 +1,23 @@
+.descriptionWrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.descriptionWrapper > section {
+    margin: 50px auto;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 29px;
+    letter-spacing: 1px;
+}
+
+.text {
+    font-size: 17px;
+    line-height: 25px;
+}
+
+.medidasWrapper {
+    width: 70%;
+}
