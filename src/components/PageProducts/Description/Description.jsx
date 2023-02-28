@@ -14,7 +14,7 @@ const Description = ({ data }) => {
                 <section>
                     <h2 className={style.title}>Medidas</h2>
                     {
-                        data?.medidas.map((item, index) => (
+                        data?.medidas?.map((item, index) => (
                             <div key={index} className={style.medidasWrapper}>
                                 <Image src={item} alt="medidas" />
                             </div>

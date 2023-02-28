@@ -21,8 +21,10 @@ body, span {
   }
 
 main {
-    margin: 0 128px;
+    margin: 0 auto;
     margin-top: 32px;
+    max-width: 1440px;
+    width: 100%;
 }
 
 .ContentSection{font-size:1.1rem;font-weight:500;line-height:1;text-transform:uppercase}.ContentSectionLink{color:#e60000;display:block;margin-bottom:.5rem}.ContentTitle{font-size:1.2rem;font-weight:normal;line-height:1}@media(min-width: 601px){.ContentTitle{font-size:1.4rem}}

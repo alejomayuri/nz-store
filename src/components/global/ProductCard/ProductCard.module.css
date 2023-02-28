@@ -6,6 +6,11 @@
     max-width: 260px;
 }
 
+.productCard a {
+  text-decoration: none;
+  color: #000;
+}
+
 .productCard:hover {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -14,6 +19,7 @@
   margin-bottom: 8px;
   overflow: hidden;
   background: #F4F4F4;
+  display: inline-block;
 }
 
 .productCard__image img {
@@ -31,3 +37,9 @@
 .productCard__info {
     padding-left: 8px;
 }
+
+.productCard__info h3 {
+    font-size: 18px;
+    /* font-weight: 600; */
+    margin-bottom: 16px;
+} 

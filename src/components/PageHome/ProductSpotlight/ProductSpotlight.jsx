@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/global/ProductCard/ProductCard"
 const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
     const products = useProducts({ category: type })
 
-    let productsPerSlide = 4
+    let productsPerSlide = 5
     let arrayOfProducts = null
     let productsToShow = null
 
@@ -32,8 +32,9 @@ const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
     const settings = {
         dots: true,
         arrows: false,
-        autoplay: false,
-        speed: 1000,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 5000,
     };
 
     return (

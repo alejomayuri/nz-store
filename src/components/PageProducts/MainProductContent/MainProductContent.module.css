@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 64px;
+    /* padding-top: 64px; */
     box-sizing: border-box;
 }
 
@@ -27,15 +27,15 @@
     max-width: 450px;
     font-size: 30px;
     font-weight: 600;
+    line-height: 40px;
     margin: 16px 0;
 }
 
 .price {
     color: #000;
     text-transform: uppercase;
-    font-size: 20px;
     margin: 16px 0;
-    font-size: 23px;
+    font-size: 28px;
     font-weight: 500;
 }
 
@@ -74,4 +74,53 @@
     position: relative;
     width: 330px;
     height: 52px;
+}
+
+.filtersList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.filterContainer {
+    margin-bottom: 24px;
+}
+
+.filterTitle {
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin: 16px 0;
+}
+
+.filterOptionContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.filterOptionContainer li {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.filterOptionContainer li button {
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+    padding: 4px 8px;
+    border: solid 3px #F9C38F;
+    border-radius: 4px;
 }

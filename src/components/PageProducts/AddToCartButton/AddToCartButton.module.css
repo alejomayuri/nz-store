@@ -1,0 +1,68 @@
+.add__button__container {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    z-index: 9;   
+}
+
+.add__button__container_big__btn {
+    height: 100%;
+    position: initial;
+}
+
+.add__button {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    background-color: #bd0000;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s ease-out;
+}
+
+.add__button:hover {
+    background-color: rgb(206, 1, 1);
+}
+
+.show {
+    display: block;
+}
+
+.show__none {
+    display: none;
+}
+
+.add__button__text__desktop {
+    display: block;
+}
+
+.add__button__text__mobile {
+    display: none;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .show__none {
+        display: block;
+    }
+
+    .add__button__text__desktop {
+        display: none;
+    }
+    
+    .add__button__text__mobile {
+        display: block;
+    }
+
+    .add__button {
+        padding: 10px 25px;
+    }
+}
+

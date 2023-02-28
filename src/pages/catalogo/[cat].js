@@ -58,7 +58,7 @@ const Catalogo = () => {
                 let filterMatch = 0;
                 filtersActive.forEach((filter) => {
                     if (product.filters) {
-                        if (product.filters[filter.name] === filter.value) {
+                        if (product.filters[filter.name]?.split(", ").includes(filter.value)) {
                             filterMatch++;
                         }
                     }

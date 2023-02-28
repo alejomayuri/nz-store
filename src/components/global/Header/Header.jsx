@@ -1,6 +1,7 @@
 import style from "./Header.module.css"
 import Email from "../Icons/email"
 import Phone from "../Icons/phone"
+import Link from "next/link"
 import { SearchBar } from "../SearchBar/SearchBar"
 import { LoginBtn } from "../LoginBtn/LoginBtn"
 import { CartBtn } from "../CartBtn/CartBtn"
@@ -19,7 +20,7 @@ const Header = () => {
                 </div>
             </div>
             <div className={`${style.middleBar} default__flex`}>
-                <p>Bienvenido a nuestra tienda</p>
+                <p>Los ángeles tienen colita</p>
                 <div className="default__flex">
                     <SearchBar />
                     <LoginBtn />
@@ -34,11 +35,36 @@ const Header = () => {
             <div className={style.navBar}>
                 <nav>
                     <ul>
-                        <li><a href="#">Colección de Verano</a></li>
-                        <li><a href="#">Ropa</a></li>
-                        <li><a href="#">Juguetes</a></li>
-                        <li><a href="#">Gift Cards</a></li>
-                        <li><a href="#">Ofertas</a></li>
+                        <li>
+                            <Link href="/catalogo/coleccion de verano">
+                                Colección de Verano
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/catalogo/juguetes">
+                                Juguetes
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/catalogo/ropa">
+                                Ropa
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/catalogo/bandanas">
+                                Bandanas
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/catalogo/giftcard">
+                                Gift Cards
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/catalogo/ofertas">
+                                Ofertas
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>

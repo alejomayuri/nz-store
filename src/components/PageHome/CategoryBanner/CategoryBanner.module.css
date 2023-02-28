@@ -1,0 +1,27 @@
+.bannersWrapper {
+    display: flex;
+    margin-top: 64px;
+    gap: 16px;
+}
+
+.bannersWrapper > div {
+    width: 50%;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease-out,
+    -webkit-transform 0.5s ease-out;
+}
+
+.bannersWrapper > div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-out,
+    -webkit-transform 0.5s ease-out;
+    /* filter: grayscale(10%); */
+}
+
+.bannersWrapper > div img:hover {
+    transform: scale(1.03);
+    /* filter: grayscale(0%); */
+}

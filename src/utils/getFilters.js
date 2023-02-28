@@ -10,10 +10,12 @@ const getFilters = (products) => {
             Object.keys(filter).forEach((key) => {
                 if (filters[key]) {
                     if (!filters[key].includes(filter[key])) {
-                        filters[key] = [...filters[key], filter[key]]
+                        const elemnt = filter[key].split(', ')
+                        filters[key] = [...filters[key], elemnt]
                     }
                 } else {
-                    filters[key] = [filter[key]]
+                    const elemnt = filter[key].split(', ')
+                    filters[key] = elemnt
                 }
             })
         }

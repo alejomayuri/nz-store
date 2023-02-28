@@ -9,10 +9,9 @@ import { Info } from '@/components/PageProducts/Info/Info'
 const Products = () => {
     const router = useRouter()
     const { id } = router.query
-
     const { product, loading } = useSingleProduct({ id })
     const [ showDescription, setShowDescription ] = useState(true)
-    
+
     return (
         <Layout>
             {!loading && (
