@@ -14,7 +14,7 @@ export const ProductCartProvider = (props) => {
 
     useEffect(() => {
         if(clientLoaded){
-            const value = window.localStorage.getItem("cart");
+            const value = window.localStorage.getItem("productCart");
             const newCart = !!value ? JSON.parse(value) : [];
             setProducts(newCart);
         }
@@ -24,15 +24,14 @@ export const ProductCartProvider = (props) => {
     const value = { products, setProducts };
 
     useEffect(() => {
-        console.log(localStorage)
-        if(clientLoaded){
-            window.localStorage.setItem("xd", JSON.stringify(products));
+        if(products.length > 0) {
+            window.localStorage.setItem("productCart", JSON.stringify(products));
         }
-    }, [products, clientLoaded]);
+    }, [products]);
 
     return (
         <ProductCartContext.Provider value={value}>
-        {props.children}
+            {props.children}
         </ProductCartContext.Provider>
     );
 };

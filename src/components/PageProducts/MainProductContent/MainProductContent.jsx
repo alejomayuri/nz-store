@@ -30,7 +30,7 @@ const MainProductContent = ({ product }) => {
             }
         })
     }
-    console.log(features)
+    
     if (product?.filters) {
         Object.keys(product?.filters).forEach((key) => {
             if(product?.filters[key].split(', ') && product?.filters[key].split(', ').length > 1) {
@@ -51,9 +51,10 @@ const MainProductContent = ({ product }) => {
                                                 return (
                                                     <li key={value}>
                                                         <button onClick={handleFeature} style={{
-                                                            backgroundColor: features[key] === deleteTextFormat(value) ? '#F9C38F' : 'transparent',
+                                                            backgroundColor: features[key] === deleteTextFormat(value) ? '#BFD8D0' : 'transparent',
                                                             color: features[key] === deleteTextFormat(value) ? '#fff' : '#000',
-                                                            fontWeight: features[key] === deleteTextFormat(value) ? 'bold' : 'normal'
+                                                            fontWeight: features[key] === deleteTextFormat(value) ? 'bold' : 'normal',
+                                                            borderColor: features[key] === deleteTextFormat(value) ? '#BFD8D0' : '#F9C38F',
                                                         }}>
                                                             {value}
                                                         </button>
@@ -103,6 +104,7 @@ const MainProductContent = ({ product }) => {
                             onAdd={cuantity} 
                             product={product?.id} 
                             features={features}
+                            disabled={Object.keys(filters).length === Object.keys(features).length ? false : true}
                         />
                     </div>
                 </div>

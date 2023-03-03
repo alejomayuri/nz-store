@@ -8,11 +8,12 @@ const AddToCartButton = ({
   product,
   features,
   onAdd = 1,
+  disabled
 })  => {
   // const [showModal, setShowModal] = useState(false);
 
   const { products, setProducts } = useProductCartContext();
-  console.log("products", products);
+  console.log(products);
   const handleClick = () => {
     // setShowModal(true);
     handleAddToCart(product);
@@ -20,10 +21,10 @@ const AddToCartButton = ({
   };
 
   const handleAddToCart = (newProduct) => {
-    if (products.find((item) => item.product === newProduct)) {
+    if (products.find((item) => item.product === newProduct && item.features === features)) {
       setProducts((prev) => {
         return prev.map((item) => {
-          if (item.product === newProduct) {
+          if (item.product === newProduct && item.features === features) {
             return {
               ...item,
               quantity: item.quantity + onAdd,
@@ -33,7 +34,7 @@ const AddToCartButton = ({
         });
       });
     } else {
-      setProducts((prev) => [...prev, { product, quantity: onAdd }]);
+      setProducts((prev) => [...prev, { product, quantity: onAdd, features: features }]);
     }
   };
 
@@ -43,14 +44,13 @@ const AddToCartButton = ({
 
   return (
     <>
-      <div className={style.add__button__container}>
-        <button onClick={handleClick} className={style.add__button}>
-          <span className={style.add__button__text__desktop}>
-            Agregar al carrito
-          </span>
-          <span className={style.add__button__text__mobile}>Agregar</span>
-        </button>
-      </div>
+      <button disabled={disabled} onClick={handleClick} className={style.add__button}>
+        <span className={style.add__button__text__desktop}>
+          Agregar al carrito
+        </span>
+        <span className={style.add__button__text__mobile}>Agregar</span>
+      </button>
+
 
       {/* {showModal && (
         <Modal onClose={handleClose}>

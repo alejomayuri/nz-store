@@ -12,7 +12,7 @@ const SearchBar = () => {
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     };
-    console.log(searchTerm)
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         setIsSearching(true);

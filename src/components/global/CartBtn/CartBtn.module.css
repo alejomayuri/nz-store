@@ -1,3 +1,7 @@
+.cartWrapper {
+    position: relative;
+}
+
 .cartBtn {
     position: relative;
     display: flex;
@@ -7,4 +11,20 @@
     transition: all 0.3s ease;
     cursor: pointer;
     border: none;
+}
+
+.cartNum {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #BFD8D0;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
 }
