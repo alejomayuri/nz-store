@@ -268,3 +268,10 @@ main {
 .products__button-container button:hover {
     color: #000;
 }
+
+/*page cart*/
+
+.cartMainContainer {
+    max-width: 1024px;
+    margin: 0 auto;
+}

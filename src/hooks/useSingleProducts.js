@@ -4,7 +4,7 @@ import { fetchProducts } from '@/firebase/client'
 export const useSingleProduct = ({ id } = { id: null }) => {
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false)
-
+    
     useEffect(() => {
         setLoading(true)
         fetchProducts().then((products) => {

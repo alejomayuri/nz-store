@@ -1,0 +1,69 @@
+.totalPriceContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-start;
+    padding: 20px;
+    padding-right: 0px;
+}
+
+.subtotalWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 16px;
+    height: 40px;
+}
+
+.subtotalWrapper h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.subtotalWrapper p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.couponForm {
+    display: flex;
+    align-items: center;
+}
+
+.couponForm label{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.couponForm input {
+    border: none;
+    border-bottom: 1px solid #000000;
+    padding: 0px;
+    padding-left: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    height: 40px
+}
+
+.couponButton, .goToCheckoutButton {
+    height: 40px;
+    background: #BFD8D0;
+    font-weight: 600;
+    border: none;
+    padding: 4px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    justify-content: center;
+}
+
+.couponButton:hover, .goToCheckoutButton:hover {
+    background: #A0C4B9;
+}
+
+.goToCheckoutButton {
+    width: 100%;
+}

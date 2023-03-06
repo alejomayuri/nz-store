@@ -13,7 +13,7 @@ const AddToCartButton = ({
   // const [showModal, setShowModal] = useState(false);
 
   const { products, setProducts } = useProductCartContext();
-  console.log(products);
+  
   const handleClick = () => {
     // setShowModal(true);
     handleAddToCart(product);
