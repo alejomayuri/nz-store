@@ -67,3 +67,11 @@
 .goToCheckoutButton {
     width: 100%;
 }
+
+.goToCheckoutButton span {
+    letter-spacing: .8px;
+}
+
+.totalPriceContainer a {
+    text-decoration: none;
+}

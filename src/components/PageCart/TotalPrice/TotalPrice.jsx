@@ -1,5 +1,6 @@
 import style from "./TotalPrice.module.css";
 import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
+import Link from "next/link";
 
 const TotalPrice = ({ products }) => {
     const formattedPrice = useTotalCartPrice({cart: products})
@@ -17,9 +18,11 @@ const TotalPrice = ({ products }) => {
                     <h3>SUBTOTAL:</h3>
                     <p>{formattedPrice}</p>
                 </div>
-                <button className={style.goToCheckoutButton}>
-                    <span>FINALIZAR COMPRA</span>
-                </button>
+                <Link href="/checkout">
+                    <button className={style.goToCheckoutButton}>
+                        <span>FINALIZAR COMPRA</span>
+                    </button>
+                </Link>
             </div>
         </div>
     )

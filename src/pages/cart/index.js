@@ -6,8 +6,6 @@ import { TotalPrice } from "@/components/PageCart/TotalPrice/TotalPrice";
 
 const Cart = () => {
     const { products, setProducts } = useProductCartContext();
-    
-    
 
     return (
         <Layout>
