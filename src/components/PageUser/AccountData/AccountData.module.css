@@ -1,0 +1,31 @@
+.formWrapper p {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.form div {
+    display: flex;
+    gap: 8px;
+}
+
+.form label {
+    font-size: 16px;
+    display: flex;
+    align-items: flex-end;
+    min-width: 70px;
+}
+
+.form input {
+    padding: 4px 8px;
+    border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #BFD8D0;
+}

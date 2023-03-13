@@ -1,0 +1,97 @@
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #F9C38F;
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.formWrapper p {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 200px;
+}
+
+.form label, .form input {
+    width: 100%;
+}
+
+.form label {
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+.form input {
+    padding: 8px 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submitButton {
+    margin-top: 16px;
+    padding: 8px 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.submitButton:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.googleRegisterWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.googleRegisterWrapper button {
+    padding: 8px 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.callToRegisterWrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    gap: 8px;
+}
+
+.callToRegisterWrapper a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.callToRegisterWrapper a:hover {
+    text-decoration: underline;
+}

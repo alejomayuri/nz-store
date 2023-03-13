@@ -4,9 +4,11 @@ import { ProductCard } from "@/components/global/ProductCard/ProductCard";
 const ProductList = ({ products }) => {
     return (
         <div className={style.productList}>
-            {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-            ))}
+            {
+                products.length > 0 && products?.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))
+            }
         </div>
     );
 }

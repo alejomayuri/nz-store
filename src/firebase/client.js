@@ -1,5 +1,6 @@
 import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"
+import 'firebase/compat/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD1t565GQSz9Dr0vU3kAtySK077MG5YKks",
@@ -29,5 +30,19 @@ export const fetchProducts = () => {
             id
           }
         })
+      })
+  }
+
+export const auth = firebase.auth();
+
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+export const uploadUserData = (user) => {
+    return db
+      .collection("users")
+      .doc(user.userId)
+      .set(user)
+      .then(() => {
+        return user
       })
   }
