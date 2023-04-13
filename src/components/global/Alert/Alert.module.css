@@ -1,0 +1,30 @@
+.alert {
+    background-color: #BFD8D0;
+    color: white;
+    position: fixed;
+    bottom: 64px;
+    left: 64px;
+    width: 370px;
+    z-index: 1;
+    border: solid 3px #71a091;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
+    animation: slide-in 0.5s ease-out;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+}
+
+.show {
+    opacity: 1;
+}
+
+.message {
+    padding: 16px;
+    font-size: 18px;
+    color: #303030;
+    margin: 0;
+    font-weight: 600;
+}

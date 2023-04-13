@@ -29,9 +29,28 @@ export const fetchProducts = () => {
             ...data,
             id
           }
-        })
-      })
-  }
+        }
+      )
+  })
+}
+
+export const fetchUser = (userId) => {
+    return db
+      .collection("users")
+      .get()
+      .then(({ docs }) => {
+        return docs.map((doc) => {
+          const data = doc.data()
+          const id = doc.id
+  
+          return {
+            ...data,
+            id
+          }
+        }
+      )
+  })
+}
 
 export const auth = firebase.auth();
 

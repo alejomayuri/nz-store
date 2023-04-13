@@ -13,10 +13,11 @@
 }
 
 .middleBar {
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 8px 128px;
     box-sizing: border-box;
     background-color: #F49394;
+    background-size: cover;
 }
 
 .logoContainer {

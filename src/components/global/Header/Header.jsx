@@ -19,8 +19,10 @@ const Header = () => {
                     <span>123456789</span>
                 </div>
             </div>
-            <div className={`${style.middleBar} default__flex`}>
-                <p>Los ángeles tienen colita</p>
+            <div className={`${style.middleBar} default__flex`} style={{
+                backgroundImage: "url(/hhh.png)",
+            }}>
+                {/* <p>Los ángeles tienen colita</p> */}
                 <div className="default__flex">
                     <SearchBar />
                     <LoginBtn />

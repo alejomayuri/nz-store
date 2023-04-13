@@ -1,13 +1,35 @@
 import style from "./UserContent.module.css";
 import { useAuth } from "@/context/AuthContext"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccountData } from "../AccountData/AccountData";
+import { useUser } from "@/hooks/useUser";
 
 const UserContent = () => {
     let content = null;
-    const [blockToRender, setBlockToRender] = useState("history");
+    
+    let userInfo = {
+        name: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: ""
+    };
 
-    const { logout } = useAuth();
+    const [blockToRender, setBlockToRender] = useState("history");
+    
+    const { currentUser, logout } = useAuth();
+
+    const userData = useUser({id: currentUser?.uid});
+
+    if (userData) {
+        userInfo = {
+            name: userData.name,
+            lastName: userData.lastName,
+            email: userData.email,
+            phone: userData.phone,
+            address: userData.address
+        };
+    }
 
     const handleBlockToRender = (block) => {
         setBlockToRender(block);
@@ -28,7 +50,7 @@ const UserContent = () => {
             </div>
         );
     } else if (blockToRender === "account") {
-        content = <AccountData />;
+        content = <AccountData data={userInfo} />;
     }
 
     return (

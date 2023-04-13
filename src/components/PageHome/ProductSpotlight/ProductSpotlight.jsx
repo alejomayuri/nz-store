@@ -38,7 +38,10 @@ const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
     };
 
     return (
-        <section className={style.container} style={{backgroundColor: background}}>
+        <section className={style.container} style={{
+            backgroundColor: background,
+            backgroundImage: `url(https://i.ibb.co/2S48MwG/608b06d0-89bb-4f04-83d3-d503a17738bb.jpg)`
+        }}>
             <p className={style.text}>{subtitle}</p>
             <h2 className={style.title}>{title}</h2>
             <div className={style.slider__wrapper}>
