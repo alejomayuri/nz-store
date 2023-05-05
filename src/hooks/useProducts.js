@@ -13,8 +13,12 @@ export const useProducts = ({ category } = { category: null }) => {
         })
     }, [])
 
+    const minusculas = (string) => {
+        return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    }
+
     if (category) {
-        return products.filter((product) => product?.category?.split(', ')?.includes(category))
+        return products.filter((product) => product?.categories?.includes(category))
     }
 
     return {products, loading}

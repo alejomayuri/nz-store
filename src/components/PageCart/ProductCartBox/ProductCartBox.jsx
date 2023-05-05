@@ -55,6 +55,9 @@ const ProductCartBox = ({ element, setProducts }) => {
 
     const handleDelete = () => {
         setProducts((prev) => {
+            if (prev.length === 1) {
+                return []
+            }
             return prev.filter((element) => {
                 return element.product !== id || element.features !== features
             })

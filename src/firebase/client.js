@@ -18,7 +18,7 @@ const db = firebase.firestore()
 
 export const fetchProducts = () => {
     return db
-      .collection("products")
+      .collection("prueba")
       .get()
       .then(({ docs }) => {
         return docs.map((doc) => {

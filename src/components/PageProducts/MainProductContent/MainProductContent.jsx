@@ -10,12 +10,34 @@ const MainProductContent = ({ product }) => {
     const [cuantity, setCuantity] = useState(1);
     const stock = 10;
     const [features, setFeatures] = useState({});
-    let price = formatPrice(product?.price);
-    const filters = {}
-    let showFilters = null
+    let price = null
+    // formatPrice(product?.price);
+    let options = product?.options || null
+    let showOptions = null
 
+    console.log(product?.variations)
     const deleteTextFormat = (text) => {
         return text?.replace(/[^a-zA-Z ]/g, "").replace(/\s/g, '').toLowerCase()
+    }
+    
+    if(product) {
+        if(product.variations.length > 0) {
+            const variation = product.variations.filter(variation => {
+                    const values = variation.options.map(option => deleteTextFormat(option.value))
+                    const result = values.every(value => {
+                        return Object.values(features).includes(value)
+                    })
+
+                    return result
+                }
+            )
+
+            if(variation.length > 0) {
+                price = formatPrice(variation[0].price)
+            }
+        } else {
+            price = formatPrice(product.price)
+        }
     }
 
     const handleFeature = (e) => {
@@ -23,6 +45,7 @@ const MainProductContent = ({ product }) => {
         const { parentElement } = e.target.parentElement
         const { previousElementSibling } = parentElement
         const { innerText: key } = previousElementSibling
+        console.log(key, innerText)
         setFeatures((prev) => {
             return {
                 ...prev,
@@ -31,30 +54,25 @@ const MainProductContent = ({ product }) => {
         })
     }
     
-    if (product?.filters) {
-        Object.keys(product?.filters).forEach((key) => {
-            if(product?.filters[key].split(', ') && product?.filters[key].split(', ').length > 1) {
-                filters[key] = product?.filters[key].split(', ')
-            }
-        })
-        showFilters = (
+    if (product?.options) {
+        showOptions = (
             <div>
                 <ul className={style.filtersList}>
                     {
-                        Object.keys(filters).map((key) => {
+                        options?.map((option, index) => {
                             return (
-                                <li className={style.filterContainer} key={key}>
-                                    <h3 className={style.filterTitle}>{key}</h3>
+                                <li className={style.filterContainer} key={index}>
+                                    <h3 className={style.filterTitle}>{option.name}</h3>
                                     <ul className={style.filterOptionContainer}>
                                         {
-                                            filters[key].map((value) => {
+                                            option.values.filter(value => value !== '').map((value, i) => {
                                                 return (
-                                                    <li key={value}>
+                                                    <li key={i}>
                                                         <button onClick={handleFeature} style={{
-                                                            backgroundColor: features[key] === deleteTextFormat(value) ? '#BFD8D0' : 'transparent',
-                                                            color: features[key] === deleteTextFormat(value) ? '#fff' : '#000',
-                                                            fontWeight: features[key] === deleteTextFormat(value) ? 'bold' : 'normal',
-                                                            borderColor: features[key] === deleteTextFormat(value) ? '#BFD8D0' : '#F9C38F',
+                                                            backgroundColor: features[deleteTextFormat(option.name)] === deleteTextFormat(value) ? '#BFD8D0' : 'transparent',
+                                                            color: features[deleteTextFormat(option.name)] === deleteTextFormat(value) ? '#fff' : '#000',
+                                                            fontWeight: features[deleteTextFormat(option.name)] === deleteTextFormat(value) ? 'bold' : 'normal',
+                                                            borderColor: features[deleteTextFormat(option.name)] === deleteTextFormat(value) ? '#BFD8D0' : '#F9C38F',
                                                         }}>
                                                             {value}
                                                         </button>
@@ -79,7 +97,7 @@ const MainProductContent = ({ product }) => {
            </div>
            <div className={style.infoSite}>
                 <h1>{product?.name}</h1>
-                {showFilters}
+                {showOptions}
                 <span className={style.price}>
                     <bdi>
                         {price}
@@ -104,7 +122,7 @@ const MainProductContent = ({ product }) => {
                             onAdd={cuantity} 
                             product={product?.id} 
                             features={features}
-                            disabled={Object.keys(filters).length === Object.keys(features).length ? false : true}
+                            // disabled={Object.keys(filters).length === Object.keys(features).length ? false : true}
                         />
                     </div>
                 </div>

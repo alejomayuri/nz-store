@@ -11,20 +11,20 @@ export default function Home() {
     <>
       <Layout>
         <MainSlider />
-        <ProductsGrid type="nuevo" title="Lo nuevo" />
-        {/* <ProductsGrid type="bandanas" title="Lo nuevo en Bandanas" /> */}
+        <ProductsGrid type="Ropa" title="Lo nuevo" />
+        <ProductsGrid type="Ropa" title="Lo nuevo en Bandanas" />
         <CategoryBanner 
           img_one="https://i.ibb.co/7NTF9Rh/IMG-1700.jpg"
           img_two="https://i.ibb.co/Gd9JM6V/Screenshot-2023-02-25-at-14-38-08-Pet-Fashion.png"
         />
-        <ProductSpotlight type="colection" title="Colección de Verano" background="#F9C38F" subtitle="Colección" />
+        <ProductSpotlight type="Ropa" title="Colección de Verano" background="#F9C38F" subtitle="Colección" />
         <CategoryBanner 
           img_one="https://i.ibb.co/7NTF9Rh/IMG-1700.jpg"
           img_two="https://i.ibb.co/Gd9JM6V/Screenshot-2023-02-25-at-14-38-08-Pet-Fashion.png"
         />
-        <ProductsGrid type="bandanas" title="Ropa" />
+        <ProductsGrid type="Ropa" title="Ropa" />
         <MiddleBanner />
-        <ProductsGrid type="giftcard" title="Gift Cards" cards />
+        <ProductsGrid type="Ropa" title="Gift Cards" cards />
         <ProductSpotlight type="offer" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />
       </Layout>
     </>

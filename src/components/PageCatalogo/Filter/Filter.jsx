@@ -25,7 +25,7 @@ const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersAc
                 }
             </ul>
             {
-                filters.map((item, index) => {
+                filters?.map((item, index) => {
                     return (
                         <div className={style.filterContainer} key={index}>
                             <h4 className={style.filterTitle}>{item.name}</h4>

@@ -24,11 +24,11 @@ const Products = () => {
                             } className={
                                 showDescription ? 'products__button-active' : ''
                             }>descripción</button>
-                            <button onClick={
+                            {/* <button onClick={
                                 () => setShowDescription(false)
                             } className={
                                 !showDescription ? 'products__button-active' : ''
-                            }>información adicional</button>
+                            }>información adicional</button> */}
                         </div>
                         <div>
                             {

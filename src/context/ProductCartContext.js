@@ -20,14 +20,19 @@ export const ProductCartProvider = (props) => {
         }
     }, [clientLoaded]);
 
-
     const value = { products, setProducts };
 
     useEffect(() => {
         if(products.length > 0) {
             window.localStorage.setItem("productCart", JSON.stringify(products));
         }
-    }, [products]);
+
+        if(products?.length === 0 && clientLoaded) {
+            window.localStorage.removeItem("productCart");
+        }
+    }, [products, clientLoaded]);
+
+    console.log(products);
 
     return (
         <ProductCartContext.Provider value={value}>

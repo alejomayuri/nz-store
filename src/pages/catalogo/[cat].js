@@ -13,7 +13,7 @@ const Catalogo = () => {
     const { cat } = router.query;
     const products = useProducts({ category: cat });
 
-    let filtersList = [];
+    let optionsList = [];
     let subCatList = [];
 
     let initURL = router?.asPath.split('?cat=')[1];
@@ -40,7 +40,7 @@ const Catalogo = () => {
             }, `/catalogo/${cat}?cat=${subCatActive}`);
         }
         setFiltersActive([])
-    }, [subCatActive, cat,initURL]);
+    }, [subCatActive, cat, initURL]);
 
     if (products) {
         if (subCatActive) {
@@ -56,11 +56,15 @@ const Catalogo = () => {
         if (filtersActive.length > 0) {
             productsToShow = productsPerSubCat.filter((product) => {
                 let filterMatch = 0;
-                filtersActive.forEach((filter) => {
-                    if (product.filters) {
-                        if (product.filters[filter.name]?.split(", ").includes(filter.value)) {
-                            filterMatch++;
-                        }
+                filtersActive.forEach((option) => {
+                    if (product.options) {
+                        console.log("--------->", product.options)
+                        console.log("--------->", option.value)
+                        product.options.map((opt) => {
+                            if (opt.name === option.name && opt.values.includes(option.value)) {
+                                filterMatch++;
+                            }
+                        })
                     }
                 });
                 return filterMatch === filtersActive.length;
@@ -70,10 +74,8 @@ const Catalogo = () => {
         }
     }
 
-    //obtener subcategorias y filtros
-
     if (products.length > 0) {
-        filtersList = getFilters(productsPerSubCat);
+        optionsList = getFilters(productsPerSubCat).optionList;
         subCatList = getSubcategories(products);
     }
 
@@ -81,7 +83,7 @@ const Catalogo = () => {
         <Layout>
             <h1 className="catalogo__title">{subCatActive ? subCatActive : cat}</h1>
             <div className="catalogo__container">
-                <Filter filtersActive={filtersActive} subcats={subCatList} filters={filtersList} handlerSetFilters={setFiltersActive} handlerSubCats={setSubCatActive} />
+                <Filter filtersActive={filtersActive} subcats={subCatList} filters={optionsList} handlerSetFilters={setFiltersActive} handlerSubCats={setSubCatActive} />
                 <ProductList products={productsToShow} />
             </div>
         </Layout>

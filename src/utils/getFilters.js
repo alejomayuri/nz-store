@@ -1,34 +1,44 @@
 const getFilters = (products) => {
-    let filters = {}
-    
-    const getFilters = products.map((product) => {
-        return product.filters
+    const options = products.map((product) => {
+        return product.options
     });
 
-    getFilters.forEach((filter) => {
-        if (filter) {
-            Object.keys(filter).forEach((key) => {
-                if (filters[key]) {
-                    if (!filters[key].includes(filter[key])) {
-                        const elemnt = filter[key].split(', ')
-                        filters[key] = [...filters[key], elemnt]
-                    }
+    const optionList = () => {
+        const optionsList = [] 
+
+        options.forEach((option) => {
+            option.map((opt) => {
+                if(optionsList.find((element) => { return element.name === opt.name})) {
+                    optionsList.forEach((element) => {
+                        if(element.name === opt.name) {
+                            element.values = [...element.values, ...opt.values.filter((value) => {
+                                return value !== ''
+                            })]
+
+                            element.values = element.values.filter((value, index, self) => {
+                                return self.indexOf(value) === index
+                            })
+                        }
+                    })
+
                 } else {
-                    const elemnt = filter[key].split(', ')
-                    filters[key] = elemnt
+                    const elemnt = {
+                        name: opt.name,
+                        values: opt.values.filter((value) => {
+                            return value !== ''
+                        })
+                    }
+                    optionsList.push(elemnt)
                 }
             })
-        }
-    })
+        })
 
-    const turnIntoArray = Object.keys(filters).map((key) => {
-        return {
-            name: key,
-            values: filters[key]
-        }
-    })
+        return optionsList
+    }
 
-    return turnIntoArray
+    return {
+        optionList: optionList(),
+    }
 }
 
 export default getFilters;
