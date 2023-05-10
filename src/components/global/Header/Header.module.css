@@ -20,20 +20,6 @@
     background-size: cover;
 }
 
-.logoContainer {
-    background-color: #fff;
-}
-
-.logoContainer > div {
-    width: 225px;
-    height: auto;
-    margin: 0 auto;
-}
-
-.logoContainer > div > img {
-    width: 100%;
-}
-
 .navBar {
     justify-content: center;
     box-sizing: border-box;
@@ -47,24 +33,81 @@
     padding: 16px;
     box-sizing: border-box;
     background-color: #fff;
-    max-width: 1440px;
     margin: 0 auto;
-    border-top: solid 2px #F49394;
-    border-bottom: solid 2px #F49394;
-    width: 100%;
 }
 
 .navBar li {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0px 12px;
     list-style: none;
-    font-size: 18px;
+    font-size: 17px;
+    position: relative;
 }
 
-.navBar a:link { 
+.navBar li > a { 
     text-decoration: none;
-    color: #222;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    transition: all 0.2s ease-in-out;
 }
-.navBar a:visited {
-text-decoration: none;
+
+.navBar li > a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #F49394;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navBar li:hover a::before {
+    transform: scaleX(1);
+  }
+
+  .navBar li a:hover {
+    color: #F49394;
+    /* animation: bounce 0.5s ease-in-out both; */
+  }
+
+
+  /* @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  } */
+
+.menusContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    height: 150px;
+}
+
+.menusContainer > .logoContainer {
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 50%;
+    margin-top: -75px;
+    left: 50%;
+    margin-left: -75px;
+}
+
+.menusContainer > .logoContainer img {
+    height: 100%;
+    width: 100%;
 }

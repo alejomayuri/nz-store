@@ -5,6 +5,7 @@ import Link from "next/link"
 import { SearchBar } from "../SearchBar/SearchBar"
 import { LoginBtn } from "../LoginBtn/LoginBtn"
 import { CartBtn } from "../CartBtn/CartBtn"
+import { MenuHamburguesa } from "./MenuHamburguesa/MenuHamburguesa"
 
 const Header = () => {
     return (
@@ -29,46 +30,44 @@ const Header = () => {
                     <CartBtn />
                 </div>
             </div>
-            <div className={style.logoContainer}>
-                <div>
-                    <img src="/logo.jpg" alt="logo" />
+            <div className={style.menusContainer}>
+                <MenuHamburguesa />
+                <div className={style.logoContainer}>
+                    <Link href="/">
+                        <img src="/logo.jpg" alt="logo" />
+                    </Link>
                 </div>
-            </div>
-            <div className={style.navBar}>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link href="/catalogo/coleccion de verano">
-                                Colección de Verano
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/catalogo/juguetes">
-                                Juguetes
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/catalogo/ropa">
-                                Ropa
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/catalogo/bandanas">
-                                Bandanas
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/catalogo/giftcard">
-                                Gift Cards
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/catalogo/ofertas">
-                                Ofertas
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
+                <div className={style.navBar}>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link href="/catalogo/coleccion de verano">
+                                    Colección de Verano
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/catalogo/juguetes">
+                                    Juguetes
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/catalogo/Ropa">
+                                    Ropa
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/catalogo/bandanas">
+                                    Bandanas
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/catalogo/ofertas">
+                                    Ofertas
+                                </Link>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
     )
