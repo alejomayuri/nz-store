@@ -15,13 +15,13 @@ const MainProductContent = ({ product }) => {
     let options = product?.options || null
     let showOptions = null
 
-    console.log(product?.variations)
+    // console.log(product?.variations)
     const deleteTextFormat = (text) => {
         return text?.replace(/[^a-zA-Z ]/g, "").replace(/\s/g, '').toLowerCase()
     }
     
     if(product) {
-        if(product.variations.length > 0) {
+        if(product?.variations?.length > 0) {
             const variation = product.variations.filter(variation => {
                     const values = variation.options.map(option => deleteTextFormat(option.value))
                     const result = values.every(value => {
@@ -45,7 +45,7 @@ const MainProductContent = ({ product }) => {
         const { parentElement } = e.target.parentElement
         const { previousElementSibling } = parentElement
         const { innerText: key } = previousElementSibling
-        console.log(key, innerText)
+        // console.log(key, innerText)
         setFeatures((prev) => {
             return {
                 ...prev,

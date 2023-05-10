@@ -58,8 +58,8 @@ const Catalogo = () => {
                 let filterMatch = 0;
                 filtersActive.forEach((option) => {
                     if (product.options) {
-                        console.log("--------->", product.options)
-                        console.log("--------->", option.value)
+                        // console.log("--------->", product.options)
+                        // console.log("--------->", option.value)
                         product.options.map((opt) => {
                             if (opt.name === option.name && opt.values.includes(option.value)) {
                                 filterMatch++;

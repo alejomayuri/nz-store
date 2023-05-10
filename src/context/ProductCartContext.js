@@ -32,7 +32,7 @@ export const ProductCartProvider = (props) => {
         }
     }, [products, clientLoaded]);
 
-    console.log(products);
+    // console.log(products);
 
     return (
         <ProductCartContext.Provider value={value}>

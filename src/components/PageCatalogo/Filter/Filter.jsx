@@ -2,7 +2,7 @@ import style from "./Filter.module.css";
 const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersActive }) => {
 
     let handlerSet = (element) => {
-        console.log(filtersActive)
+        // console.log(filtersActive)
         if (filtersActive.find(item => item.name === element.name && item.value === element.value)) {
             handlerSetFilters(filtersActive.filter(item => item.name !== element.name || item.value !== element.value))
         } else {

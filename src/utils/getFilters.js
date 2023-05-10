@@ -7,7 +7,7 @@ const getFilters = (products) => {
         const optionsList = [] 
 
         options.forEach((option) => {
-            option.map((opt) => {
+            option?.map((opt) => {
                 if(optionsList.find((element) => { return element.name === opt.name})) {
                     optionsList.forEach((element) => {
                         if(element.name === opt.name) {

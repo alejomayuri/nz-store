@@ -1,3 +1,12 @@
+.header {
+  position: fixed;
+  z-index: 99;
+  background: #fff;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+}
+
 .topBar {
     justify-content: flex-end;
     padding: 8px 64px;
@@ -9,6 +18,7 @@
 .topBar > div {
     align-items: center;
     display: flex;
+    gap: 8px;
     margin: 0 10px;
 }
 

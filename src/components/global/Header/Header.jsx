@@ -9,15 +9,15 @@ import { MenuHamburguesa } from "./MenuHamburguesa/MenuHamburguesa"
 
 const Header = () => {
     return (
-        <header className="header">
+        <header className={style.header}>
             <div className={`${style.topBar} default__flex`}>
                 <div>
-                    <Email width={"30px"} />
-                    <span>ejemplo@ejemplo.com</span>
+                    <Email width={"20px"} />
+                    <span>nz.thefrenchie@gmail.com</span>
                 </div>
                 <div>
                     <Phone width={"20px"} />
-                    <span>123456789</span>
+                    <span>914 523 216</span>
                 </div>
             </div>
             <div className={`${style.middleBar} default__flex`} style={{
@@ -41,7 +41,7 @@ const Header = () => {
                     <nav>
                         <ul>
                             <li>
-                                <Link href="/catalogo/coleccion de verano">
+                                <Link href="/catalogo/coleccion-de-verano">
                                     Colección de Verano
                                 </Link>
                             </li>
@@ -51,7 +51,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/catalogo/Ropa">
+                                <Link href="/catalogo/ropa">
                                     Ropa
                                 </Link>
                             </li>

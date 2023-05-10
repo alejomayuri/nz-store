@@ -9,7 +9,7 @@ const MenuHamburguesa = () => {
 
   function handleClick() {
     setIsActive(!isActive);
-    console.log(isActive)
+    // console.log(isActive)
   }
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const MenuHamburguesa = () => {
                 <ul>
                     <li><a href="#">Colección de verano</a></li>
                     <li><a href="#">Juguetes</a></li>
-                    <li><a href="/catalogo/Ropa">Ropa</a></li>
+                    <li><a href="/catalogo/ropa">Ropa</a></li>
                     <li><a href="#">Bandanas</a></li>
                     <li><a href="#">Accesorios</a></li>
                     <li><a href="#">Gift Cards</a></li>
