@@ -2,6 +2,7 @@ import style from './MenuHamburguesa.module.css';
 import React, { useState, useEffect, useRef } from 'react';
 import FacebookIcon from '../../Icons/facebookIcon';
 import InstagramIcon from '../../Icons/instagramIcon';
+import Link from 'next/link';
 
 const MenuHamburguesa = () => {
   const [isActive, setIsActive] = useState(false);
@@ -44,15 +45,15 @@ const MenuHamburguesa = () => {
                     </div>
                 </header>
                 <ul>
-                    <li><a href="#">Colección de verano</a></li>
-                    <li><a href="#">Juguetes</a></li>
-                    <li><a href="/catalogo/ropa">Ropa</a></li>
-                    <li><a href="#">Bandanas</a></li>
-                    <li><a href="#">Accesorios</a></li>
-                    <li><a href="#">Gift Cards</a></li>
-                    <li><a href="#">Humanos</a></li>
-                    <li><a href="#">Colección de invierno</a></li>
-                    <li><a href="#">Ofertas</a></li>
+                    <li><Link href="#">Colección de verano</Link></li>
+                    <li><Link href="#">Juguetes</Link></li>
+                    <li><Link href="/catalogo/ropa">Ropa</Link></li>
+                    <li><Link href="#">Bandanas</Link></li>
+                    <li><Link href="#">Accesorios</Link></li>
+                    <li><Link href="#">Gift Cards</Link></li>
+                    <li><Link href="#">Humanos</Link></li>
+                    <li><Link href="#">Colección de invierno</Link></li>
+                    <li><Link href="#">Ofertas</Link></li>
                 </ul>
                 <footer className={style.menuFooter}>
                     <div className={style.footer__social}>
