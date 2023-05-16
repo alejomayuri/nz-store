@@ -1,9 +1,11 @@
 .productCard {
-    display: flex;
-    flex-direction: column;
-    padding: 4px;
-    cursor: pointer;
-    max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  cursor: pointer;
+  max-width: 260px;
+  height: 350px;
+  justify-content: flex-start;
 }
 
 .productCard a {

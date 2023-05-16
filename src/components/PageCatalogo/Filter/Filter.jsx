@@ -33,8 +33,13 @@ const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersAc
                                 {
                                     item.values.map((option, index) => {
                                         return (
-                                            <li key={index}>
-                                                <button onClick={() => handlerSet({ name: item.name, value: option })}>{option}</button>
+                                            <li className={
+                                                filtersActive.find(filter => filter.name === item.name && filter.value === option) ? style.filterActive : style.filterOption
+                                            } 
+                                            key={index}
+                                            onClick={() => handlerSet({ name: item.name, value: option })}>
+                                                <span></span>
+                                                <button>{option}</button>
                                             </li>
                                         )
                                     })
@@ -50,10 +55,10 @@ const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersAc
                     <div className={style.filterBox}>
                     {
                         filtersActive.map((item, index) => 
-                                <div key={index} className={style.filterBoxItem}>
-                                    <p>{item.value}</p>
-                                    <button onClick={() => handlerSetFilters(filtersActive.filter(filter => filter.name !== item.name || filter.value !== item.value))}>X</button>
-                                </div>
+                            <div key={index} className={style.filterBoxItem}>
+                                <p>{item.value}</p>
+                                <button onClick={() => handlerSetFilters(filtersActive.filter(filter => filter.name !== item.name || filter.value !== item.value))}>X</button>
+                            </div>
                         )
                     }
                     </div>

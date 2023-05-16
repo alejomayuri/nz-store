@@ -1,5 +1,5 @@
 import style from './MainProductContent.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Minus from '@/components/global/Icons/minus';
 import Plus from '@/components/global/Icons/plus';
 import { formatPrice } from '@/utils/formatPrice';
@@ -19,6 +19,20 @@ const MainProductContent = ({ product }) => {
     const deleteTextFormat = (text) => {
         return text?.replace(/[^a-zA-Z ]/g, "").replace(/\s/g, '').toLowerCase()
     }
+
+    useEffect(() => {
+        if(product?.variations?.length > 0) {
+            const initialFeatures = product?.variations[0]?.options?.reduce((acc, option) => {
+                return {
+                    ...acc,
+                    [deleteTextFormat(option.name)]: deleteTextFormat(option.value)
+                }
+            }
+            , {})
+            setFeatures(initialFeatures)
+        }
+
+    }, [product])
     
     if(product) {
         if(product?.variations?.length > 0) {
