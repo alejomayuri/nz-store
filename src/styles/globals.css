@@ -277,3 +277,12 @@ main {
     max-width: 1024px;
     margin: 0 auto;
 }
+
+/*checkout cart*/
+
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}

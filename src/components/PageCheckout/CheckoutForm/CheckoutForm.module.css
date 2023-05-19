@@ -132,3 +132,25 @@
 .paymentMethodActive {
     background-color: #d7f0e8;
 }
+
+.submit{
+    width: 600px;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: #a3d9cb;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+/* .submit:hover{
+    background-color: #7fc7b9;
+} */
+
+.submit:disabled{
+    background-color: #d3d5d7;
+    cursor: not-allowed;
+}

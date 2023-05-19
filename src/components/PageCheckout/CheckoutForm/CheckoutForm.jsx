@@ -2,136 +2,22 @@ import style from './CheckoutForm.module.css';
 import { useEffect, useState } from 'react';
 import { useProductCartContext } from "@/context/ProductCartContext";
 import { useUbigeo } from "@/hooks/useUbigeo";
+import { useCheckout } from '@/hooks/useCheckout';
 
-const CheckoutForm = () => {
-    const { products } = useProductCartContext();
-
-    const { ubigeoSelect, setDptoSel, setProvSel, setDistSel } = useUbigeo();
-
-    const [form, setForm] = useState({
-        name: null,
-        lastName: null,
-        typeDocument: 'dni',
-        document: null,
-        email: null,
-        phone: null,
-        cart: null,
-        ubigeo : {
-            dpto: null,
-            prov: null,
-            dist: null,
-        },
-        address: null,
-        razonSocial: null,
-        nRuc: null,
-        paymentMethod: null
-    });
-    
-    useEffect(() => {
-        setForm({
-            ...form,
-            cart: products
-        })
-    }, [products])
-
-    const [conFactura, setConFactura] = useState(false)
-    const [disable, setDisable] = useState(true)
-
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.id]: e.target.value,
-        });
-    }
-
-    const handleChangeDpto = (e) => {
-        setDptoSel(ubigeoSelect.dpto.filter((dpto) => dpto.id === parseInt(e.target.value)))
-        setForm({
-            ...form,
-            ubigeo : {
-                [e.target.id]: e.target.value,
-                prov: null,
-                dist: null
-            }
-        });
-    }
-
-    const handleChangeProv = (e) => {
-        setForm({
-            ...form,
-            ubigeo : {
-                ...form.ubigeo,
-                [e.target.id]: e.target.value,
-                dist: null
-            }
-        });
-        setProvSel(ubigeoSelect.provList.filter((prov) => prov.id === parseInt(e.target.value)))
-    }
-
-    const handleChangeDist = (e) => {
-        setForm({
-            ...form,
-            ubigeo : {
-                ...form.ubigeo,
-                [e.target.id]: e.target.value
-            }
-        });
-        setDistSel(ubigeoSelect.distList.filter((dist) => dist.id === parseInt(e.target.value)))
-    }
-
-    const handleConFactura = (e) => {
-        setConFactura(e.target.checked)
-    }
-
-    useEffect(() => {
-        if(!conFactura) {
-            setForm({
-                ...form,
-                razonSocial: null,
-                nRuc: null
-            })
-        }
-    }, [conFactura])
-
-    const handleWayToPayChange = (e) => {
-        setForm({
-            ...form,
-            paymentMethod: e.target.value
-        });
-    }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(form);
-    }
-
-    useEffect(() => {
-        if (
-            form.name && 
-            form.lastName && 
-            form.document && 
-            form.email && 
-            form.phone &&
-            form.ubigeo.dpto &&
-            form.ubigeo.prov &&
-            form.ubigeo.dist &&
-            form.address &&
-            form.paymentMethod
-        ) {
-            if(conFactura) {
-                if(form.razonSocial && form.nRuc) {
-                    setDisable(false)
-                } else {
-                    setDisable(true)
-                }
-            } else {
-                setDisable(false)
-            }
-        } else {
-            setDisable(true)
-        }
-    }, [form, conFactura])
-    
+const CheckoutForm = ({
+    form,
+    loading,
+    conFactura,
+    disable,
+    handleChange,
+    ubigeoSelect,
+    handleChangeDpto,
+    handleChangeProv,
+    handleChangeDist,
+    handleConFactura,
+    handleWayToPayChange,
+    handleSubmit
+}) => {
     return (
         <div className="checkout-form">
             <form className={style.form}>
@@ -139,12 +25,12 @@ const CheckoutForm = () => {
                 <div className={style.formGroup_fRow}>
                     <div className={style.formGroup_internalCol}>
                         <div className={style.formGroup_element}>
-                            <label htmlFor="name">Nombre</label>
+                            <label htmlFor="name">Nombre*</label>
                             <input type="text" id="name" onChange={handleChange} />
                         </div>
 
                         <div className={style.formGroup_element}>
-                            <label htmlFor="dni">Documento de identidad</label>
+                            <label htmlFor="dni">Documento de identidad*</label>
                             <select name="dni" id="typeDocument" onChange={handleChange}>
                                 <option value="dni">DNI</option>
                                 <option value="ce">CE</option>
@@ -152,24 +38,24 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className={style.formGroup_element}>
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email*</label>
                             <input type="email" id="email" onChange={handleChange} />
                         </div>
                     </div>
 
                     <div className={style.formGroup_internalCol}>
                         <div className={style.formGroup_element}>
-                            <label htmlFor="lastName">Apellido</label>
+                            <label htmlFor="lastName">Apellido*</label>
                             <input type="text" id="lastName" onChange={handleChange} />
                         </div>
 
                         <div className={style.formGroup_element}>
-                            <label htmlFor="address">Nº de documento</label>
+                            <label htmlFor="address">Nº de documento*</label>
                             <input type="text" id="document" onChange={handleChange} />
                         </div>
                         
                         <div className={style.formGroup_element}>
-                            <label htmlFor="phone">Teléfono</label>
+                            <label htmlFor="phone">Teléfono*</label>
                             <input type="tel" id="phone" onChange={handleChange} />
                         </div>
                     </div>
@@ -178,7 +64,7 @@ const CheckoutForm = () => {
                 <div className={style.formGroup_internalCol}>
                     <div className={style.flexRow}>
                         <div className={style.formGroup_element}>
-                            <label htmlFor="departamento">Departamento</label>
+                            <label htmlFor="departamento">Departamento*</label>
                             <select name="departamento" id="dpto" onChange={handleChangeDpto}>
                                 <option value="0">Seleccionar</option>
                                 {ubigeoSelect.dpto.map((item) => (
@@ -190,7 +76,7 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className={style.formGroup_element}>
-                            <label htmlFor="provincia">Provincia</label>
+                            <label htmlFor="provincia">Provincia*</label>
                             <select name="provincia" id="prov" onChange={handleChangeProv}>
                                 <option value="0">Seleccionar</option>
                                 {ubigeoSelect.provList.map((item) => (
@@ -202,7 +88,7 @@ const CheckoutForm = () => {
                         </div>
 
                         <div className={style.formGroup_element}>
-                            <label htmlFor="distrito">Distrito</label>
+                            <label htmlFor="distrito">Distrito*</label>
                             <select name="distrito" id="dist" onChange={handleChangeDist}>
                                 <option value="0">Seleccionar</option>
                                 {ubigeoSelect.distList.map((item) => (
@@ -214,7 +100,7 @@ const CheckoutForm = () => {
                         </div>
                     </div>
                     <div className={style.formGroup_element}>
-                        <label htmlFor="address">Dirección</label>
+                        <label htmlFor="address">Dirección*</label>
                         <input type="text" id="address" onChange={handleChange} />
                     </div>
                     <div className={style.formGroup_conFactura}>
@@ -225,11 +111,11 @@ const CheckoutForm = () => {
                         conFactura && (
                             <>
                                 <div className={style.formGroup_element}>
-                                    <label htmlFor="razonSocial">Razón Social</label>
+                                    <label htmlFor="razonSocial">Razón Social*</label>
                                     <input type="text" id="razonSocial" onChange={handleChange} />
                                 </div>
                                 <div className={style.formGroup_element}>
-                                    <label htmlFor="nRuc">N° de RUC</label>
+                                    <label htmlFor="nRuc">N° de RUC*</label>
                                     <input type="text" id="nRuc" onChange={handleChange} />
                                 </div>
                             </>
@@ -280,7 +166,7 @@ const CheckoutForm = () => {
                 </div>
             </form>
 
-            <button disabled={disable} onClick={handleSubmit}>
+            <button className={style.submit} disabled={disable} onClick={handleSubmit}>
                 REALIZAR EL PEDIDO
             </button>
         </div>
