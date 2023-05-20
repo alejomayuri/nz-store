@@ -16,7 +16,7 @@ export const useTotalCartPrice = ({ cart } = { cart: null }) => {
     }, 0)
 
     if (totalPrice > 0) {
-        formattedPrice = formatPrice(totalPrice)
+        formattedPrice = totalPrice
     }
 
     return formattedPrice

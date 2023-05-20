@@ -26,7 +26,9 @@ export const useCheckout = () => {
         address: null,
         razonSocial: null,
         nRuc: null,
-        paymentMethod: null
+        paymentMethod: null,
+        subtotal: null,
+        envio: null,
     });
 
     useEffect(() => {
@@ -57,7 +59,8 @@ export const useCheckout = () => {
             form.ubigeo.prov &&
             form.ubigeo.dist &&
             form.address &&
-            form.paymentMethod
+            form.paymentMethod &&
+            form.subtotal
         ) {
             if(conFactura) {
                 if(form.razonSocial && form.nRuc) {
@@ -125,6 +128,20 @@ export const useCheckout = () => {
             paymentMethod: e.target.value
         });
     }
+
+    const handleChangeSubtotal = (subtotal) => {
+        setForm({
+            ...form,
+            subtotal: subtotal
+        });
+    }
+
+    const handleEnvio = (envio) => {
+        setForm({
+            ...form,
+            envio: envio
+        });
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -143,6 +160,8 @@ export const useCheckout = () => {
         handleChangeDist,
         handleConFactura,
         handleWayToPayChange,
+        handleChangeSubtotal,
+        handleEnvio,
         handleSubmit
     }
 }

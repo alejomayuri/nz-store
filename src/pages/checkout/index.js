@@ -16,8 +16,10 @@ const Checkout = () => {
         handleChangeDist,
         handleConFactura,
         handleWayToPayChange,
+        handleChangeSubtotal,
+        handleEnvio,
         handleSubmit } = useCheckout();
-
+        console.log(form)
     return (
         <Layout>
             <div className="checkout-container">
@@ -37,6 +39,9 @@ const Checkout = () => {
                 />
                 <Summary
                     pedido={form?.cart}
+                    ubigeo={form.ubigeo}
+                    handleChangeSubtotal={handleChangeSubtotal}
+                    handleEnvio={handleEnvio}
                 />
             </div>
         </Layout>

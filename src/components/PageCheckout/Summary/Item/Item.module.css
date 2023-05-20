@@ -6,14 +6,13 @@
 
 .summary__item h3, .summary__item p {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
     color: #4a4a4a;
     letter-spacing: 1.1px;
 }
 
 .summary__item p {
     font-weight: 500;
-    font-size: 16px;
 }
 
 .summary__item_content {
