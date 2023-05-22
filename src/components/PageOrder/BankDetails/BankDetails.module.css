@@ -1,0 +1,33 @@
+.bankDetails__container h2 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 1.1px;
+    padding-bottom: 8px;
+    margin-top: 40px;
+}
+
+.bankDetails__content h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 1.1px;
+}
+
+.bankDetails__content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bankDetails__content ul li {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 16px;
+    letter-spacing: 1.1px;
+}

@@ -1,6 +1,6 @@
-import style from './Item.module.css';
+import style from './Item.module.css'
 import { useSingleProduct } from "@/hooks/useSingleProducts"
-import { formatPrice } from '@/utils/formatPrice';
+import { formatPrice } from '@/utils/formatPrice'
 
 const Item = ({item}) => {
     const id = item?.product
@@ -29,49 +29,39 @@ const Item = ({item}) => {
           return false;
         }
       
-        for (let i = 0; i < datos1.length; i++) {
-            const item1 = datos1[i];
-            const item2 = datos2[i];
-      
-            if (item1.name.toLowerCase() !== item2.name.toLowerCase() || item1.value.toLowerCase() !== item2.value.toLowerCase()) {
-                return false;
-            }
-        }
-      
-        return true;
-    }
+        return datos1.every((item1) => {
+          return datos2.some((item2) => {
+            return (
+              item1.name.toLowerCase() === item2.name.toLowerCase() &&
+              item1.value.toLowerCase() === item2.value.toLowerCase()
+            );
+          });
+        });
+    };
 
     if (product && product[0]?.variations) {
         const variation = product[0]?.variations?.find((variation) => {
-            const options = variation.options
-            // const features = item.features
+            const options = variation?.options
             const datos2Obj = Object.entries(features).map(([name, value]) => ({ name, value }));
 
             return compararIgualdad(options, datos2Obj)
         })
-        price = formatPrice(variation?.price)
+        price = variation?.price
     } else {
-        price = formatPrice(product[0]?.price)
+        price = product[0]?.price
     }
 
     return (
-        <div className={style.summary__item}>
-            <div className={style.summary__item_content}>
-                <h3>{product[0]?.name}</h3>
-                {
-                    listOfFeatures && listOfFeatures.length > 0 && (
-                        <div className={style.featuresContainer}>
-                            {listOfFeatures}
-                        </div>
-                    )
-                }
-                <p>{`Cantidad: ${item?.quantity}`}</p>
-            </div>
+        <div className={style.orderDetails__container}>
             <div>
-                <p>{price}</p>
+                <h3>{`${product[0]?.name} x ${item?.quantity}`}</h3>
+                <div className={style.featuresContainer}>
+                    {listOfFeatures}
+                </div>
             </div>
+            <p className={style.orderDetails__price}>{formatPrice(price * item.quantity)}</p>
         </div>
     )
 }
 
-export { Item };
+export { Item }

@@ -7,6 +7,7 @@ const Checkout = () => {
     const { 
         form,
         loading,
+        uploadLoading,
         conFactura,
         disable,
         handleChange,
@@ -18,8 +19,11 @@ const Checkout = () => {
         handleWayToPayChange,
         handleChangeSubtotal,
         handleEnvio,
+        handleTotal,
         handleSubmit } = useCheckout();
-        console.log(form)
+        // console.log(form)
+
+    if (uploadLoading) return <h1>Loading...</h1>
     return (
         <Layout>
             <div className="checkout-container">
@@ -42,6 +46,7 @@ const Checkout = () => {
                     ubigeo={form.ubigeo}
                     handleChangeSubtotal={handleChangeSubtotal}
                     handleEnvio={handleEnvio}
+                    handleTotal={handleTotal}
                 />
             </div>
         </Layout>

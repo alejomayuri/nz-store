@@ -10,7 +10,7 @@ export const useTotalCartPrice = ({ cart } = { cart: null }) => {
         return <p>Loading...</p>
     }
 
-    cart.reduce((acc, item) => {
+    cart?.reduce((acc, item) => {
         const product = products?.find((product) => product?.id === item.product)
         totalPrice += product?.price * item.quantity
     }, 0)

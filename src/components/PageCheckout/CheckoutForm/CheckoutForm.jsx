@@ -18,6 +18,9 @@ const CheckoutForm = ({
     handleWayToPayChange,
     handleSubmit
 }) => {
+    const handleOnSubmit = () => {
+        handleSubmit(form);
+    }
     return (
         <div className="checkout-form">
             <form className={style.form}>
@@ -166,7 +169,7 @@ const CheckoutForm = ({
                 </div>
             </form>
 
-            <button className={style.submit} disabled={disable} onClick={handleSubmit}>
+            <button className={style.submit} disabled={disable} onClick={handleOnSubmit}>
                 REALIZAR EL PEDIDO
             </button>
         </div>

@@ -1,16 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useProductCartContext } from "@/context/ProductCartContext";
 import { useUbigeo } from "@/hooks/useUbigeo";
+import { useUploadOrder } from './useUploadOrder';
 
-export const useCheckout = () => {
+export const useCheckout = ({
+    name,
+    lastName,
+    document,
+    email,
+    phone,
+    ubigeo,
+    address,
+    razonSocial,
+    nRuc,
+    paymentMethod,
+    subtotal,
+    envio,
+    total
+} = {}) => {
     const { products } = useProductCartContext();
-    const { ubigeoSelect, setDptoSel, setProvSel, setDistSel } = useUbigeo();
 
-    const [loading, setLoading] = useState(false);
-    const [conFactura, setConFactura] = useState(false)
-    const [disable, setDisable] = useState(true)
-
-    const [form, setForm] = useState({
+    const FORM_STATE = {
         name: null,
         lastName: null,
         typeDocument: 'dni',
@@ -29,7 +39,24 @@ export const useCheckout = () => {
         paymentMethod: null,
         subtotal: null,
         envio: null,
-    });
+        total: null
+    }
+
+    const { ubigeoSelect, setDptoSel, setProvSel, setDistSel } = useUbigeo();
+
+    const [form, setForm] = useState(FORM_STATE);
+
+    const { handleUploadOrder, uploadLoading } = useUploadOrder(
+        {
+            order: form
+        }
+    );
+
+    const [loading, setLoading] = useState(false);
+    const [conFactura, setConFactura] = useState(false)
+    const [disable, setDisable] = useState(true)
+
+    
 
     useEffect(() => {
         setForm({
@@ -60,7 +87,8 @@ export const useCheckout = () => {
             form.ubigeo.dist &&
             form.address &&
             form.paymentMethod &&
-            form.subtotal
+            form.subtotal &&
+            form.total
         ) {
             if(conFactura) {
                 if(form.razonSocial && form.nRuc) {
@@ -142,15 +170,23 @@ export const useCheckout = () => {
             envio: envio
         });
     }
+
+    const handleTotal = (total) => {
+        setForm({
+            ...form,
+            total: total
+        });
+    }
     
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(form);
+    const handleSubmit = (completedForm) => {
+        // console.log(completedForm);
+        handleUploadOrder(completedForm);
     }
 
     return {
         form,
         loading,
+        uploadLoading,
         conFactura,
         disable,
         handleChange,
@@ -162,6 +198,7 @@ export const useCheckout = () => {
         handleWayToPayChange,
         handleChangeSubtotal,
         handleEnvio,
+        handleTotal,
         handleSubmit
     }
 }

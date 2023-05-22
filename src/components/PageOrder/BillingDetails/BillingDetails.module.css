@@ -1,0 +1,25 @@
+.billingDetails__container h2 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 1.1px;
+    padding-bottom: 8px;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.billingDetails__content__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px 8px 8px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.billingDetails__content__item p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 0.9px;
+    margin-bottom: 0;
+}

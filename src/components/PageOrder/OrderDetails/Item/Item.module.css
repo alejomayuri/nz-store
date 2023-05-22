@@ -1,0 +1,43 @@
+.orderDetails__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px 18px 8px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.orderDetails__container h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 0.9px;
+    margin-bottom: 0;
+}
+
+.orderDetails__price {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 0;
+}
+
+.featuresContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.features {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    border-radius: 4px;
+    text-transform: capitalize;
+    letter-spacing: 0.9px;
+    margin-top: 16px;
+}
+
+.features p {
+    margin: 0;
+}

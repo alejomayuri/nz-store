@@ -34,6 +34,24 @@ export const fetchProducts = () => {
   })
 }
 
+export const fetchOrders = () => {
+    return db
+      .collection("pedidos")
+      .get()
+      .then(({ docs }) => {
+        return docs.map((doc) => {
+          const data = doc.data()
+          const id = doc.id
+
+          return {
+            ...data,
+            id
+          }
+        }
+      )
+  })
+}
+
 export const fetchUser = (userId) => {
     return db
       .collection("users")
@@ -63,5 +81,14 @@ export const uploadUserData = (user) => {
       .set(user)
       .then(() => {
         return user
+      })
+  }
+
+export const uploadOrder = (order) => {
+    return db
+      .collection("pedidos")
+      .add(order)
+      .then(({ id }) => {
+        return id
       })
   }

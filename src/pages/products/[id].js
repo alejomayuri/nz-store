@@ -11,7 +11,7 @@ const Products = () => {
     const { id } = router.query
     const { product, loading } = useSingleProduct({ id })
     const [ showDescription, setShowDescription ] = useState(true)
-
+    
     return (
         <Layout>
             {!loading && (
@@ -24,11 +24,6 @@ const Products = () => {
                             } className={
                                 showDescription ? 'products__button-active' : ''
                             }>descripción</button>
-                            {/* <button onClick={
-                                () => setShowDescription(false)
-                            } className={
-                                !showDescription ? 'products__button-active' : ''
-                            }>información adicional</button> */}
                         </div>
                         <div>
                             {

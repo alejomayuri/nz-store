@@ -4,11 +4,12 @@ import { Item } from './Item/Item';
 import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
 import { formatPrice } from '@/utils/formatPrice';
 
-const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio}) => {
+const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal}) => {
     const formattedPrice = useTotalCartPrice({cart: pedido})
     const [total, setTotal] = useState(0)
     const [envio, setEnvio] = useState(null)
     const [envioMessage, setEnvioMessage] = useState(false)
+    console.log(pedido)
 
     useEffect(() => {
         if(ubigeo?.dpto && ubigeo?.prov && ubigeo?.dist) {
@@ -23,8 +24,6 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio}) => {
             setEnvio(null)
         }
     }, [ubigeo])
-
-    console.log(typeof envio)
 
     useEffect(() => {
         if(typeof formattedPrice === "number"){
@@ -42,6 +41,10 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio}) => {
     useEffect(() => {
         handleEnvio(envio)
     }, [envio])
+
+    useEffect(() => {
+        handleTotal(total)
+    }, [total])
 
     return (
         <div className={style.summary}>
