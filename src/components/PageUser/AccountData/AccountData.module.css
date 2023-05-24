@@ -1,3 +1,12 @@
+.formWrapper h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 16px;
+    letter-spacing: 1.1px;
+    margin-top: 0;
+}
+
 .formWrapper p {
     margin-bottom: 16px;
     font-size: 16px;
@@ -11,21 +20,65 @@
 }
 
 .form div {
+    width: 100%;
+}
+
+/* .form div {
     display: flex;
+    flex-direction: column;
     gap: 8px;
+} */
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.flexRow > div {
+    display: flex;
+    flex-direction: column;
 }
 
 .form label {
-    font-size: 16px;
-    display: flex;
-    align-items: flex-end;
-    min-width: 70px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 0px;
+    letter-spacing: 1.1px;
 }
 
 .form input {
-    padding: 4px 8px;
-    border: none;
-    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #d3d5d7;
+    background: white;
+    height: 45px;
+    padding: 0 15px;
+    flex: initial;
+    width: 100%;
     box-sizing: border-box;
-    background-color: #BFD8D0;
+    font-size: 18px;
+    letter-spacing: 1.1px;
+    outline: none;
+    margin-top: 8px;
+}
+
+.btn {
+    margin-top: 8px;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    background-color: #92B2C0;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+    height: 55px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    border: none;
 }

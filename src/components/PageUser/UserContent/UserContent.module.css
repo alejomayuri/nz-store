@@ -2,10 +2,34 @@
     display: flex;
     width: 100%;
     height: 100%;
-    padding: 16px;
-    justify-content: flex-start;
+    padding: 0;
+    justify-content: center;
     box-sizing: border-box;
     gap: 64px;
+    margin: 100px auto;
+    max-width: 70%;
+    margin-top: 70px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 1.1px;
+    margin: 0;
+    text-transform: uppercase;
+    border-bottom: solid 1px #e5e5e5;
+    padding: 8px;
+    padding-bottom: 16px;
+    padding-top: 0;
+}
+
+.menu {
+    width: 250px;
+}
+
+.content {
+    width: 550px;
 }
 
 .userOptions {
@@ -13,48 +37,45 @@
     justify-content: space-between;
     flex-direction: column;
     max-width: 400px;
-    margin-bottom: 20px;
-    gap: 8px;
-    border-right: solid 8px #BFD8D0;;
 }
 
 .userOption {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
     border: none;
-    background: #F49394;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #4a4a4a;
+    letter-spacing: 1.1px;
+    cursor: pointer;
+    border-bottom: solid 3px #eee;
+    padding: 12px 4px;
+    transition: all 0.3s ease-in-out;
 }
 
-.userOption p {
-    margin: 0;
-}
-
-.userOption h3 {
-    margin: 8px;
+.userOption:hover {
+    background: #eee;
 }
 
 .optionActive {
-    background-color: #BFD8D0;
-    color: #fff;
+    background: #eee;
+}
+
+.userOption p, .logoutButton p {
+    margin: 0;
+    text-align: left;
+    padding-left: 4px;
 }
 
 .logoutButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    border: solid 4px #F49394;
+    border: none;
     background: transparent;
-    box-sizing: border-box;
+    font-size: 18px;
+    letter-spacing: 1.1px;
+    cursor: pointer;
+    padding: 12px 4px;
+    color: #F49394;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
 }
 
 .logoutButton:hover {

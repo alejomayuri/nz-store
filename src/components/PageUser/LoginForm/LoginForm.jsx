@@ -10,13 +10,15 @@ const LoginForm = () => {
         handleEmail,
         handlePassword,
         hangleLogin,
-        handleLoginWithGoogle
+        handleLoginWithGoogle,
+        email,
+        password,
     } = useLogin();
 
     return (
         <>
             <div className={style.formWrapper}>
-                {/* {success && <p>Success</p>} */}
+                <h2>Ingresar</h2>
                 {error && <p>{error}</p>}
                 <p>
                     <b>Ingresa</b> para disfrutar de nuestros beneficios.
@@ -27,7 +29,7 @@ const LoginForm = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" onChange={handlePassword} />
                     <button className={style.submitButton} type="submit" disabled={loading}>
-                        {loading ? 'Loading...' : 'Login'}
+                        {loading ? 'Loading...' : 'Ingresar'}
                     </button>
                 </form>
                 <div className={style.googleRegisterWrapper}>
@@ -36,9 +38,12 @@ const LoginForm = () => {
                         <GoogleIcon width={"20px"} />
                     </button>
                 </div>
-                <div className={style.callToRegisterWrapper}>
-                    <p>¿No tienes cuenta?</p>
-                    <Link href="/user/register">Regístrate</Link>
+                <div className={style.googleRegisterWrapper}>
+                    <Link href="/user/register">
+                        <button>
+                            <span>Crear cuenta</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </>

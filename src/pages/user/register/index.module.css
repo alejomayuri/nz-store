@@ -1,12 +1,19 @@
 .formWrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 0 auto;
-    max-width: 500px;
-    background-color: #BFD8D0;
-    padding: 32px;
+    max-width: 80%;
     border-radius: 16px;
+    margin-top: 40px;
+}
+
+.formWrapper h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 0px;
+    letter-spacing: 1.1px;
+    margin-top: 0px;
 }
 
 .formWrapper p {
@@ -18,8 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-    max-width: 200px;
+    max-width: 400px;
 }
 
 .form label, .form input {
@@ -29,29 +35,59 @@
 .form label {
     margin-bottom: 8px;
     margin-top: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    letter-spacing: 1.1px;
 }
 
 .form input {
+    height: 56px;
     padding: 8px 16px;
-    border: 1px solid #000;
-    border-radius: 4px;
+    border: 1px solid #d3d5d7;
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 .submitButton {
-    margin-top: 16px;
+    margin-top: 32px;
     padding: 8px 16px;
-    border: 1px solid #000;
-    border-radius: 4px;
     box-sizing: border-box;
-    background-color: #000;
+    background-color: #92B2C0;
     color: #fff;
     font-weight: 600;
     cursor: pointer;
+    width: 400px;
     transition: all 0.2s ease-in-out;
+    height: 55px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    border: none;
 }
 
-.submitButton:hover {
-    background-color: #fff;
+.submitButton:disabled {
+    cursor: not-allowed;
+}
+
+.toLogin {
+    margin-top: 32px;
+    padding: 8px 16px;
+    box-sizing: border-box;
     color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    width: 400px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+    height: 55px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    border: solid 3px #000;
 }

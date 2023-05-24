@@ -37,6 +37,9 @@ export const useRegister = () => {
         handleRegister,
         handleEmail,
         handlePassword,
-        handleConfirmPassword
+        handleConfirmPassword,
+        email,
+        password,
+        confirmPassword
     };
 }
