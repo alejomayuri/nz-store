@@ -22,10 +22,9 @@ body, span {
 
 main {
     margin: 0 auto;
-    /* margin-top: 32px; */
-    max-width: 1440px;
+    /* max-width: 1440px; */
     width: 100%;
-    padding-top: 300px;
+    padding-top: 156px;
 }
 
 .ContentSection{font-size:1.1rem;font-weight:500;line-height:1;text-transform:uppercase}.ContentSectionLink{color:#e60000;display:block;margin-bottom:.5rem}.ContentTitle{font-size:1.2rem;font-weight:normal;line-height:1}@media(min-width: 601px){.ContentTitle{font-size:1.4rem}}
@@ -229,17 +228,8 @@ main {
 .catalogo__container {
     display: flex;
     justify-content: space-between;
-}
-
-.catalogo__title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 29px;
-    color: #000000;
-    text-transform: capitalize;
-    margin-top: 0;
-    margin-bottom: 64px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 /*page productos*/

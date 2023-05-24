@@ -7,6 +7,7 @@ import { Layout } from "@/Layouts/Layout";
 import { useProducts } from "@/hooks/useProducts";
 import { Filter } from "@/components/PageCatalogo/Filter/Filter";
 import { ProductList } from "@/components/PageCatalogo/ProductList/ProductList";
+import { Title } from "@/components/PageCatalogo/Title/Title";
 
 const Catalogo = () => {
     const router = useRouter();
@@ -22,7 +23,7 @@ const Catalogo = () => {
 
     //filtrado por subcategoria y por filtros
     
-    const [subCatActive, setSubCatActive] = useState(initURL ? initURL : null);
+    const [subCatActive, setSubCatActive] = useState(null);
 
     const [filtersActive, setFiltersActive] = useState([]);
 
@@ -30,17 +31,17 @@ const Catalogo = () => {
         if (router) {
             setSubCatActive(initURL)
         }
-    }, [router, initURL])
+    }, [initURL])
 
     useEffect(() => {
         if (subCatActive) {
             Router.push({
-                pathname: '/catalogo/[cat]',
+                // pathname: '/catalogo/[cat]',
                 query: { cat: subCatActive },
             }, `/catalogo/${cat}?cat=${subCatActive}`);
         }
         setFiltersActive([])
-    }, [subCatActive, cat, initURL]);
+    }, [subCatActive]);
 
     if (products) {
         if (subCatActive) {
@@ -81,7 +82,7 @@ const Catalogo = () => {
 
     return (
         <Layout>
-            <h1 className="catalogo__title">{subCatActive ? subCatActive : cat}</h1>
+            <Title subCatActive={subCatActive} cat={cat} />
             <div className="catalogo__container">
                 <Filter filtersActive={filtersActive} subcats={subCatList} filters={optionsList} handlerSetFilters={setFiltersActive} handlerSubCats={setSubCatActive} />
                 <ProductList products={productsToShow} />

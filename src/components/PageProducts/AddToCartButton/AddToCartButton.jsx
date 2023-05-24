@@ -1,8 +1,7 @@
 import style from "./AddToCartButton.module.css";
 import { useEffect, useState } from "react";
-// import Modal from "components/Modal";
 import { useProductCartContext } from "@/context/ProductCartContext";
-// import ModalCart from "components/ModalCart";
+import { useRouter } from "next/router";
 
 const AddToCartButton = ({
   product,
@@ -10,14 +9,13 @@ const AddToCartButton = ({
   onAdd = 1,
   disabled
 })  => {
-  // const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
   const { products, setProducts } = useProductCartContext();
   
   const handleClick = () => {
-    // setShowModal(true);
     handleAddToCart(product);
-    // onAdd(product);
+    router.push("/cart");
   };
 
   const handleAddToCart = (newProduct) => {

@@ -1,0 +1,42 @@
+.titleWrapper {
+    background-color: #F9C38F;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    justify-content: center;
+    gap: 16px;
+}
+
+.titleWrapper > h1 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 33px;
+    line-height: 29px;
+    color: #000000;
+    text-transform: capitalize;
+    margin-top: 0;
+    margin-bottom: 64px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.titleWrapper > div {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.titleWrapper a {
+    font-size: 14px;
+    line-height: 19px;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #3c3c3c;
+    text-decoration: none;
+}

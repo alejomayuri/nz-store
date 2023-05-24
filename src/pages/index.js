@@ -24,8 +24,8 @@ export default function Home() {
         />
         <ProductsGrid type="ropa" title="ropa" />
         <MiddleBanner />
-        <ProductsGrid type="Ropa" title="Gift Cards" cards />
-        <ProductSpotlight type="offer" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />
+        <ProductsGrid type="ropa" title="Gift cards" />
+        <ProductSpotlight type="ropa" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />
       </Layout>
     </>
   )

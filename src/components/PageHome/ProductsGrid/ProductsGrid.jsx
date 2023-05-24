@@ -16,7 +16,7 @@ const ProductsGrid = ({ type, title, cards = false }) => {
             <h2 className={style.productsGrid__title}>{title}</h2>
             <div className={`${style.productsGrid} ${cards ? style.cardsGrid : ""}`}>
                 {productsToShow?.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} typeContainer="flex" />
                 ))}
             </div>
         </section>

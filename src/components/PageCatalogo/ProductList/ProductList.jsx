@@ -3,13 +3,15 @@ import { ProductCard } from "@/components/global/ProductCard/ProductCard";
 
 const ProductList = ({ products }) => {
     return (
-        <div className={style.productList}>
+        <ul className={style.productList}>
             {
                 products.length > 0 && products?.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <li key={product.id}>
+                        <ProductCard product={product} />
+                    </li>
                 ))
             }
-        </div>
+        </ul>
     );
 }
 

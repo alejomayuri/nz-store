@@ -22,7 +22,7 @@ const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
             return (
                 <div key={index} className={style.colection__slide}>
                     {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard key={product.id} product={product} typeContainer="flex" />
                     ))}
                 </div>
             )

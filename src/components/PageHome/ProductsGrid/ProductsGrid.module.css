@@ -1,15 +1,19 @@
 .productsGrid__wrapper {
-    margin-top: 64px;
+    margin-top: 96px;
 }
 
 .productsGrid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 8px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .cardsGrid {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.productsGrid__title {font-size: 26px;}
+.productsGrid__title {
+  font-size: 26px;
+  padding: 0px 16px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}

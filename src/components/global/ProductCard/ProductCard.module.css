@@ -3,8 +3,7 @@
   flex-direction: column;
   padding: 4px;
   cursor: pointer;
-  max-width: 260px;
-  height: 350px;
+  /* max-width: 19%; */
   justify-content: flex-start;
 }
 
@@ -36,12 +35,9 @@
   transform: scale(1.1);
 }
 
-.productCard__info {
-    padding-left: 8px;
-}
-
-.productCard__info h3 {
+.h3 {
     font-size: 18px;
     /* font-weight: 600; */
+    padding-left: 8px;
     margin-bottom: 16px;
 } 

@@ -3,10 +3,33 @@
   z-index: 99;
   background: #fff;
   width: 100%;
+  top: 0;
   margin: 0 auto;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+  border-bottom: solid 1px #eee;
+  transition: all 0.3s ease-in-out;
+  border-top: solid 12px #F9C38F;
 }
 
+.headerTopPad {
+  top: 55px;
+  border-top: solid 0px transparent;
+}
+
+.middleBar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 55px;
+  background-color: #f1f1f1; /* Ajusta el color de fondo según tus necesidades */
+  transition: top 0.3s ease-in-out;
+  z-index: 999; 
+}
+
+.hidden {
+  top: -100px; /* Oculta el div desplazándolo fuera de la pantalla */
+}
+/* 
 .topBar {
     justify-content: flex-end;
     padding: 8px 64px;
@@ -20,27 +43,25 @@
     display: flex;
     gap: 8px;
     margin: 0 10px;
-}
+} */
 
-.middleBar {
-    justify-content: flex-end;
-    padding: 8px 128px;
-    box-sizing: border-box;
-    background-color: #F49394;
-    background-size: cover;
+.middleBar img {
+  height: 100%;
+  width: 100%;
 }
 
 .navBar {
     justify-content: center;
     box-sizing: border-box;
     background-color: #fff;
+    flex: 1;
 }
 
 .navBar ul {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 16px;
+    padding: 0;
     box-sizing: border-box;
     background-color: #fff;
     margin: 0 auto;
@@ -48,7 +69,7 @@
 
 .navBar li {
     display: inline-block;
-    margin: 0px 12px;
+    margin: 0px 8px;
     list-style: none;
     font-size: 17px;
     position: relative;
@@ -63,7 +84,8 @@
     display: inline-block;
     padding-bottom: 10px;
     transition: all 0.2s ease-in-out;
-}
+    font-weight: 600;
+  }
 
 .navBar li > a::before {
     content: '';
@@ -76,48 +98,36 @@
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease-in-out;
-  }
+}
 
-  .navBar li:hover a::before {
-    transform: scaleX(1);
-  }
+.navBar li:hover a::before {
+  transform: scaleX(1);
+}
 
-  .navBar li a:hover {
-    color: #F49394;
-    /* animation: bounce 0.5s ease-in-out both; */
-  }
-
-
-  /* @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  } */
+.navBar li a:hover {
+  color: #F49394;
+  /* animation: bounce 0.5s ease-in-out both; */
+}
 
 .menusContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* max-width: 1440px; */
     margin: 0 auto;
     position: relative;
-    height: 150px;
+    padding: 0 64px;
 }
 
 .menusContainer > .logoContainer {
-    height: 150px;
-    width: 150px;
-    position: absolute;
-    top: 50%;
-    margin-top: -75px;
-    left: 50%;
-    margin-left: -75px;
+    height: 100px;
 }
 
 .menusContainer > .logoContainer img {
     height: 100%;
     width: 100%;
+}
+
+.headerComponents {
+  flex: 1;
+  justify-content: flex-end;
 }

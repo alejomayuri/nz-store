@@ -2,5 +2,12 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 4px;
+    padding: 0;
+}
+
+.productList li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
