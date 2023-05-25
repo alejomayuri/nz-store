@@ -2,6 +2,7 @@ import style from './OrderDetails.module.css'
 import { Item } from './Item/Item'
 import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
 import { formatPrice } from '@/utils/formatPrice';
+import {useState, useEffect} from 'react';
 
 const OrderDetails = ({ cart, envio }) => {
     const formattedPrice = useTotalCartPrice({cart: cart})

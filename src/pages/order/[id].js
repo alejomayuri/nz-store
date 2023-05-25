@@ -11,7 +11,7 @@ const Order = () => {
     const router = useRouter()
     const { id } = router.query
     const { order, loading } = useOrder({ id })
-    console.log(order)
+    
     return (
         <Layout>
             <div className="order__container">

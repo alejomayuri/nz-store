@@ -18,7 +18,7 @@ export const useCheckout = ({
     envio,
     total
 } = {}) => {
-    const { products } = useProductCartContext();
+    const { products, setProducts } = useProductCartContext();
 
     const FORM_STATE = {
         name: null,
@@ -181,6 +181,7 @@ export const useCheckout = ({
     const handleSubmit = (completedForm) => {
         // console.log(completedForm);
         handleUploadOrder(completedForm);
+        setProducts([]);
     }
 
     return {

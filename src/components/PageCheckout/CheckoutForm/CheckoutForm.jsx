@@ -1,8 +1,4 @@
 import style from './CheckoutForm.module.css';
-import { useEffect, useState } from 'react';
-import { useProductCartContext } from "@/context/ProductCartContext";
-import { useUbigeo } from "@/hooks/useUbigeo";
-import { useCheckout } from '@/hooks/useCheckout';
 
 const CheckoutForm = ({
     form,
@@ -21,6 +17,7 @@ const CheckoutForm = ({
     const handleOnSubmit = () => {
         handleSubmit(form);
     }
+
     return (
         <div className="checkout-form">
             <form className={style.form}>

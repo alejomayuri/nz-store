@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"
 import 'firebase/compat/auth';
+import 'firebase/compat/storage';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD1t565GQSz9Dr0vU3kAtySK077MG5YKks",
@@ -92,3 +93,4 @@ export const uploadOrder = (order) => {
         return id
       })
   }
+  

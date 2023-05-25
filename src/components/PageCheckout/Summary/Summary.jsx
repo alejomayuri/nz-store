@@ -9,7 +9,6 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
     const [total, setTotal] = useState(0)
     const [envio, setEnvio] = useState(null)
     const [envioMessage, setEnvioMessage] = useState(false)
-    console.log(pedido)
 
     useEffect(() => {
         if(ubigeo?.dpto && ubigeo?.prov && ubigeo?.dist) {

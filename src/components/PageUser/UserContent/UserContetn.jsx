@@ -6,13 +6,9 @@ import { useUser } from "@/hooks/useUser";
 
 const UserContent = () => {
     let content = null;
-
     const [userInfo, setUserInfo] = useState({});
-
     const [blockToRender, setBlockToRender] = useState("account");
-    
     const { currentUser, logout } = useAuth();
-
     const userData = useUser({id: currentUser?.uid});
 
     useEffect(() => {

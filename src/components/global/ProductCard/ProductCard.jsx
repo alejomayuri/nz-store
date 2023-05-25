@@ -1,5 +1,8 @@
 import style from './ProductCard.module.css';
 import Link from 'next/link';
+import resizePrototype from '@/utils/resizePrototype';
+
+const newResize = new resizePrototype();
 
 const ProductCard = ({ product, typeContainer }) => {
     return (
@@ -8,7 +11,8 @@ const ProductCard = ({ product, typeContainer }) => {
         }}>
             <Link href={`/products/${product?.id}`}>
                 <div className={style.productCard__image}>
-                    <img src={product.image} alt={product.name} />
+                          
+                    <img loading="lazy" src={newResize.resize(product?.image, 500, 500)} alt={product.name} />
                 </div>
                 <h3 className={style.h3}>{product.name}</h3>
             </Link>

@@ -5,7 +5,7 @@ import { UserContent } from "@/components/PageUser/UserContent/UserContetn"
 
 const User = () => {
     const { currentUser } = useAuth()
-    // console.log('currentUser', currentUser)
+    
     return (
         <Layout>
             {currentUser ? (<UserContent />) : (<LoginForm />)}
