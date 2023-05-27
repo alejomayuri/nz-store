@@ -10,29 +10,55 @@ const AddToCartButton = ({
   disabled
 })  => {
   const router = useRouter();
+  console.log(features)
 
   const { products, setProducts } = useProductCartContext();
-  
+  console.log("product", product)
+  console.log("products", products)
   const handleClick = () => {
-    handleAddToCart(product);
-    router.push("/cart");
+    handleAddToCart(product, features);
+    // router.push("/cart");
   };
 
-  const handleAddToCart = (newProduct) => {
-    if (products.find((item) => item.product === newProduct && item.features === features)) {
-      setProducts((prev) => {
-        return prev.map((item) => {
-          if (item.product === newProduct && item.features === features) {
-            return {
-              ...item,
-              quantity: item.quantity + onAdd,
-            };
-          }
-          return item;
+  const handleAddToCart = (newProduct, features) => {
+    function sonObjetosIguales(objeto1, objeto2) {
+      // console.log(objeto1)
+      // console.log(objeto2)
+      const keys1 = Object.keys(objeto1);
+      const keys2 = Object.keys(objeto2);
+    
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+    
+      for (let key of keys1) {
+        if (objeto1[key] !== objeto2[key]) {
+          return false;
+        }
+      }
+    
+      return true;
+    }
+
+    if (products) {
+      if (products.find((item) => item.product === newProduct && sonObjetosIguales(item?.features, features))) {
+        console.log(
+          products.find((item) => item.product === newProduct && sonObjetosIguales(item?.features, features))
+        )
+        setProducts((prev) => {
+          return prev.map((item) => {
+            if (item.product === newProduct && sonObjetosIguales(item?.features, features)) {
+              return {
+                ...item,
+                quantity: item.quantity + onAdd,
+              };
+            }
+            return item;
+          });
         });
-      });
-    } else {
-      setProducts((prev) => [...prev, { product, quantity: onAdd, features: features }]);
+      } else {
+        setProducts((prev) => [...prev, { product, quantity: onAdd, features: features }]);
+      }
     }
   };
 

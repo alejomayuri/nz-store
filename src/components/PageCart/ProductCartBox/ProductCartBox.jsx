@@ -10,6 +10,7 @@ const ProductCartBox = ({ element, setProducts }) => {
     let id = null
     let features = null
     let listOfFeatures = null
+    let price = null
     
     const [cuantity, setCuantity] = useState(null)
     const stock = 10
@@ -34,6 +35,36 @@ const ProductCartBox = ({ element, setProducts }) => {
     useEffect(() => {
         setCuantity(element?.quantity)
     }, [element])
+
+    const compararIgualdad = (datos1, datos2) => {
+        if (datos1.length !== datos2.length) {
+          return false;
+        }
+      
+        for (let i = 0; i < datos1.length; i++) {
+            const item1 = datos1[i];
+            const item2 = datos2[i];
+      
+            if (item1.name.toLowerCase() !== item2.name.toLowerCase() || item1.value.toLowerCase() !== item2.value.toLowerCase()) {
+                return false;
+            }
+        }
+      
+        return true;
+    }
+
+    if (product && product[0]?.variations) {
+        const variation = product[0]?.variations?.find((variation) => {
+            const options = variation.options
+            // const features = item.features
+            const datos2Obj = Object.entries(features).map(([name, value]) => ({ name, value }));
+
+            return compararIgualdad(options, datos2Obj)
+        })
+        price = formatPrice(variation?.price)
+    } else {
+        price = formatPrice(product[0]?.price)
+    }
 
     const handle = (sum) => {
         setProducts((prev) => {
@@ -79,13 +110,11 @@ const ProductCartBox = ({ element, setProducts }) => {
                             {listOfFeatures}
                         </ul>
                     </div>
-                    
                 </div>
-                
             </div>
             <div>
                 <p className={style.price}>{
-                    formatPrice(product[0]?.price)
+                    price
                 }</p>
             </div>
             <div className={style.selectQuantity}>

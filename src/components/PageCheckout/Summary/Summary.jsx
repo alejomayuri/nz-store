@@ -12,12 +12,12 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
 
     useEffect(() => {
         if(ubigeo?.dpto && ubigeo?.prov && ubigeo?.dist) {
-            if (ubigeo?.dpto === "15" && ubigeo?.prov === "12") {
+            if (ubigeo?.dpto === "15" && ubigeo?.prov === "125") {
                 setEnvio(10)
                 setEnvioMessage(false)
             } else {
-                setEnvio(null)
-                setEnvioMessage(true)
+                setEnvio(20)
+                setEnvioMessage(false)
             }
         } else {
             setEnvio(null)

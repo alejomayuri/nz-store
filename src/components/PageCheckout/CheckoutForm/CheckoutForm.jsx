@@ -1,4 +1,6 @@
 import style from './CheckoutForm.module.css';
+import Link from 'next/link';
+import { useAuth } from "@/context/AuthContext"
 
 const CheckoutForm = ({
     form,
@@ -18,8 +20,20 @@ const CheckoutForm = ({
         handleSubmit(form);
     }
 
+    const { currentUser } = useAuth()
+
     return (
         <div className="checkout-form">
+            {
+                !currentUser && (
+                    <div className={style.iniciarMessage}>
+                        <p>Inicia sesión para disfrutar de nuestros beneficios</p>
+                        <Link href="/user">
+                            Iniciar sesión
+                        </Link>
+                    </div>
+                )
+            }
             <form className={style.form}>
                 <h2>Información del Cliente</h2>
                 <div className={style.formGroup_fRow}>
