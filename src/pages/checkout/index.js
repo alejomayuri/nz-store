@@ -20,7 +20,12 @@ const Checkout = () => {
         handleChangeSubtotal,
         handleEnvio,
         handleTotal,
-        handleSubmit } = useCheckout();
+        handleSubmit,
+        handleOnChangeImg,
+        prevImage,
+        showProgress,
+        uploatValue,
+        handleDeleteImg, } = useCheckout();
         // console.log(form)
 
     if (uploadLoading) return <h1>Loading...</h1>
@@ -40,6 +45,11 @@ const Checkout = () => {
                     handleConFactura={handleConFactura}
                     handleWayToPayChange={handleWayToPayChange}
                     handleSubmit={handleSubmit}
+                    handleOnChangeImg={handleOnChangeImg}
+                    prevImage={prevImage}
+                    showProgress={showProgress}
+                    uploatValue={uploatValue}
+                    handleDeleteImg={handleDeleteImg}
                 />
                 <Summary
                     pedido={form?.cart}

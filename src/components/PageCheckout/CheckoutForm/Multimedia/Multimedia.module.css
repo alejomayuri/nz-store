@@ -1,0 +1,86 @@
+.prevImageWrapper {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px #000 dashed;
+    gap: 0 !important;
+    box-sizing: border-box;
+}
+
+.prevImageWrapper > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.imageContainer {
+    width: 160px;
+    height: 120px;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.deleteImageBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.imageContainer > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.fileInput {
+    position: relative;
+    display: inline-block;
+}
+
+.fileInput::before {
+    background-color: #5678EF;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Agregar imagen';
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    cursor: pointer;
+    height: 32px;
+    margin-left: -100px;
+}
+
+.fileInput input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fileInput p {
+    /* font-size: 12px !important;
+    color: #545454 !important;
+    font-weight: 600 !important; */
+    margin-top: 16px !important;
+}

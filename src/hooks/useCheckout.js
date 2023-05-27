@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useProductCartContext } from "@/context/ProductCartContext";
 import { useUbigeo } from "@/hooks/useUbigeo";
 import { useUploadOrder } from './useUploadOrder';
+import { getStorage } from '@/firebase/client';
 
 export const useCheckout = ({
     name,
@@ -14,6 +15,7 @@ export const useCheckout = ({
     razonSocial,
     nRuc,
     paymentMethod,
+    image,
     subtotal,
     envio,
     total
@@ -37,6 +39,7 @@ export const useCheckout = ({
         razonSocial: null,
         nRuc: null,
         paymentMethod: null,
+        image: null,
         subtotal: null,
         envio: null,
         total: null
@@ -55,8 +58,10 @@ export const useCheckout = ({
     const [loading, setLoading] = useState(false);
     const [conFactura, setConFactura] = useState(false)
     const [disable, setDisable] = useState(true)
-
-    
+    const [prevImage, setPrevImage] = useState(FORM_STATE.image)
+    const [showProgress, setShowProgress] = useState(false)
+    const [uploatValue, setUploadValue] = useState(0)
+    const [file, setFile] = useState('')
 
     useEffect(() => {
         setForm({
@@ -90,14 +95,28 @@ export const useCheckout = ({
             form.subtotal &&
             form.total
         ) {
-            if(conFactura) {
-                if(form.razonSocial && form.nRuc) {
-                    setDisable(false)
+            if((form.paymentMethod === 'transferencia' || form.paymentMethod === 'yape/plin') && form.image) {
+                if(conFactura) {
+                    if(form.razonSocial && form.nRuc) {
+                        setDisable(false)
+                    } else {
+                        setDisable(true)
+                    }
                 } else {
-                    setDisable(true)
+                    setDisable(false)
+                }
+            } else if (form.paymentMethod === 'online') {
+                if(conFactura) {
+                    if(form.razonSocial && form.nRuc) {
+                        setDisable(false)
+                    } else {
+                        setDisable(true)
+                    }
+                } else {
+                    setDisable(false)
                 }
             } else {
-                setDisable(false)
+                setDisable(true)
             }
         } else {
             setDisable(true)
@@ -157,6 +176,48 @@ export const useCheckout = ({
         });
     }
 
+    const handleOnChangeImg = (e) => {
+        const file = e.target.files[0]
+        setFile(file)
+        setShowProgress(true)
+        setPrevImage('')
+        const storageRef = getStorage().ref(`products/${file?.name}`)
+        const task = storageRef.put(file)
+
+        task.then(res => {
+            console.log(res)
+            const imgUrl = res.ref.getDownloadURL()
+            imgUrl.then(url => {
+                setForm((prevState) => ({
+                    ...prevState,
+                    image: url
+                }))
+                setPrevImage(url)
+                setUploadValue(100)
+                setDisable(false)
+            })
+        }).catch(err => console.log(err))
+
+        task.on('state_changed', snapshot => {
+            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
+            setUploadValue(progress)
+        })
+    }
+
+    const handleDeleteImg = () => {
+        setPrevImage('')
+        setForm({
+            ...form,
+            image: ''
+        })
+
+        const storageRef = getStorage().ref(`products/${file.name}`)
+        storageRef.delete()
+
+        setShowProgress(false)
+        setUploadValue(0)
+    }
+
     const handleChangeSubtotal = (subtotal) => {
         setForm({
             ...form,
@@ -200,6 +261,11 @@ export const useCheckout = ({
         handleChangeSubtotal,
         handleEnvio,
         handleTotal,
-        handleSubmit
+        handleSubmit,
+        handleOnChangeImg,
+        prevImage,
+        showProgress,
+        uploatValue,
+        handleDeleteImg
     }
 }

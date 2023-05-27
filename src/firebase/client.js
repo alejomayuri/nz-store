@@ -93,4 +93,7 @@ export const uploadOrder = (order) => {
         return id
       })
   }
-  
+
+export const getStorage = () => {
+    return firebase.storage()
+  }

@@ -23,13 +23,13 @@ const Order = () => {
                     <li>Total: <b>{formatPrice(order[0]?.total)}</b></li>
                     <li>Método de pago: <b>{order[0]?.paymentMethod}</b></li>
                 </ul>
-                <p>
+                {/* <p>
                     Tenemos cuentas en Scotiabank y BCP. Así mismo, aceptamos Yape. Para tu conveniencia puedes hacer la transferencia o depósito en cualquiera de las dos cuentas. Solo asegúrate de enviar el comprobante de pago por correo a ventas@lacuisine.pe y pedidos@lacuisine.pe. Recuerda que los depósitos interbancarios pueden tomar de 2-3 días en llegar a la cuenta. Gracias!
-                </p>
+                </p> */}
                 {
                     loading ? <h2>Loading...</h2> : (
                         <>
-                            <BankDetails type={order[0]?.paymentMethod} />
+                            {/* <BankDetails type={order[0]?.paymentMethod} /> */}
                             <OrderDetails cart={order[0]?.cart} envio={order[0]?.envio}/>
                             <BillingDetails nRuc={order[0]?.nRuc} razonSocial={order[0]?.razonSocial} document={order[0]?.document}/>
                             <ShippingDetails ubigeo={order[0]?.ubigeo} address={order[0]?.address} name={order[0]?.name} lastName={order[0]?.lastName}/>

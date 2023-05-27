@@ -1,6 +1,7 @@
 import style from "./Footer.module.css"
 import FacebookIcon from "../Icons/facebookIcon"
 import InstagramIcon from "../Icons/instagramIcon"
+import Link from "next/link"
 
 const Footer = () => {
 
@@ -28,7 +29,9 @@ const Footer = () => {
                     </div>
                 </div>
                 <div>
-                    <p>¿Quienes somos?</p>
+                    <Link href="/nosotros">
+                        <p>¿Quienes somos?</p>
+                    </Link>
                     <p>Preguntas frecuentes</p>
                 </div>
                 <div>

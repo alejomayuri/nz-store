@@ -1,6 +1,7 @@
 import style from './CheckoutForm.module.css';
 import Link from 'next/link';
 import { useAuth } from "@/context/AuthContext"
+import { Multimedia } from './Multimedia/Multimedia';
 
 const CheckoutForm = ({
     form,
@@ -14,7 +15,12 @@ const CheckoutForm = ({
     handleChangeDist,
     handleConFactura,
     handleWayToPayChange,
-    handleSubmit
+    handleSubmit,
+    handleOnChangeImg,
+    prevImage,
+    showProgress,
+    uploatValue,
+    handleDeleteImg,
 }) => {
     const handleOnSubmit = () => {
         handleSubmit(form);
@@ -176,6 +182,16 @@ const CheckoutForm = ({
                                 Puedes realizar el pago online con tarjeta de crédito o débito
                             </p>
                         </div>
+                    </div>
+                    <div className={style.imgComprobante}>
+                        <label htmlFor="comprobante">Adjunta tu comprobante de pago*</label>
+                        <Multimedia
+                            onChange={handleOnChangeImg}
+                            prevImage={prevImage}
+                            showProgress={showProgress}
+                            uploatValue={uploatValue}
+                            handleDeleteImg={handleDeleteImg}
+                        />
                     </div>
                 </div>
             </form>

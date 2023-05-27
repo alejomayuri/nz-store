@@ -328,3 +328,27 @@ main {
     background-color: rgba(191, 216, 208, .43);
     line-height: 1.2;
 }
+
+/*Page nosotros*/
+
+.static__container {
+    max-width: 1024px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.static__container h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 40px;
+    letter-spacing: 1.1px;
+}
+
+.static__container p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    letter-spacing: 1.1px;
+}
