@@ -34,10 +34,13 @@ export const useTotalCartPrice = ({ cart } = { cart: null }) => {
                 
                 return compararIgualdad(options, datos2Obj)
             })
-
             price = variation?.price
         } else {
+          if(product?.comparisonPrice){
+            price = product?.comparisonPrice
+          }else{
             price = product?.price
+          }
         }
 
         totalPrice += price * item?.quantity
@@ -46,10 +49,6 @@ export const useTotalCartPrice = ({ cart } = { cart: null }) => {
     if (totalPrice > 0) {
         formattedPrice = totalPrice
     }
-
-    if (loading) {
-        return <p>Loading...</p>
-    } 
 
     return formattedPrice
 }

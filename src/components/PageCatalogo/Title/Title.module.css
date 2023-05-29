@@ -15,11 +15,14 @@
     font-size: 33px;
     line-height: 29px;
     color: #000000;
-    text-transform: capitalize;
     margin-top: 0;
     margin-bottom: 64px;
     width: 80%;
     margin: 0 auto;
+}
+
+.titleWrapper__mayus h1 {
+    text-transform: capitalize;
 }
 
 .titleWrapper > div {
@@ -29,7 +32,7 @@
     gap: 8px;
 }
 
-.titleWrapper a {
+.titleWrapper a, .titleWrapper p {
     font-size: 14px;
     line-height: 19px;
     color: #000000;

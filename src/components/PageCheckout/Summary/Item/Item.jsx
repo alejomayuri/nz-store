@@ -8,6 +8,7 @@ const Item = ({item}) => {
     let price = null
     let listOfFeatures = null
     const features = item?.features || null
+    let comparisonPrice = null
 
     if(loading) {
         return <div>Loading...</div>
@@ -52,6 +53,7 @@ const Item = ({item}) => {
         price = formatPrice(variation?.price)
     } else {
         price = formatPrice(product[0]?.price)
+        comparisonPrice = formatPrice(product[0]?.comparisonPrice)
     }
 
     return (
@@ -68,7 +70,9 @@ const Item = ({item}) => {
                 <p>{`Cantidad: ${item?.quantity}`}</p>
             </div>
             <div>
-                <p>{price}</p>
+                <p>{
+                    product[0]?.comparisonPrice ? comparisonPrice : price
+                }</p>
             </div>
         </div>
     )

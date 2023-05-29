@@ -3,6 +3,8 @@ import { useProductCartContext } from "@/context/ProductCartContext";
 import { useUbigeo } from "@/hooks/useUbigeo";
 import { useUploadOrder } from './useUploadOrder';
 import { getStorage } from '@/firebase/client';
+import { timeStamps } from '@/firebase/client';
+// import firebase from 'firebase/compat';
 
 export const useCheckout = ({
     name,
@@ -18,9 +20,14 @@ export const useCheckout = ({
     image,
     subtotal,
     envio,
+    date,
     total
 } = {}) => {
     const { products, setProducts } = useProductCartContext();
+
+    const { ubigeoSelect, setDptoSel, setProvSel, setDistSel } = useUbigeo();
+
+    const [termsAndConditions, setTermsAndConditions] = useState(false)
 
     const FORM_STATE = {
         name: null,
@@ -42,26 +49,26 @@ export const useCheckout = ({
         image: null,
         subtotal: null,
         envio: null,
+        date: timeStamps(),
+        termsAndConditions: termsAndConditions,
         total: null
     }
-
-    const { ubigeoSelect, setDptoSel, setProvSel, setDistSel } = useUbigeo();
-
+    console.log(termsAndConditions)
     const [form, setForm] = useState(FORM_STATE);
+    const [loading, setLoading] = useState(false);
+    const [conFactura, setConFactura] = useState(false)
+    
+    const [disable, setDisable] = useState(true)
+    const [prevImage, setPrevImage] = useState(FORM_STATE.image)
+    const [showProgress, setShowProgress] = useState(false)
+    const [uploatValue, setUploadValue] = useState(0)
+    const [file, setFile] = useState('')
 
     const { handleUploadOrder, uploadLoading } = useUploadOrder(
         {
             order: form
         }
     );
-
-    const [loading, setLoading] = useState(false);
-    const [conFactura, setConFactura] = useState(false)
-    const [disable, setDisable] = useState(true)
-    const [prevImage, setPrevImage] = useState(FORM_STATE.image)
-    const [showProgress, setShowProgress] = useState(false)
-    const [uploatValue, setUploadValue] = useState(0)
-    const [file, setFile] = useState('')
 
     useEffect(() => {
         setForm({
@@ -92,6 +99,7 @@ export const useCheckout = ({
             form.ubigeo.dist &&
             form.address &&
             form.paymentMethod &&
+            form.termsAndConditions &&
             form.subtotal &&
             form.total
         ) {
@@ -167,6 +175,13 @@ export const useCheckout = ({
 
     const handleConFactura = (e) => {
         setConFactura(e.target.checked)
+    }
+
+    const handleTermsAndConditions = (e) => {
+        setForm({
+            ...form,
+            termsAndConditions: e.target.checked
+        })
     }
 
     const handleWayToPayChange = (e) => {
@@ -257,6 +272,7 @@ export const useCheckout = ({
         handleChangeProv,
         handleChangeDist,
         handleConFactura,
+        handleTermsAndConditions,
         handleWayToPayChange,
         handleChangeSubtotal,
         handleEnvio,

@@ -345,10 +345,19 @@ main {
     letter-spacing: 1.1px;
 }
 
+.static__container h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    letter-spacing: 1.1px;
+}
+
 .static__container p {
     font-size: 18px;
     font-weight: 500;
     color: #4a4a4a;
     margin-bottom: 8px;
     letter-spacing: 1.1px;
+    line-height: 25px;
 }

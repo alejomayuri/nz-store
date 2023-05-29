@@ -11,6 +11,7 @@ const MainProductContent = ({ product }) => {
     const stock = 10;
     const [features, setFeatures] = useState({});
     let price = null
+    let comparisonPrice = null
     // formatPrice(product?.price);
     let options = product?.options || null
     let showOptions = null
@@ -31,7 +32,6 @@ const MainProductContent = ({ product }) => {
             , {})
             setFeatures(initialFeatures)
         }
-
     }, [product])
     
     if(product) {
@@ -51,6 +51,7 @@ const MainProductContent = ({ product }) => {
             }
         } else {
             price = formatPrice(product.price)
+            comparisonPrice = formatPrice(product.comparisonPrice)
         }
     }
 
@@ -59,7 +60,7 @@ const MainProductContent = ({ product }) => {
         const { parentElement } = e.target.parentElement
         const { previousElementSibling } = parentElement
         const { innerText: key } = previousElementSibling
-        // console.log(key, innerText)
+        
         setFeatures((prev) => {
             return {
                 ...prev,
@@ -112,11 +113,16 @@ const MainProductContent = ({ product }) => {
            <div className={style.infoSite}>
                 <h1>{product?.name}</h1>
                 {showOptions}
-                <span className={style.price}>
-                    <bdi>
-                        {price}
-                    </bdi>
+                <span className={product?.comparisonPrice ? style.oldPrice : style.price}>
+                    {price}
                 </span>
+                {
+                    product?.comparisonPrice ? (
+                        <div className={style.price}>
+                            {comparisonPrice}
+                        </div>
+                    ) : null
+                }
                 <div className={style.buttonsWrapper}>
                     <div className={style.selectQuantity}>
                         <button

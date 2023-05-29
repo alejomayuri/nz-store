@@ -1,25 +1,40 @@
 import style from './Title.module.css';
 import Link from 'next/link';
 
-const Title = ({cat, subCatActive}) => {
+const Title = ({cat, subCatActive, param}) => {
+    let title = '';
+    if (param) {
+        title = `Resultados de búsqueda: ${param}`;
+    } else {
+        title = subCatActive ? subCatActive : cat;
+    }
     return (
-        <div className={style.titleWrapper}>
-            <h1>{subCatActive ? subCatActive : cat}</h1>
+        // {style.titleWrapper}>
+        <div className={`${style.titleWrapper} ${!param ? style.titleWrapper__mayus : ""}`}>
+            <h1>{title}</h1>
             <div>
                 <Link href={`/`}>
                     Inicio
                 </Link>
                 <span>{'>'}</span>
-                <Link href={`/catalogo/${cat}`}>
-                    {cat}
-                </Link>
+                {param ? (
+                    <>
+                        <p>Catálogo</p>
+                        <span>{'>'}</span>
+                        <p>{title}</p>
+                    </>
+                ) : (
+                    <Link href={`/catalogo/${cat}`}>
+                        {cat}
+                    </Link>
+                )}
                 {
                     subCatActive && (
                         <>
                             <span>{'>'}</span>
-                            <Link href={`/catalogo/${cat}?cat=${subCatActive}`}>
+                            <p>
                                 {subCatActive}
-                            </Link>
+                            </p>
                         </>
                    )
                 }

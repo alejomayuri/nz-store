@@ -14,6 +14,7 @@ const CheckoutForm = ({
     handleChangeProv,
     handleChangeDist,
     handleConFactura,
+    handleTermsAndConditions,
     handleWayToPayChange,
     handleSubmit,
     handleOnChangeImg,
@@ -193,6 +194,13 @@ const CheckoutForm = ({
                             handleDeleteImg={handleDeleteImg}
                         />
                     </div>
+                </div>
+                <div className={style.formGroup_conFactura}>
+                    <input type="checkbox" id="terms" onChange={handleTermsAndConditions} />
+                    <label htmlFor="terms">Aceptar los 
+                        <Link  href="/terminos-y-condiciones"
+                        >Términos y Condiciones</Link>
+                    </label>
                 </div>
             </form>
 

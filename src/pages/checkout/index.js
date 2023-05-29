@@ -16,6 +16,7 @@ const Checkout = () => {
         handleChangeProv,
         handleChangeDist,
         handleConFactura,
+        handleTermsAndConditions,
         handleWayToPayChange,
         handleChangeSubtotal,
         handleEnvio,
@@ -43,6 +44,7 @@ const Checkout = () => {
                     handleChangeProv={handleChangeProv}
                     handleChangeDist={handleChangeDist}
                     handleConFactura={handleConFactura}
+                    handleTermsAndConditions={handleTermsAndConditions}
                     handleWayToPayChange={handleWayToPayChange}
                     handleSubmit={handleSubmit}
                     handleOnChangeImg={handleOnChangeImg}

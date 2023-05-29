@@ -35,7 +35,15 @@
     color: #000;
     text-transform: uppercase;
     margin: 16px 0;
-    font-size: 28px;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.oldPrice {
+    color: #5b5b5b;
+    text-decoration: line-through;
+    margin: 8px 0;
+    font-size: 22px;
     font-weight: 500;
 }
 

@@ -97,3 +97,8 @@ export const uploadOrder = (order) => {
 export const getStorage = () => {
     return firebase.storage()
   }
+
+export const timeStamps = () => {
+  const timestamp = firebase.firestore.Timestamp.now();
+  return timestamp.seconds;
+}

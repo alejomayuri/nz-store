@@ -11,6 +11,7 @@ const ProductCartBox = ({ element, setProducts }) => {
     let features = null
     let listOfFeatures = null
     let price = null
+    let comparisonPrice = null
     
     const [cuantity, setCuantity] = useState(null)
     const stock = 10
@@ -64,8 +65,9 @@ const ProductCartBox = ({ element, setProducts }) => {
         price = formatPrice(variation?.price)
     } else {
         price = formatPrice(product[0]?.price)
+        comparisonPrice = formatPrice(product[0]?.comparisonPrice)
     }
-
+    
     const handle = (sum) => {
         setProducts((prev) => {
             return prev.map((element) => {
@@ -114,7 +116,7 @@ const ProductCartBox = ({ element, setProducts }) => {
             </div>
             <div>
                 <p className={style.price}>{
-                    price
+                    product[0]?.comparisonPrice ? comparisonPrice : price
                 }</p>
             </div>
             <div className={style.selectQuantity}>

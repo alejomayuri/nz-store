@@ -10,7 +10,6 @@ const AddToCartButton = ({
   disabled
 })  => {
   const router = useRouter();
-  console.log(features)
 
   const { products, setProducts } = useProductCartContext();
   console.log("product", product)
@@ -22,8 +21,6 @@ const AddToCartButton = ({
 
   const handleAddToCart = (newProduct, features) => {
     function sonObjetosIguales(objeto1, objeto2) {
-      // console.log(objeto1)
-      // console.log(objeto2)
       const keys1 = Object.keys(objeto1);
       const keys2 = Object.keys(objeto2);
     

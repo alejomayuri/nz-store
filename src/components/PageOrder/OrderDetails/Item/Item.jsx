@@ -8,6 +8,7 @@ const Item = ({item}) => {
     let price = null
     let listOfFeatures = null
     const features = item?.features || null
+    // let comparisonPrice = null
 
     if(loading) {
         return <div>Loading...</div>
@@ -49,6 +50,12 @@ const Item = ({item}) => {
         price = variation?.price
     } else {
         price = product[0]?.price
+        if (product[0]?.comparisonPrice) {
+            price = product[0]?.comparisonPrice
+        } else {
+            price = product[0]?.price
+        }
+        // comparisonPrice = product[0]?.comparisonPrice
     }
 
     return (

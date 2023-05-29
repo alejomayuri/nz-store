@@ -37,7 +37,9 @@ const Footer = () => {
                 <div>
                     <p>Políticas de privacidad</p>
                     <p>Términos y condiciones</p>
-                    <p>Políticas de envio</p>
+                    <Link href="/politicas-de-envio">
+                        <p>Políticas de envio</p>
+                    </Link>
                     <p>Libro de reclamaciones</p>
                 </div>
             </div>
