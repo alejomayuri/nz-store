@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
-const db = firebase.firestore()
+export const db = firebase.firestore()
 
 export const fetchProducts = () => {
     return db
@@ -95,10 +95,18 @@ export const uploadOrder = (order) => {
   }
 
 export const getStorage = () => {
-    return firebase.storage()
-  }
+  return firebase.storage()
+}
 
 export const timeStamps = () => {
   const timestamp = firebase.firestore.Timestamp.now();
   return timestamp.seconds;
+}
+
+export const editProduct = (id, form) => {
+  return db.collection('prueba').doc(id).update(form)
+}
+
+export const createProduct = (form) => {
+  return db.collection('prueba').add(form)
 }

@@ -1,0 +1,62 @@
+.priceWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+}
+
+.priceWrapper > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.priceWrapper input {
+    width: 100%;
+}
+
+.currency {
+    padding: 8px;
+    color: #5a5a5a;
+    font-size: 13px;
+    font-weight: 600;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: solid 1px #c1c1c1;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.price {
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: solid 1px #c1c1c1;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.priceInputWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comparisonPrice {
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: solid 1px #c1c1c1;
+}

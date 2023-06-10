@@ -3,7 +3,6 @@ import { useProductCartContext } from "@/context/ProductCartContext";
 import { ProductCartBox } from "@/components/PageCart/ProductCartBox/ProductCartBox";
 import { TotalPrice } from "@/components/PageCart/TotalPrice/TotalPrice";
 
-
 const Cart = () => {
     const { products, setProducts } = useProductCartContext();
 

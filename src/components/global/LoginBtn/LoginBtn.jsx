@@ -11,6 +11,18 @@ const LoginBtn = () => {
 
   const [isUserLogged, setIsUserLogged] = useState(false);
 
+  let text = null
+
+  if (isUserLogged) {
+    if (userData?.name) {
+      text = `Hola, ${userData?.name}`
+    } else {
+      text = "Usuario"
+    }
+  } else {
+    text = "Ingresar"
+  }
+
   useEffect(() => {
     if (currentUser) {
       setIsUserLogged(true);
@@ -24,9 +36,7 @@ const LoginBtn = () => {
       <Link href="/user">
         <button className={style.loginBtn}>
             <User width={"25px"} />
-            <span>{
-                isUserLogged &&  userData?.name ? `Hola, ${userData?.name}` : "Ingresar"
-              }</span>
+            <span>{text}</span>
         </button>
       </Link>
     </div>

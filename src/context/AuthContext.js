@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import { auth, googleProvider } from '@/firebase/client';
+import { auth, googleProvider, db } from '@/firebase/client';
 
 const AuthContext = createContext();
 
@@ -17,11 +17,37 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const singup = (email, password) => {
-        return auth.createUserWithEmailAndPassword(email, password)
+        return auth
+            .createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                const { user } = userCredential;
+
+                const newUser = {
+                    uid: user.uid,
+                }
+
+                return db
+                    .collection('users')
+                    .doc(user.uid)
+                    .set(newUser)
+            })
     }
 
     const loginWithGoogle = () => {
-        return auth.signInWithPopup(googleProvider)
+        return auth
+            .signInWithPopup(googleProvider)
+            .then((userCredential) => {
+                const { user } = userCredential;
+
+                const newUser = {
+                    uid: user.uid,
+                }
+
+                return db
+                    .collection('users')
+                    .doc(user.uid)
+                    .set(newUser)
+            })
     }
 
     const login = (email, password) => {
