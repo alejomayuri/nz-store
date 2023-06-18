@@ -103,7 +103,7 @@ export const timeStamps = () => {
   return timestamp.seconds;
 }
 
-export const editProduct = (id, form) => {
+export const editFormProduct = (id, form) => {
   return db.collection('prueba').doc(id).update(form)
 }
 

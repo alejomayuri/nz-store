@@ -94,22 +94,13 @@ const Product = ({ product, productPrice, productStock }) => {
 
     const haldleEditProduct = () => {
         if (editProduct) {
-        //     editProduct(product?.id, productToUpdate)
-        //         .then(() => {
-        //             handleShowMessage()
-        //             setShowEditButton(false);
-        //         })
-        // }
             editProduct(product?.id, productToUpdate)
                 .then(() => {
                     handleShowMessage()
                     setShowEditButton(false);
-                }
-            )
+                })
         }
     }
-
-    console.log(typeof editProduct)
 
     return (
         <>

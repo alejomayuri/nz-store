@@ -1,0 +1,59 @@
+.option {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 24px 0;
+    border-bottom: solid 1px #c1c1c1;
+}
+
+.optionName, .optionValue {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #545454;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+}
+
+.optionValue {
+    margin-top: 20px;
+}
+
+.optionName label, .optionValue label {
+    margin-bottom: 8px;
+}
+
+.optionName input, .optionValue input {
+    width: 100%;
+    padding: 8px;
+    border: solid 1px #c1c1c1;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.valueWrapper input {
+    max-width: 510px;
+}
+
+.hide {
+    display: none;
+}
+
+.deleteValue {
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    height: 25px;
+    align-items: center;
+}
+
+.valueWrapper {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+    justify-self: center;
+}

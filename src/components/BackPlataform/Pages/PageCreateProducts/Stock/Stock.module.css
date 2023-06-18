@@ -1,0 +1,18 @@
+.noStock {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.noStock div {
+    display: flex;
+    align-items: center;
+}
+
+.noStock input {
+    margin-right: 8px;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}

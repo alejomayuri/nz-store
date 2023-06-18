@@ -1,18 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function useCreateProduct({
-    getStorage,
-    name,
-    image,
-    description,
-    price,
-    comparisonPrice,
-    stock,
-    options,
-    variations,
-    categories,
-    subcategory
-}={}) {
+export default function useCreateProduct({getStorage} = {}) {
     const FORM_STATE = {
         name: null,
         description: null,
@@ -28,11 +16,21 @@ export default function useCreateProduct({
         categories: null,
         subcategory: null
     }
+    
+    const [formProduct, setFormProduct] = useState(
+        FORM_STATE 
+    )
+    const [prevImage, setPrevImage] = useState(FORM_STATE.image)
+    useEffect(() => {
+        if (initialForm) {
+            setFormProduct(initialForm)
+            setPrevImage(initialForm.image)
+            console.log("initialForm")
+        }
+    }, [initialForm])
 
-    const [formProduct, setFormProduct] = useState(FORM_STATE)
     const [showProgress, setShowProgress] = useState(false)
     const [uploatValue, setUploadValue] = useState(0)
-    const [prevImage, setPrevImage] = useState(FORM_STATE.image)
     const [disabledButton, setDisabledButton] = useState(false)
     const [file, setFile] = useState('')
 
@@ -50,7 +48,7 @@ export default function useCreateProduct({
         const task = storageRef.put(file)
 
         task.then(res => {
-            // console.log(res)
+            console.log(res)
             const imgUrl = res.ref.getDownloadURL()
             imgUrl.then(url => {
                 setFormProduct((prevState) => ({
@@ -75,10 +73,10 @@ export default function useCreateProduct({
             ...formProduct,
             image: ''
         })
-
-        const storageRef = getStorage().ref(`products/${file.name}`)
-        storageRef.delete()
-
+        if (file) {
+            const storageRef = getStorage().ref(`products/${file.name}`)
+            storageRef.delete()
+        }
         setShowProgress(false)
         setUploadValue(0)
     }

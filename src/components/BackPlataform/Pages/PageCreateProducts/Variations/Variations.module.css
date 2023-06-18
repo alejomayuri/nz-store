@@ -1,0 +1,79 @@
+.variation, .element {
+    display: flex;
+    gap: 8px;
+}
+
+.variationInfo {
+    display: flex;
+    gap: 8px;
+    width: 170px;
+    justify-content: space-between;
+}
+
+.variation p, .variation span {
+    font-size: 16px;
+    font-weight: 600;
+} 
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    /* padding: 16px; */
+    border: solid 1px #000;
+    border-radius: 8px;
+}
+
+.title {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #545454;
+    font-weight: 600;
+    width: 100%;
+    padding: 16px;
+    padding-bottom: 0;
+}
+
+.topLeyend {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px;
+    padding: 16px 24px;
+}
+
+.topLeyend p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.topLeyend p:first-of-type {
+    width: 50%;
+}
+
+.variationWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-top: solid 1px #c1c1c1;
+    padding: 16px 24px 0 24px;
+    justify-content: space-between;
+}
+
+.element p {
+    margin-top: 0 !important;
+}
+
+.infoElement {
+    width: 50px;
+}
+
+.infoElement input {
+    width: 100%;
+    height: 100%;
+    border: solid 1px #c1c1c1;
+    border-radius: 4px;
+    padding: 4px;
+}

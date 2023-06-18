@@ -1,0 +1,31 @@
+.state {
+    width: 100%;
+}
+
+.stateWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stateWrapper select {
+    padding: 8px;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: solid 1px #c1c1c1;
+    /* margin: 16px 0; */
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* .state p {
+    margin-top: 16px;
+    font-size: 16px; */
+    /* font-weight: 500; */
+    /* letter-spacing: 0.5px; */
+    /* color: #000000; */
+/* } */

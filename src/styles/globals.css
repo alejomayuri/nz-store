@@ -368,3 +368,24 @@ main {
     margin: 0 auto;
     width: 100%;
 }
+
+.content__wrapper h1 {
+    font-size: 32px;
+    letter-spacing: 0.5px;
+    color: #000000;
+}
+
+.content__wrapper > div {
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+    padding-bottom: 64px;
+    margin-bottom: 64px;
+    border-bottom: solid 1px #dfdddd;
+}
+
+.content__wrapper > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

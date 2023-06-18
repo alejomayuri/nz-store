@@ -40,7 +40,7 @@ const ProductDisplayer = ({ products, editProduct }) => {
             <div className={style.header}>
                 <div className={style.header__searchBar}>
                     <SearchBar onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-                    <a href="products/create-product">
+                    <a href="./create-products">
                         <button>Crear producto</button>
                     </a>
                 </div>

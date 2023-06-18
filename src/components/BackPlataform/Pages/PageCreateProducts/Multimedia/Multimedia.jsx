@@ -3,6 +3,7 @@ import { BoxLayout } from "../BoxLayout/BoxLayout";
 import { UploadImage } from "@/components/global/Icons/uploadImage";
 
 const Multimedia = ({ prevImage, showProgress, uploatValue, onChange, handleDeleteImg }) => {
+
     return (
         <BoxLayout title="Elementos multimedia">
             <div className={style.prevImageWrapper}>
