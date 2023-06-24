@@ -1,0 +1,33 @@
+.paymentWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* margin-bottom: 16px; */
+    border-bottom: solid 1px #c1c1c1;
+    padding-bottom: 20px;
+}
+
+.paymentWrapper > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.paymentWrapper > div > div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.paymentWrapper > div:last-of-type {
+    margin-bottom: 0;
+}
+
+.title {
+    width: 70px;
+}
+
+.message {
+    color: #7e7e7e;
+}

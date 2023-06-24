@@ -38,6 +38,7 @@ export const fetchProducts = () => {
 export const fetchOrders = () => {
     return db
       .collection("pedidos")
+      .orderBy("date", "desc")
       .get()
       .then(({ docs }) => {
         return docs.map((doc) => {
@@ -103,8 +104,12 @@ export const timeStamps = () => {
   return timestamp.seconds;
 }
 
-export const editFormProduct = (id, form) => {
+export const editFormProductFunction = (id, form) => {
   return db.collection('prueba').doc(id).update(form)
+}
+
+export const editOrder = (id, order) => {
+  return db.collection('pedidos').doc(id).update(order)
 }
 
 export const createProduct = (form) => {

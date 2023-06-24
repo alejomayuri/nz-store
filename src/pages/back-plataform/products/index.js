@@ -1,8 +1,3 @@
-import { useEffect, useState } from 'react'
-// import { useFunctions } from "@/hooks/useFunctions";
-// import { ProductsDisplayer } from "@/components/PageProducts/ProductsDisplayer/ProductsDisplayer"
-import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/router";
 import { BackLayout } from "@/Layouts/BackLayout";
 import { useProducts } from "@/hooks/useProducts";
 import { ProductDisplayer } from '@/components/BackPlataform/Pages/PageProducts/ProductDisplayer/ProductDisplayer';

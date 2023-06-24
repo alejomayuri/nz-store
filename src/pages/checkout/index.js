@@ -26,9 +26,9 @@ const Checkout = () => {
         prevImage,
         showProgress,
         uploatValue,
-        handleDeleteImg, } = useCheckout();
-        // console.log(form)
-
+        handleDeleteImg 
+    } = useCheckout();
+    
     if (uploadLoading) return <h1>Loading...</h1>
     return (
         <Layout>

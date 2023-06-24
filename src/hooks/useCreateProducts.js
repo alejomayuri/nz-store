@@ -21,13 +21,6 @@ export default function useCreateProduct({getStorage} = {}) {
         FORM_STATE 
     )
     const [prevImage, setPrevImage] = useState(FORM_STATE.image)
-    useEffect(() => {
-        if (initialForm) {
-            setFormProduct(initialForm)
-            setPrevImage(initialForm.image)
-            console.log("initialForm")
-        }
-    }, [initialForm])
 
     const [showProgress, setShowProgress] = useState(false)
     const [uploatValue, setUploadValue] = useState(0)

@@ -12,7 +12,7 @@ import { Variations } from "@/components/BackPlataform/Pages/PageCreateProducts/
 import { State } from "@/components/BackPlataform/Pages/PageCreateProducts/State/State";
 import { Organization } from "@/components/BackPlataform/Pages/PageCreateProducts/Organization/Organization";
 import { getStorage } from "@/firebase/client";
-import { editProduct } from "@/firebase/client";
+import { editFormProductFunction } from "@/firebase/client";
 
 const BackPlataform_EditProduct = () => {
     const router = useRouter()
@@ -24,6 +24,7 @@ const BackPlataform_EditProduct = () => {
     const [prevImage, setPrevImage] = useState('')
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
+    const [disabledButton, setDisabledButton] = useState(true)
 
     if (formProduct && formProduct.image && prevImage === '') {
         setPrevImage(formProduct.image)
@@ -120,19 +121,57 @@ const BackPlataform_EditProduct = () => {
         })
     }
 
-    // const handleEdit = () => {
-    //     editProduct(id, editFormProduct)
-    //         .then(res => {
-    //             router.push('/back-plataform/products')
-    //         })
-    // }
-
     const handleEdit = useCallback(() => {
-        editProduct(id, editFormProduct)
+        editFormProductFunction(id, editFormProduct)
             .then(() => {
                 router.push('/back-plataform/products');
             })
-    }, [router, formProduct]);
+    }, [router, editFormProduct, id]);
+
+    const variationWithoutPricek = useCallback(() => {
+        if (editFormProduct?.variations && editFormProduct?.variations.length > 0) {
+                for (let i = 0; i < editFormProduct?.variations.length; i++) {
+                    if (editFormProduct?.variations[i].price === '0') {
+                        return false
+                    }
+                }
+            }
+        return true
+    }, [editFormProduct?.variations])
+
+    useEffect(() => {
+        if (editFormProduct?.name && editFormProduct?.name !== "" &&
+            editFormProduct?.description && editFormProduct?.description !== "" &&
+            editFormProduct?.image && editFormProduct?.image !== "" &&
+            editFormProduct?.currency && editFormProduct?.currency !== "" &&
+            editFormProduct?.active !== "" &&
+            editFormProduct?.categories && editFormProduct?.categories.length > 0 && editFormProduct?.categories[0] !== "" &&
+            editFormProduct?.subcategory && editFormProduct?.subcategory !== "" &&
+            editFormProduct?.keywords && editFormProduct?.keywords !== ""
+        ) {
+            if (editFormProduct?.stock && editFormProduct?.stock !== "" &&
+                editFormProduct?.price && editFormProduct?.price !== ""
+            ) {
+                setDisabledButton(false)
+            } else {
+                if (editFormProduct?.options && editFormProduct?.options.length > 0 &&
+                    editFormProduct?.options[0].name !== "" && editFormProduct.options[0].values[0] !== "" &&
+                    editFormProduct?.variations && editFormProduct?.variations.length > 0 &&
+                    variationWithoutPricek()
+                ) {
+                    setDisabledButton(false)
+                } else {
+                    setDisabledButton(true)
+                }
+            }
+        } else {
+            setDisabledButton(true)
+        }
+    }, [
+        editFormProduct,
+        setDisabledButton,
+        variationWithoutPricek
+    ])
 
     return (
         <BackLayout>
@@ -191,8 +230,8 @@ const BackPlataform_EditProduct = () => {
                             keywords={formProduct?.keywords}
                         />
                         <CreateButton
-                            disabled={false}
-                            formProduct={formProduct}
+                            disabled={disabledButton}
+                            text="Editar producto"
                             onClick={handleEdit}
                         />
                     </div>

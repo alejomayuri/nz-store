@@ -51,7 +51,8 @@ export const useCheckout = ({
         envio: null,
         date: timeStamps(),
         termsAndConditions: termsAndConditions,
-        total: null
+        total: null,
+        status: 0
     }
     console.log(termsAndConditions)
     const [form, setForm] = useState(FORM_STATE);

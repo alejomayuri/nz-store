@@ -122,7 +122,7 @@ const Product = ({ product, productPrice, productStock }) => {
                     <img src={product?.image} alt={product?.name} />
                 </div>
                 <div className={style.product__name}>
-                    <Link href={`/products/edit-product/${product?.id}`}>
+                    <Link href={`/back-plataform/edit-product/${product?.id}`}>
                         <h3>{product?.name}</h3>
                     </Link>
                     {

@@ -134,7 +134,7 @@ const BackPlataform_CreateProducts = () => {
                         />
                         <CreateButton
                             disabled={disabledButton}
-                            formProduct={formProduct}
+                            text="Crear producto"
                             onClick={handleCreate}
                         />
                     </div>
