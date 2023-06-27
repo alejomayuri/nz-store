@@ -33,6 +33,12 @@ const MainMenu = () => {
                         <p>Pedidos</p>
                     </Link>
                 </li>
+                <li className={style.menu__item}>
+                    <Link href="/back-plataform/cupons" className={style.menu__link}>
+                        <span>🎟️</span>
+                        <p>Cupones</p>
+                    </Link>
+                </li>
             </ul>
         </div>
     )

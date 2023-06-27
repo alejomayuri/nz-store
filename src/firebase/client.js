@@ -72,6 +72,24 @@ export const fetchUser = (userId) => {
   })
 }
 
+export const fetchCupons = () => {
+    return db
+      .collection("cupones")
+      .get()
+      .then(({ docs }) => {
+        return docs.map((doc) => {
+          const data = doc.data()
+          const id = doc.id
+  
+          return {
+            ...data,
+            id
+          }
+        }
+      )
+  })
+}
+
 export const auth = firebase.auth();
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -108,10 +126,18 @@ export const editFormProductFunction = (id, form) => {
   return db.collection('prueba').doc(id).update(form)
 }
 
+export const editUserData = (id, user) => {
+  return db.collection('users').doc(id).update(user)
+}
+
 export const editOrder = (id, order) => {
   return db.collection('pedidos').doc(id).update(order)
 }
 
 export const createProduct = (form) => {
   return db.collection('prueba').add(form)
+}
+
+export const createCupon = (form) => {
+  return db.collection('cupones').add(form)
 }

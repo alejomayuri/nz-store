@@ -27,7 +27,11 @@
     font-weight: 500;
 }
 
-.couponForm {
+/* .couponForm {
+    
+} */
+
+.couponForm div {
     display: flex;
     align-items: center;
 }

@@ -2,9 +2,13 @@ import { Layout } from "@/Layouts/Layout"
 import { useProductCartContext } from "@/context/ProductCartContext";
 import { ProductCartBox } from "@/components/PageCart/ProductCartBox/ProductCartBox";
 import { TotalPrice } from "@/components/PageCart/TotalPrice/TotalPrice";
+import { useCupons } from "@/hooks/useCupons";
 
 const Cart = () => {
     const { products, setProducts } = useProductCartContext();
+    const { cupons } = useCupons();
+
+    console.log(cupons)
 
     return (
         <Layout>
@@ -15,7 +19,7 @@ const Cart = () => {
                             <ProductCartBox key={product.id} element={product} setProducts={setProducts} />
                         ))}
                     </div>
-                    <TotalPrice products={products} />
+                    <TotalPrice cupons={cupons} products={products} />
                 </div>
             )
                 : (

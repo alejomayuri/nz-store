@@ -11,7 +11,6 @@ export const useAdmin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const { currentUser } = useAuth();
     const path = router.pathname;
-    console.log(path)
 
     useEffect(() => {
         const checkUser = async () => {

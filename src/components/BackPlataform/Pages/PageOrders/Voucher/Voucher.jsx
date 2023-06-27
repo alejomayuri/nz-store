@@ -1,10 +1,10 @@
-import { formatPrice } from "@/utils/formatPrice";
+import style from './Voucher.module.css';
 
 const Voucher = ({ image }) => {
 
     return (
         <>
-            <div>
+            <div className={style.wrapper}>
                 <div>
                     <img 
                         src={image}
