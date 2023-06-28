@@ -5,21 +5,24 @@ import { TotalPrice } from "@/components/PageCart/TotalPrice/TotalPrice";
 import { useCupons } from "@/hooks/useCupons";
 
 const Cart = () => {
-    const { products, setProducts } = useProductCartContext();
+    const { products, setProducts, cuponActiveInCart, setCuponActiveInCart, cart } = useProductCartContext();
     const { cupons } = useCupons();
-
-    console.log(cupons)
-
+    console.log(cuponActiveInCart)
     return (
         <Layout>
             {products.length > 0 ? (
                 <div className="cartMainContainer">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
                         {products.map((product) => (
                             <ProductCartBox key={product.id} element={product} setProducts={setProducts} />
                         ))}
                     </div>
-                    <TotalPrice cupons={cupons} products={products} />
+                    <TotalPrice
+                        cupons={cupons}
+                        products={products}
+                        cuponActiveInCart={cuponActiveInCart}
+                        setCuponActiveInCart={setCuponActiveInCart}
+                    />
                 </div>
             )
                 : (

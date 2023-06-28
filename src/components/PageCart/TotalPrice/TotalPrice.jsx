@@ -7,8 +7,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useUser } from "@/hooks/useUser";
 import { editUserData } from "@/firebase/client";
 
-const TotalPrice = ({ products, cupons }) => {
-    const formattedPrice = useTotalCartPrice({cart: products})
+const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart }) => {
+    const {formattedPrice, priceWithoutDiscount} = useTotalCartPrice({cart: products, cupon: cuponActiveInCart})
     const [showNoUserMessage, setShowNoUserMessage] = useState(false)
     const [code, setCode] = useState('')
     const [userForm, setUserForm] = useState({})
@@ -21,8 +21,10 @@ const TotalPrice = ({ products, cupons }) => {
         setCode(e.target.value)
     }
 
+    let discount = 0;
+
     useEffect(() => {
-        if (userData && userData.length > 0) {
+        if (userData && userData?.userData?.length > 0) {
             setUserForm(userData)
         }
     }, [userData])
@@ -35,8 +37,6 @@ const TotalPrice = ({ products, cupons }) => {
             }
             , 3000)
     }
-    const date = new Date().getTime();
-    console.log(date)
 
     const handleAddCupon = async (e) => {
         e.preventDefault();
@@ -58,20 +58,33 @@ const TotalPrice = ({ products, cupons }) => {
                     const isValidCupon = handleIsValidCupon();
 
                     if (isValidCupon) {
-                        setActiveCupon(cupon);
-                        setActiveCuponBtn(true);
-                        const cuponFormatForUser = {
-                            code: cupon.code,
-                            uses: 1
-                        };
-        
-                        setUserForm((prevUserForm) => {
-                            const usedCoupons = prevUserForm.usedCoupons || [];
-                            return {
-                                ...prevUserForm,
-                                usedCoupons: [...usedCoupons, cuponFormatForUser]
-                            };
-                        });
+                        const usedCoupons = userForm.usedCoupons || [];
+                        const alreadyUsed = usedCoupons.find((usedCupon) => usedCupon.code === cupon.code);
+
+                        const usesPerUser = parseInt(cupon.uses);
+                        const userUses = alreadyUsed ? alreadyUsed.uses : 0;
+                        if (userUses < usesPerUser) {
+                            if (cuponActiveInCart && cuponActiveInCart.length > 0) {
+                                handleShowMessage('Ya tienes un cupón activo')
+                            } else {
+                                setActiveCupon(cupon);
+                                setActiveCuponBtn(true);
+                                
+                                const cuponFormatForUser = {
+                                    code: cupon.code,
+                                    uses: userUses + 1,
+                                };
+
+                                setUserForm((prevUserForm) => {
+                                    return {
+                                        ...prevUserForm,
+                                        usedCoupons: [...usedCoupons, cuponFormatForUser]
+                                    };
+                                });
+                            }
+                        } else {
+                            handleShowMessage('El cupón ingresado a alcanzado su límite de usos');
+                        }
                     } else {
                         handleShowMessage('El cupón ingresado a expirado');
                     }
@@ -85,7 +98,7 @@ const TotalPrice = ({ products, cupons }) => {
           handleShowMessage('Debes iniciar sesión para aplicar un cupón');
         }
     };
-      console.log(currentUser)
+    
       useEffect(() => {
         if (currentUser && userForm && activeCuponBtn) {
             console.log("siu")
@@ -93,11 +106,22 @@ const TotalPrice = ({ products, cupons }) => {
             .then(() => {
                 handleShowMessage('Cupón aplicado con éxito');
                 setCode('');
+                setCuponActiveInCart([activeCupon]);
                 setActiveCuponBtn(false)
             })
             .catch((error) => console.error('Error al actualizar los datos del usuario:', error));
         }
-      }, [currentUser, userForm, activeCuponBtn]);
+      }, [currentUser, userForm, activeCupon, setCuponActiveInCart, activeCuponBtn]);
+
+      console.log(cuponActiveInCart)
+    if (cuponActiveInCart && cuponActiveInCart.length > 0) {
+        const { valor, tipoDescuento } = cuponActiveInCart[0];
+        if (tipoDescuento === 'descFijo') {
+            discount = `- ${formatPrice(valor)}`;
+        } else if (tipoDescuento === 'descPorcent') {
+            discount = `- ${valor}%`;
+        }
+    }
 
     return (
         <div className={style.totalPriceContainer}>
@@ -113,6 +137,20 @@ const TotalPrice = ({ products, cupons }) => {
                 }
             </form>
             <div>
+                {
+                    cuponActiveInCart && cuponActiveInCart.length > 0 && (
+                        <>
+                            <div className={style.priceElement}>
+                                <h3>PRODUCTOS:</h3>
+                                <p>{formatPrice(priceWithoutDiscount)}</p>
+                            </div>
+                            <div className={style.priceElement}>
+                                <h3>DESCUENTO:</h3>
+                                <p>{discount}</p>
+                            </div>
+                        </>
+                    )
+                }
                 <div className={style.subtotalWrapper}>
                     <h3>SUBTOTAL:</h3>
                     <p>{formatPrice(formattedPrice)}</p>

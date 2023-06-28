@@ -2,9 +2,10 @@ import { formatPrice } from "@/utils/formatPrice"
 import { useProducts } from "./useProducts"
 import {useEffect} from "react"
 
-export const useTotalCartPrice = ({ cart } = { cart: null }) => {
+export const useTotalCartPrice = ({ cart, cupon } = { cart: null, cupon: null }) => {
     let totalPrice = 0
     let formattedPrice = 0
+    let priceWithoutDiscount = 0
     const {products, loading} = useProducts({category: null})
 
     const compararIgualdad = (datos1, datos2) => {
@@ -21,7 +22,7 @@ export const useTotalCartPrice = ({ cart } = { cart: null }) => {
           });
         });
     };
-
+    // console.log(cupon)
     cart?.reduce((acc, item) => {
         const product = products?.find((product) => product?.id === item.product)
         let price = 0
@@ -43,12 +44,26 @@ export const useTotalCartPrice = ({ cart } = { cart: null }) => {
           }
         }
 
-        totalPrice += price * item?.quantity
+        priceWithoutDiscount += price * item?.quantity
     }, 0)
+
+    if (cupon && cupon.length > 0 && priceWithoutDiscount > 0) {
+        const { tipoCupon, tipoDescuento, valor } = cupon[0]
+        const numValue = parseInt(valor)
+        if (tipoCupon === "descCarrito") {
+            if (tipoDescuento === "descPorcent") {
+                totalPrice = priceWithoutDiscount - (priceWithoutDiscount * numValue) / 100
+            } else if (tipoDescuento === "descFijo") {
+                totalPrice = priceWithoutDiscount - numValue
+            }
+        }
+    }
+
+    
 
     if (totalPrice > 0) {
         formattedPrice = totalPrice
     }
 
-    return formattedPrice
+    return {formattedPrice, priceWithoutDiscount}
 }

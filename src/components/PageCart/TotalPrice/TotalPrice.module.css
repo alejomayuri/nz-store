@@ -6,13 +6,13 @@
     padding-right: 0px;
 }
 
-.subtotalWrapper {
+.subtotalWrapper, .priceElement {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 8px;
     border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     height: 40px;
 }
 
@@ -21,15 +21,16 @@
     font-size: 18px;
 }
 
-.subtotalWrapper p {
+.priceElement h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.subtotalWrapper p, .priceElement p {
     margin: 0;
     font-size: 18px;
     font-weight: 500;
 }
-
-/* .couponForm {
-    
-} */
 
 .couponForm div {
     display: flex;
