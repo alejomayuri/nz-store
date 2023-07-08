@@ -17,5 +17,7 @@ export const useUser = ({ id } = { id: null }) => {
         return userData.find((user) => user?.userId === id)
     }
 
-    return {userData, loading}
+    if (Object.keys(userData).length > 0) {
+        return {userData, loading}
+    }
 }

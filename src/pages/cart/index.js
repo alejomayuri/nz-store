@@ -7,7 +7,7 @@ import { useCupons } from "@/hooks/useCupons";
 const Cart = () => {
     const { products, setProducts, cuponActiveInCart, setCuponActiveInCart, cart } = useProductCartContext();
     const { cupons } = useCupons();
-    console.log(cuponActiveInCart)
+    
     return (
         <Layout>
             {products.length > 0 ? (

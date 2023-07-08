@@ -80,3 +80,21 @@
 .totalPriceContainer a {
     text-decoration: none;
 }
+
+.deleteCuponBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.deleteCuponBtn svg {
+    fill: #dbdbdb;
+    transition: all 0.1s ease-in-out;
+}
+
+.deleteCuponBtn svg:hover {
+    fill: #333;
+}

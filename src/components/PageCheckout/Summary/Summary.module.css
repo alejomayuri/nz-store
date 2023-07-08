@@ -80,6 +80,14 @@
     letter-spacing: 1.1px;
 }
 
+.summary__subtotal span {
+    margin-left: -230px;
+    display: flex;
+    align-items: center;
+    color: #777676;
+    font-size: 15px;
+}
+
 .envioMessage {
     font-size: 16px;
     color: #4a4a4a;

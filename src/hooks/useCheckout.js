@@ -4,7 +4,6 @@ import { useUbigeo } from "@/hooks/useUbigeo";
 import { useUploadOrder } from './useUploadOrder';
 import { getStorage } from '@/firebase/client';
 import { timeStamps } from '@/firebase/client';
-// import firebase from 'firebase/compat';
 
 export const useCheckout = ({
     name,
@@ -23,7 +22,7 @@ export const useCheckout = ({
     date,
     total
 } = {}) => {
-    const { products, setProducts } = useProductCartContext();
+    const { products, setProducts, cuponActiveInCart, setCuponActiveInCart } = useProductCartContext();
 
     const { ubigeoSelect, setDptoSel, setProvSel, setDistSel } = useUbigeo();
 
@@ -37,6 +36,7 @@ export const useCheckout = ({
         email: null,
         phone: null,
         cart: products,
+        cupon: cuponActiveInCart,
         ubigeo : {
             dpto: null,
             prov: null,
@@ -47,7 +47,7 @@ export const useCheckout = ({
         nRuc: null,
         paymentMethod: null,
         image: null,
-        subtotal: null,
+        subtotal: 0,
         envio: null,
         date: timeStamps(),
         termsAndConditions: termsAndConditions,
@@ -58,7 +58,7 @@ export const useCheckout = ({
     const [form, setForm] = useState(FORM_STATE);
     const [loading, setLoading] = useState(false);
     const [conFactura, setConFactura] = useState(false)
-    
+    console.log(form)
     const [disable, setDisable] = useState(true)
     const [prevImage, setPrevImage] = useState(FORM_STATE.image)
     const [showProgress, setShowProgress] = useState(false)
@@ -259,6 +259,7 @@ export const useCheckout = ({
         // console.log(completedForm);
         handleUploadOrder(completedForm);
         setProducts([]);
+        setCuponActiveInCart([]);
     }
 
     return {

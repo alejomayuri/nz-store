@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { auth, googleProvider, db } from '@/firebase/client';
+import { useUser } from '@/hooks/useUser';
+import { useRouter } from 'next/router';
 
 const AuthContext = createContext();
 
@@ -8,7 +10,9 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    
+    const userData = useUser()
+    const router = useRouter();
+
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -23,13 +27,28 @@ export const AuthProvider = ({ children }) => {
                 const { user } = userCredential;
 
                 const newUser = {
-                    uid: user.uid,
+                    userId: user.uid,
                 }
 
-                return db
-                    .collection('users')
-                    .doc(user.uid)
-                    .set(newUser)
+                if (userData) {
+                    if (userData.userData) {
+                        const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid)
+                        
+                        if (!userExist) {
+                            return db
+                                .collection('users')
+                                .doc(user.uid)
+                                .set(
+                                    {
+                                        userId: newUser.userId
+                                    }
+                                )
+                                .then(() => {
+                                    router.reload()
+                                })
+                        }
+                    }
+                }
             })
     }
 
@@ -40,13 +59,28 @@ export const AuthProvider = ({ children }) => {
                 const { user } = userCredential;
 
                 const newUser = {
-                    uid: user.uid,
+                    userId: user.uid,
                 }
 
-                return db
-                    .collection('users')
-                    .doc(user.uid)
-                    .set(newUser)
+                if (userData) {
+                    if (userData.userData) {
+                        const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid)
+                        
+                        if (!userExist) {
+                            return db
+                                .collection('users')
+                                .doc(user.uid)
+                                .set(
+                                    {
+                                        userId: newUser.userId
+                                    }
+                                )
+                                .then(() => {
+                                    router.reload()
+                                })
+                        }
+                    }
+                }
             })
     }
 

@@ -31,12 +31,9 @@ const Cart = ({ cart }) => {
     if (product[0] && product[0]?.variations) {
         const variation = product[0]?.variations?.find((variation) => {
             const options = variation.options
-            // const features = item.features
             const datos2Obj = Object.entries(features).map(([name, value]) => ({ name, value }));
-            console.log("options", options)
             return compararIgualdad(options, datos2Obj)
         })
-        console.log("variation", variation)
         price = variation?.price
     } else {
         price = product[0]?.price

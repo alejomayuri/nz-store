@@ -1,6 +1,4 @@
-import { formatPrice } from "@/utils/formatPrice"
 import { useProducts } from "./useProducts"
-import {useEffect} from "react"
 
 export const useTotalCartPrice = ({ cart, cupon } = { cart: null, cupon: null }) => {
     let totalPrice = 0

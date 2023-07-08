@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useState, useEffect } from 'react';
 import { Alert } from '@/components/global/Alert/Alert';
 
-const AccountData = ({ data }) => {
+const AccountData = ({ data, setData }) => {
     const { currentUser } = useAuth();
 
     const UPLOAD_STATES = {
@@ -16,22 +16,9 @@ const AccountData = ({ data }) => {
 
     const [uploadState, setUploadState] = useState(UPLOAD_STATES.IDLE);
 
-    const [userData, setUserData] = useState({});
-
-    useEffect(() => {
-        setUserData({
-            userId: currentUser.uid,
-            name: data.name,
-            lastName: data.lastName,
-            email: data.email,
-            phone: data.phone,
-            address: data.address
-        });
-    }, [data]);
-
     const handle = (e) => {
-        setUserData({
-            ...userData,
+        setData({
+            ...data,
             [e.target.name]: e.target.value
         });
     }
@@ -39,7 +26,7 @@ const AccountData = ({ data }) => {
         e.preventDefault();
         setUploadState(UPLOAD_STATES.UPLOADING);
 
-        uploadUserData(userData).then(() => {
+        uploadUserData(data).then(() => {
             setUploadState(UPLOAD_STATES.COMPLETED);
 
             setTimeout(() => {
@@ -47,6 +34,8 @@ const AccountData = ({ data }) => {
             }, 3000);
         });
     }
+
+    console.log("data", data)
 
     return (
         <>
@@ -58,24 +47,24 @@ const AccountData = ({ data }) => {
                     <div className={style.flexRow}>
                         <div>
                             <label htmlFor="name">Nombre:</label>
-                            <input type="text" name="name" onChange={handle} value={userData.name} />
+                            <input type="text" name="name" onChange={handle} value={data.name} />
                         </div>
                         <div>
                             <label htmlFor="lastName">Apellido:</label>
-                            <input type="text" name="lastName" onChange={handle} value={userData.lastName} />
+                            <input type="text" name="lastName" onChange={handle} value={data.lastName} />
                         </div>
                     </div>
                     <div>
                         <label htmlFor="email">Email:</label>
-                        <input type="email" name="email" onChange={handle} value={userData.email} />
+                        <input type="email" name="email" onChange={handle} value={data.email} />
                     </div>
                     <div>
                         <label htmlFor="phone">Teléfono:</label>
-                        <input type="tel" name="phone" onChange={handle} value={userData.phone} />
+                        <input type="tel" name="phone" onChange={handle} value={data.phone} />
                     </div>
                     <div>
                         <label htmlFor="address">Dirección:</label>
-                        <input type="text" name="address" onChange={handle} value={userData.address} />
+                        <input type="text" name="address" onChange={handle} value={data.address} />
                     </div>
                     <button className={style.btn} onClick={handleSubmit} disabled={
                         uploadState === UPLOAD_STATES.UPLOADING

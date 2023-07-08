@@ -55,7 +55,7 @@ const Checkout = () => {
                 />
                 <Summary
                     pedido={form?.cart}
-                    ubigeo={form.ubigeo}
+                    ubigeo={form?.ubigeo}
                     handleChangeSubtotal={handleChangeSubtotal}
                     handleEnvio={handleEnvio}
                     handleTotal={handleTotal}

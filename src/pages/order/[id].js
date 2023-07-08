@@ -30,7 +30,7 @@ const Order = () => {
                     loading ? <h2>Loading...</h2> : (
                         <>
                             {/* <BankDetails type={order[0]?.paymentMethod} /> */}
-                            <OrderDetails cart={order[0]?.cart} envio={order[0]?.envio}/>
+                            <OrderDetails cart={order[0]?.cart} envio={order[0]?.envio} cupon={order[0]?.cupon}/>
                             <BillingDetails nRuc={order[0]?.nRuc} razonSocial={order[0]?.razonSocial} document={order[0]?.document}/>
                             <ShippingDetails ubigeo={order[0]?.ubigeo} address={order[0]?.address} name={order[0]?.name} lastName={order[0]?.lastName}/>
                         </>

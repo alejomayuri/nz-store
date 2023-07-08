@@ -10,25 +10,20 @@ const UserContent = () => {
     const [blockToRender, setBlockToRender] = useState("account");
     const { currentUser, logout } = useAuth();
     const userData = useUser({id: currentUser?.uid});
-
+    console.log("userData", userData)
     useEffect(() => {
         if (userData) {
-            setUserInfo({
-                name: userData.name,
-                lastName: userData.lastName,
-                email: userData.email,
-                phone: userData.phone,
-                address: userData.address
-            });
+            setUserInfo(userData);
         }
     }, [userData]);
+    console.log("userInfo", userInfo)
 
     const handleBlockToRender = (block) => {
         setBlockToRender(block);
     };
 
     if (blockToRender === "account") {
-        content = <AccountData data={userInfo} />;
+        content = <AccountData data={userInfo} setData={setUserInfo} />;
     }
 
     return (
@@ -49,7 +44,7 @@ const UserContent = () => {
                 </div>
             </div>
             <div className={style.content}>
-                <AccountData data={userInfo} />
+                {content}
             </div>
         </div>
     );

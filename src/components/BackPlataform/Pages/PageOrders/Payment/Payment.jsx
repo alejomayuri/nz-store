@@ -1,5 +1,6 @@
 import style from "./Payment.module.css";
 import { formatPrice } from "@/utils/formatPrice";
+import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
 
 const Payment = ({ order }) => {
     // console.log("order", order)
@@ -10,7 +11,13 @@ const Payment = ({ order }) => {
     let envioMessage = null
     let cartLenth = 0
 
+    let orderCart = order?.cart
+    let orderCupon = order?.cupon
+
     if (order && Object.keys(order).length > 0) {
+        orderCart = order?.cart
+        orderCupon = order?.cupon
+
         subtotal = order?.subtotal
         envio = order?.envio
         total = order?.total
@@ -26,6 +33,9 @@ const Payment = ({ order }) => {
         cartLenth = order?.cart?.length
     }
 
+    const {formattedPrice, priceWithoutDiscount} = useTotalCartPrice({cart: orderCart, cupon: orderCupon})
+    console.log("formattedPrice", formattedPrice)
+    console.log("priceWithoutDiscount", priceWithoutDiscount)
     return (
         <>
             <div className={style.paymentWrapper}>

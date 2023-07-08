@@ -49,8 +49,6 @@ export const ProductCartProvider = (props) => {
         }
     }, [products, clientLoaded, cuponActiveInCart]);
 
-    // console.log(products);
-
     return (
         <ProductCartContext.Provider value={value}>
             {props.children}

@@ -6,6 +6,7 @@ import { formatPrice } from "@/utils/formatPrice";
 import { useAuth } from "@/context/AuthContext";
 import { useUser } from "@/hooks/useUser";
 import { editUserData } from "@/firebase/client";
+import DeleteIcon from '@/components/global/Icons/deleteIcon';
 
 const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart }) => {
     const {formattedPrice, priceWithoutDiscount} = useTotalCartPrice({cart: products, cupon: cuponActiveInCart})
@@ -17,18 +18,20 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
     const userData = useUser({id: currentUser?.uid})
     const [message, setMessage] = useState('')
     const [activeCuponBtn, setActiveCuponBtn] = useState(false)
+    const [removeCuponBtn, setRemoveCuponBtn] = useState(false)
     const handleChangeCupon = (e) => {
         setCode(e.target.value)
     }
-
+    
     let discount = 0;
-
+    const usedCoupons = userForm.usedCoupons || [];
+    
     useEffect(() => {
-        if (userData && userData?.userData?.length > 0) {
+        if (userData && Object.keys(userData).length > 0) {
             setUserForm(userData)
         }
     }, [userData])
-
+    
     const handleShowMessage = (message) => {
         setMessage(message)
         setShowNoUserMessage(true)
@@ -37,7 +40,7 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
             }
             , 3000)
     }
-
+    
     const handleAddCupon = async (e) => {
         e.preventDefault();
         if (currentUser && cupons) {
@@ -58,11 +61,12 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
                     const isValidCupon = handleIsValidCupon();
 
                     if (isValidCupon) {
-                        const usedCoupons = userForm.usedCoupons || [];
+                        
                         const alreadyUsed = usedCoupons.find((usedCupon) => usedCupon.code === cupon.code);
-
+                        
                         const usesPerUser = parseInt(cupon.uses);
                         const userUses = alreadyUsed ? alreadyUsed.uses : 0;
+                        
                         if (userUses < usesPerUser) {
                             if (cuponActiveInCart && cuponActiveInCart.length > 0) {
                                 handleShowMessage('Ya tienes un cupón activo')
@@ -76,10 +80,18 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
                                 };
 
                                 setUserForm((prevUserForm) => {
-                                    return {
-                                        ...prevUserForm,
-                                        usedCoupons: [...usedCoupons, cuponFormatForUser]
-                                    };
+                                    if(alreadyUsed) {
+                                        const newUsedCoupons = usedCoupons.filter((usedCupon) => usedCupon.code !== cupon.code);
+                                        return {
+                                            ...prevUserForm,
+                                            usedCoupons: [...newUsedCoupons, cuponFormatForUser]
+                                        };
+                                    } else {
+                                        return {
+                                            ...prevUserForm,
+                                            usedCoupons: [...usedCoupons, cuponFormatForUser]
+                                        };
+                                    }
                                 });
                             }
                         } else {
@@ -113,7 +125,6 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
         }
       }, [currentUser, userForm, activeCupon, setCuponActiveInCart, activeCuponBtn]);
 
-      console.log(cuponActiveInCart)
     if (cuponActiveInCart && cuponActiveInCart.length > 0) {
         const { valor, tipoDescuento } = cuponActiveInCart[0];
         if (tipoDescuento === 'descFijo') {
@@ -122,6 +133,56 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
             discount = `- ${valor}%`;
         }
     }
+   
+    const handleRemoveCupon = () => {
+        setCuponActiveInCart([]);
+        setActiveCupon(null);
+        setActiveCuponBtn(false);
+        const usedCoupons = userForm.usedCoupons || [];
+        const cuponToRemove = usedCoupons.filter((usedCupon) => usedCupon.code === cuponActiveInCart[0].code);
+        
+        if (cuponToRemove.length > 0) {
+            if (cuponToRemove[0].uses > 1) {
+                const newUsedCoupons = usedCoupons.map((usedCupon) => {
+                    if (usedCupon.code === cuponActiveInCart[0].code) {
+                        return {
+                            ...usedCupon,
+                            uses: usedCupon.uses - 1,
+                        };
+                    } else {
+                        return usedCupon;
+                    }
+                });
+                setUserForm((prevUserForm) => {
+                    return {
+                        ...prevUserForm,
+                        usedCoupons: newUsedCoupons
+                    };
+                });
+                setRemoveCuponBtn(true)
+            } else {
+                const newUsedCoupons = usedCoupons.filter((usedCupon) => usedCupon.code !== cuponActiveInCart[0].code);
+                setUserForm((prevUserForm) => {
+                    return {
+                        ...prevUserForm,
+                        usedCoupons: newUsedCoupons
+                    };
+                });
+                setRemoveCuponBtn(true)
+            }
+        }
+    };
+
+    useEffect(() => {
+        if (currentUser && userForm && removeCuponBtn) {
+            editUserData(currentUser.uid, userForm)
+                .then(() => {
+                    handleShowMessage('Cupón removido con éxito');
+                    setRemoveCuponBtn(false);
+                })
+                .catch((error) => console.error('Error al actualizar los datos del usuario:', error));
+        }
+    }, [currentUser, userForm, removeCuponBtn]);
 
     return (
         <div className={style.totalPriceContainer}>
@@ -147,13 +208,25 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
                             <div className={style.priceElement}>
                                 <h3>DESCUENTO:</h3>
                                 <p>{discount}</p>
+                                <button className={style.deleteCuponBtn} onClick={handleRemoveCupon}>
+                                    <DeleteIcon width="25px" height="25px" />
+                                </button>
                             </div>
                         </>
                     )
                 }
                 <div className={style.subtotalWrapper}>
                     <h3>SUBTOTAL:</h3>
-                    <p>{formatPrice(formattedPrice)}</p>
+                    <p>
+                        {
+                            
+                            cuponActiveInCart && cuponActiveInCart.length > 0 ? (
+                                formatPrice(formattedPrice)
+                            ) : (
+                                formatPrice(priceWithoutDiscount)
+                            )
+                        }
+                    </p>
                 </div>
                 <Link href="/checkout">
                     <button className={style.goToCheckoutButton}>

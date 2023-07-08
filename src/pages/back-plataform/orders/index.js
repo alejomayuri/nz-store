@@ -4,7 +4,7 @@ import { useOrders } from '@/hooks/useOrders';
 
 export default function Orders(props) {
     const { orders, loading } = useOrders()
-    console.log(orders)
+    
     return (
         <BackLayout>
             <div className="content__wrapper_big">
