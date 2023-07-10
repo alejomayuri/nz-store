@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import FacebookIcon from '../../Icons/facebookIcon';
 import InstagramIcon from '../../Icons/instagramIcon';
 import Link from 'next/link';
+import { SearchBar } from '../../SearchBar/SearchBar';
+import { LoginBtn } from '../../LoginBtn/LoginBtn';
 
 const MenuHamburguesa = () => {
   const [isActive, setIsActive] = useState(false);
@@ -28,7 +30,7 @@ const MenuHamburguesa = () => {
   }, []);
 
   return (
-    <div>
+    <div className={style.menuHamburguesa__wrapper}>
         <div className={`${style.menuToggle} ${isActive ? style.active : ''}`} onClick={handleClick}>
             <div className={style.menuBar}></div>
             <div className={style.menuBar}></div>
@@ -44,6 +46,9 @@ const MenuHamburguesa = () => {
                         <img src="/logo.jpg" alt="logo" />
                     </div>
                 </header>
+                <div className={style.searchBar__wrapper}>
+                    <SearchBar />
+                </div>
                 <ul>
                     <li><Link href="#">Colección de verano</Link></li>
                     <li><Link href="#">Juguetes</Link></li>
@@ -54,6 +59,9 @@ const MenuHamburguesa = () => {
                     <li><Link href="#">Humanos</Link></li>
                     <li><Link href="#">Colección de invierno</Link></li>
                     <li><Link href="#">Ofertas</Link></li>
+                    <div className={style.loginBtn__wrapper}>
+                        <LoginBtn />
+                    </div>
                 </ul>
                 <footer className={style.menuFooter}>
                     <div className={style.footer__social}>

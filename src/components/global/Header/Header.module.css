@@ -55,6 +55,8 @@
     box-sizing: border-box;
     background-color: #fff;
     flex: 1;
+    max-width: 600px;
+    width: 100%;
 }
 
 .navBar ul {
@@ -79,7 +81,7 @@
     text-decoration: none;
     text-decoration: none;
     color: #333;
-    font-size: 18px;
+    font-size: 16px;
     position: relative;
     display: inline-block;
     padding-bottom: 10px;
@@ -130,4 +132,25 @@
 .headerComponents {
   flex: 1;
   justify-content: flex-end;
+  max-width: 600px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .navBar {
+    display: none;
+  }
+
+  .onlyDesk {
+    display: none;
+  }
+
+  .menusContainer {
+    padding: 0 32px;
+  }
+
+  .headerComponents {
+    flex: none;
+    width: auto;
+  }
 }

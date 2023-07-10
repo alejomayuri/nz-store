@@ -41,7 +41,6 @@ const Order = ({ order, number }) => {
     const handleStateChange = useCallback((e) => {
         const state = e.target.value;
         editOrder(id, { state });
-        console.log(state);
     }, [id]);
 
     return (

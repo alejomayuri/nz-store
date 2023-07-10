@@ -1,6 +1,27 @@
 import style from "./Payment.module.css";
 import { formatPrice } from "@/utils/formatPrice";
 import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
+import { useCallback } from "react";
+import { editOrder } from "@/firebase/client";
+
+const ORDER_STATES = [
+    {
+        value: "0",
+        label: "No preparado",
+    },
+    {
+        value: "1",
+        label: "Preparado",
+    },
+    {
+        value: "2",
+        label: "Enviado",
+    },
+    {
+        value: "3",
+        label: "Entregado",
+    },
+]
 
 const Payment = ({ order }) => {
     // console.log("order", order)
@@ -10,13 +31,23 @@ const Payment = ({ order }) => {
     let paymentMethod = null
     let envioMessage = null
     let cartLenth = 0
+    let totalArticles = 0
+    const id = order?.id
 
     let orderCart = order?.cart
     let orderCupon = order?.cupon
 
+    let cuponName = null
+
     if (order && Object.keys(order).length > 0) {
         orderCart = order?.cart
         orderCupon = order?.cupon
+
+        totalArticles = orderCart?.reduce((acc, item) => {
+            return acc + item.quantity
+        }, 0)
+
+        cuponName = orderCupon[0]?.code
 
         subtotal = order?.subtotal
         envio = order?.envio
@@ -36,13 +67,43 @@ const Payment = ({ order }) => {
     const {formattedPrice, priceWithoutDiscount} = useTotalCartPrice({cart: orderCart, cupon: orderCupon})
     console.log("formattedPrice", formattedPrice)
     console.log("priceWithoutDiscount", priceWithoutDiscount)
+
+    let discount = 0;
+    
+    if (orderCupon && orderCupon.length > 0) {
+        const { valor, tipoDescuento } = orderCupon[0];
+        if (tipoDescuento === 'descFijo') {
+            discount = `- ${formatPrice(valor)}`;
+        } else if (tipoDescuento === 'descPorcent') {
+            discount = `- ${valor}%`;
+        }
+    }
+
+    const handleStateChange = useCallback((e) => {
+        const state = e.target.value;
+        editOrder(id, { state });
+    }, [id]);
+
     return (
         <>
             <div className={style.paymentWrapper}>
                 <div>
                     <div>
+                        <p className={style.title}>Productos</p>
+                        <p className={style.message}>{`${totalArticles} artículos`}</p>
+                    </div>
+                    <p>{formatPrice(priceWithoutDiscount)}</p>
+                </div>
+                <div>
+                    <div>
+                        <p className={style.title}>Descuento</p>
+                        <p className={style.message}>{cuponName}</p>
+                    </div>
+                    <p>{discount}</p>
+                </div>
+                <div>
+                    <div>
                         <p className={style.title}>Subtotal</p>
-                        <p className={style.message}>{`${cartLenth} artículos`}</p>
                     </div>
                     <p>{formatPrice(subtotal)}</p>
                 </div>
@@ -75,7 +136,19 @@ const Payment = ({ order }) => {
                 </div>
                 <div>
                     <p>Estado</p>
-                    <p>Pagado</p>
+                    <select onChange={handleStateChange}>
+                        {
+                            ORDER_STATES.map((s, i) => (
+                                <option
+                                    key={i}
+                                    selected={s.value === order?.state} 
+                                    value={s.value}
+                                >
+                                    {s.label}
+                                </option>
+                            ))
+                        }
+                    </select>
                 </div>
             </div>
         </>

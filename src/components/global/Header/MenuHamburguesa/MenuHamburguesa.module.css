@@ -1,7 +1,11 @@
+.menuHamburguesa__wrapper {
+  display: none;
+}
+
 .menuToggle {
     display: inline-block;
     cursor: pointer;
-    padding-left: 32px;
+    padding-left: 0;
   }
   
   .menuBar {
@@ -36,10 +40,28 @@
     z-index: 1000;
   }
 
+  .searchBar__wrapper {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .loginBtn__wrapper {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+  }
+
   .menu {
     display: flex;
     flex-direction: column;
-    width: 450px;
+    width: 350px;
     height: 100vh;
     border-bottom: 1px solid #eee;
     background-color: #fff;
@@ -117,4 +139,10 @@
     margin: 0 8px;
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .menuHamburguesa__wrapper {
+    display: block;
+  }
 }

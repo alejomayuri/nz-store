@@ -72,7 +72,7 @@ const Header = () => {
                     </div>
                 </div> */}
                 <div className={style.menusContainer}>
-                    {/* <MenuHamburguesa /> */}
+                    <MenuHamburguesa />
                     <div className={style.navBar}>
                         <nav>
                             <ul>
@@ -96,15 +96,21 @@ const Header = () => {
                         </Link>
                     </div>
                     <div className={`default__flex ${style.headerComponents}`}>
-                        <SearchBar />
-                        <LoginBtn />
+                        <div className={style.onlyDesk}>
+                            <SearchBar />
+                        </div>
+                        <div className={style.onlyDesk}>
+                            <LoginBtn />
+                        </div>
                         <CartBtn />
                     </div>
                 </div>
             </header>
-            <div className={`${style.middleBar} ${isDivHidden ? style.hidden : ''}`} >
+            <div style={{
+                backgroundImage: `url(/hhh.png)`,
+            }} className={`${style.middleBar} ${isDivHidden ? style.hidden : ''}`} >
                 {/* <p>Los ángeles tienen colita</p> */}
-                <img src="/hhh.png" alt="logo" />
+                {/* <img src="/hhh.png" alt="logo" /> */}
             </div>
         </>
     )
