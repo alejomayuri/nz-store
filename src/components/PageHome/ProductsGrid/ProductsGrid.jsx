@@ -8,7 +8,7 @@ const ProductsGrid = ({ type, title, cards = false }) => {
     // console.log(products)
 
     if (products && products.length > 0) {
-        productsToShow = products?.slice(0, cards ? 3 : 5)
+        productsToShow = products?.slice(0, cards ? 3 : 4)
     }
 
     return (

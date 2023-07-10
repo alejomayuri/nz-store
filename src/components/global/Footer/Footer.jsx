@@ -14,7 +14,7 @@ const Footer = () => {
         <footer className={style.footer}>
             <h3>Siguenos en instagram <span>@nz.thefrenchieworld</span></h3>
             <div className={style.footerContainer}>
-                <div>
+                <div className={style.footer_image}>
                     <img src="/logo.jpg" alt="logo" />
                 </div>
                 <div>

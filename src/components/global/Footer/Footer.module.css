@@ -58,3 +58,13 @@
 .bottomFooter p {
     margin: 0;
 }
+
+@media (max-width: 1200px) {
+    .footer_image {
+        display: none;
+    }
+
+    .footerContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
