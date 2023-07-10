@@ -23,7 +23,7 @@
   height: 55px;
   background-color: #f1f1f1; /* Ajusta el color de fondo según tus necesidades */
   transition: top 0.3s ease-in-out;
-  z-index: 999; 
+  z-index: 0; 
 }
 
 .hidden {
