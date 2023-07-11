@@ -50,15 +50,12 @@ const MenuHamburguesa = () => {
                     <SearchBar />
                 </div>
                 <ul>
-                    <li><Link href="#">Colección de verano</Link></li>
-                    <li><Link href="#">Juguetes</Link></li>
+                    <li><Link href="/catalogo/coleccion-de-verano">Colección de verano</Link></li>
+                    <li><Link href="/catalogo/juguetes">Juguetes</Link></li>
+                    <li><Link href="/catalogo/accesorios">Accesorios</Link></li>
                     <li><Link href="/catalogo/ropa">Ropa</Link></li>
-                    <li><Link href="#">Bandanas</Link></li>
-                    <li><Link href="#">Accesorios</Link></li>
-                    <li><Link href="#">Gift Cards</Link></li>
-                    <li><Link href="#">Humanos</Link></li>
-                    <li><Link href="#">Colección de invierno</Link></li>
-                    <li><Link href="#">Ofertas</Link></li>
+                    <li><Link href="/catalogo/bandanas">Bandanas</Link></li>
+                    <li><Link href="/catalogo/ofertas">Ofertas</Link></li>
                     <div className={style.loginBtn__wrapper}>
                         <LoginBtn />
                     </div>

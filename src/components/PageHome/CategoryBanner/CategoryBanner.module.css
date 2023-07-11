@@ -25,3 +25,14 @@
     transform: scale(1.03);
     /* filter: grayscale(0%); */
 }
+
+@media (max-width: 1200px) {
+    .bannersWrapper {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .bannersWrapper > div {
+        width: 100%;
+    }
+  }

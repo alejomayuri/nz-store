@@ -17,3 +17,29 @@
   text-transform: uppercase;
   margin-bottom: 32px;
 }
+
+.slider__wrapper {
+  width: 95%;
+  margin: 0 auto;
+  display: none;
+}
+
+.colection__slide {
+  display: flex !important;
+  justify-content: space-around;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .productsGrid__wrapper {
+    margin-top: 40px;
+  }
+
+  .productsGrid {
+    display: none;
+  }
+
+  .slider__wrapper {
+    display: block;
+  }
+}

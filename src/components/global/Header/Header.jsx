@@ -26,8 +26,8 @@ const CATEGORIES = [
         slug: "/catalogo/ropa"
     },
     {
-        name: "Gift Cards",
-        slug: "/catalogo/gift-cards"
+        name: "Bandanas",
+        slug: "/catalogo/bandanas"
     },
     {
         name: "Ofertas",

@@ -41,3 +41,10 @@
     padding-left: 8px;
     margin-bottom: 16px;
 } 
+
+@media (max-width: 1200px) {
+  .productCard {
+    max-width: 50% !important;
+    width: 100%;
+  }
+}

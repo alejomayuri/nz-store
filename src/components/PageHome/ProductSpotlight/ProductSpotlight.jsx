@@ -1,12 +1,31 @@
 import style from './ProductSpotlight.module.css'
 import Slider from "react-slick";
+import { useState, useEffect } from 'react';
 import { useProducts } from "@/hooks/useProducts"
 import { ProductCard } from "@/components/global/ProductCard/ProductCard"
 
 const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
     const products = useProducts({ category: type })
+    const [windowWidth, setWindowWidth] = useState(null);
+    
+    useEffect(() => {
+        const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+        };
 
-    let productsPerSlide = 5
+        // Agrega un listener para el evento de cambio de tamaño de la ventana
+        window.addEventListener('resize', handleResize);
+
+        // Obtén el ancho de la ventana inicialmente
+        setWindowWidth(window.innerWidth);
+
+        // Limpia el listener cuando el componente se desmonte
+        return () => {
+        window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    let productsPerSlide = windowWidth > 1200 ? 5 : 2
     let arrayOfProducts = null
     let productsToShow = null
 
