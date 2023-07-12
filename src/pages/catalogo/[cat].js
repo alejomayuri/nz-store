@@ -48,8 +48,6 @@ const Catalogo = () => {
         }
     }, [router.query.category])
 
-    
-
    useEffect(() => {
         let route = null
     

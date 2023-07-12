@@ -5,7 +5,7 @@
     margin-right: 32px;
 }
 
-.filter > h3 {
+.filter h3 {
     font-size: 18px;
     margin-bottom: 8px;
     margin-top: 0px;
@@ -134,4 +134,99 @@
     border: solid 3px #92B2C0;
     background-color: #BFD8D0;
     box-shadow: inset 0 0 0 1px #fff;
+}
+
+.openFilterBtn {
+    display: none;
+}
+
+.title button {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .filter {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(60, 60, 60, 0);
+        transition: all 0.5s ease-in-out;
+        z-index: 1000;
+        max-width: 100%;
+    }
+
+    .openFilterBtn {
+        max-width: 100%;
+        height: 40px;
+        background: #BFD8D0;
+        font-weight: 600;
+        border: none;
+        padding: 4px 16px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .filter.active {
+        top: 0;
+        background-color:  rgba(22,22,25,.2);
+        padding: 0;
+        padding-top: 150px;
+        box-sizing: border-box;
+        /* height: 100vh; */
+      }
+
+    .filterContent__wrapper {
+        background-color: #fff;
+        /* padding: 16px; */
+        height: 100%;
+        overflow-y: scroll;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .categoriesFilter, .filterContainer {
+        padding: 0 32px !important;
+    }
+
+    .title {
+        justify-content: center;
+        display: flex;
+        border-bottom: #e5e5e5 solid 1px;
+        align-items: center;
+        padding: 28px 16px 28px 28px;
+        margin-bottom: 32px;
+    }
+
+    .filter h3 {
+        font-size: 20px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        width: 100%;
+    }
+
+    .title button {
+        display: block;
+        background-color: transparent;
+        border: none;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .filtersActive__wrapper {
+        padding: 32px;
+        margin-top: 0;
+    }
+    
+    .filtersActive__wrapper > h3 {
+        font-size: 20px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 16px;
+    }
 }

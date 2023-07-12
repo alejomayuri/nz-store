@@ -34,7 +34,7 @@
     top: 0;
     left: -100%;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(60, 60, 60, 0);
     transition: all 0.5s ease-in-out;
     z-index: 1000;
@@ -81,7 +81,6 @@
   }
   
   .sidemenu ul li {
-    padding: 16px;
     border-bottom: 1px solid #eee;
     font-size: 18px;
     transition: all 0.1s ease-in-out;
@@ -99,6 +98,11 @@
   .sidemenu ul li a {
     color: #333;
     text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .menuHeader__topbar {

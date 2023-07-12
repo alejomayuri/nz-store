@@ -44,7 +44,7 @@
 
 @media (max-width: 1200px) {
   .productCard {
-    max-width: 50% !important;
+    max-width: 100% !important;
     width: 100%;
   }
 }

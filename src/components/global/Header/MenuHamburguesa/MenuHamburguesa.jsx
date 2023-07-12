@@ -5,14 +5,16 @@ import InstagramIcon from '../../Icons/instagramIcon';
 import Link from 'next/link';
 import { SearchBar } from '../../SearchBar/SearchBar';
 import { LoginBtn } from '../../LoginBtn/LoginBtn';
+import { useRouter } from 'next/router';
 
 const MenuHamburguesa = () => {
   const [isActive, setIsActive] = useState(false);
   const menuRef = useRef(null);
+  const router = useRouter();
+  const cat = router.query.cat;
 
   function handleClick() {
     setIsActive(!isActive);
-    // console.log(isActive)
   }
 
   useEffect(() => {
@@ -28,6 +30,11 @@ const MenuHamburguesa = () => {
         window.removeEventListener('click', handleWindowClick);
     };
   }, []);
+  console.log(router.pathname)
+    useEffect(() => {
+        setIsActive(false);
+        console.log(cat)
+    }, [cat]);
 
   return (
     <div className={style.menuHamburguesa__wrapper}>

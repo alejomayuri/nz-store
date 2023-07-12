@@ -389,3 +389,9 @@ main {
     flex-direction: column;
     gap: 24px;
 }
+
+@media (max-width: 1200px) {
+    .catalogo__container {
+        flex-direction: column;
+    }
+}
