@@ -102,3 +102,17 @@
     letter-spacing: 1.1px;
     text-decoration: none;
 }
+
+@media screen and (max-width: 1200px) {
+    .submitButton {
+        width: 100%;
+    }
+
+    .googleRegisterWrapper {
+        width: 100%;
+    }
+
+    .form {
+        max-width: 100%;
+    }
+}

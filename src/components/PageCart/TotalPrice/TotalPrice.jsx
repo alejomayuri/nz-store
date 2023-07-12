@@ -27,10 +27,10 @@ const TotalPrice = ({ products, cupons, cuponActiveInCart, setCuponActiveInCart 
     const usedCoupons = userForm.usedCoupons || [];
     
     useEffect(() => {
-        if (userData && Object.keys(userData).length > 0) {
+        if (currentUser && userData && Object.keys(userData).length > 0) {
             setUserForm(userData)
         }
-    }, [userData])
+    }, [userData, currentUser])
     
     const handleShowMessage = (message) => {
         setMessage(message)

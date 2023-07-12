@@ -144,5 +144,10 @@
         align-items: flex-start;
         gap: 16px;
         margin-top: 16px;
+        width: 100%;
+    }
+
+    .buttonContainer {
+        width: 100%;
     }
 }

@@ -9,12 +9,12 @@
     margin: 0 auto;
 }
 
-.productCartElementWrapper > div {
+.productCartElementWrapper > div, .selectQuantity {
     display: flex;
     align-items: center;
 }
 
-.productCartElementWrapper > div > button {
+.productCartElementWrapper > div > button, .selectQuantity button {
     border: none;
     background-color: transparent;
     margin: 0 8px;
@@ -87,4 +87,33 @@
 
 .price {
     font-size: 21px;
+}
+
+@media (max-width: 1200px) {
+    .productCartElementWrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .productInfoWrapper {
+        max-width: calc(100% - 120px);
+    }
+
+    .titleAndImage {
+        width: auto;
+    }
+
+    .selectQuantity button:first-of-type {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .selectQuantity button:last-of-type {
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .delete {
+        margin: 0 8px !important;
+    }
 }

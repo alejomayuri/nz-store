@@ -98,3 +98,17 @@
 .deleteCuponBtn svg:hover {
     fill: #333;
 }
+
+@media (max-width: 1200px) {
+    .totalPriceContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .couponForm div {
+        /* flex-direction: column;
+        align-items: flex-start;
+        gap: 8px; */
+        margin: 16px 0px;
+    }
+}

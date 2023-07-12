@@ -119,23 +119,25 @@ const ProductCartBox = ({ element, setProducts }) => {
                     product[0]?.comparisonPrice ? comparisonPrice : price
                 }</p>
             </div>
-            <div className={style.selectQuantity}>
-                <button
-                    disabled={cuantity === 1}
-                    onClick={() => handle(false)}>
-                    <Minus width={25} fill={'#000'} />
-                </button>
-                <span className={style.cuantity}>{cuantity}</span>
-                <button
-                    disabled={stock > 0 ? cuantity === stock : true}
-                    onClick={handle}>
-                    <Plus width={25} fill={'#000'} />
-                </button>
-            </div>
             <div>
-                <button className={style.delete} onClick={handleDelete}>
-                    <Trash width={25} stroke={'#565656'} />
-                </button>
+                <div className={style.selectQuantity}>
+                    <button
+                        disabled={cuantity === 1}
+                        onClick={() => handle(false)}>
+                        <Minus width={25} fill={'#000'} />
+                    </button>
+                    <span className={style.cuantity}>{cuantity}</span>
+                    <button
+                        disabled={stock > 0 ? cuantity === stock : true}
+                        onClick={handle}>
+                        <Plus width={25} fill={'#000'} />
+                    </button>
+                </div>
+                <div className={style.selectQuantity}>
+                    <button className={style.delete} onClick={handleDelete}>
+                        <Trash width={25} stroke={'#565656'} />
+                    </button>
+                </div>
             </div>
         </div>
     )
