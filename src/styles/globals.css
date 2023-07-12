@@ -393,5 +393,6 @@ main {
 @media (max-width: 1200px) {
     .catalogo__container {
         flex-direction: column;
+        width: 90%;
     }
 }

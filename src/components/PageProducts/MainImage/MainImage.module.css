@@ -28,14 +28,24 @@
     box-sizing: border-box;
 }
 
+.mainImg__mobile {
+    display: none;
+}
+
 @media screen and (max-width: 1200px) {
     .mainImg {
         width: 100%;
     }
+    .mainImg {
+        display: none;
+    }
+    .mainImg__mobile {
+        display: block;
+    }
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
     .mainImg {
         height: auto;
     }
-}
+} */

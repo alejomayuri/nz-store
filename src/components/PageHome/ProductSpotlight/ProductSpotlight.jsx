@@ -30,7 +30,7 @@ const ProductSpotlight = ({ type, title, background = "#fff", subtitle }) => {
     let productsToShow = null
 
     if (products && products.length > 0) {
-        for (let i = 0; i < products.length; i += productsPerSlide) {
+        for (let i = 0; i < 6; i += productsPerSlide) {
             if (arrayOfProducts === null) {
                 arrayOfProducts = []
             }

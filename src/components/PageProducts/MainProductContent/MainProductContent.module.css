@@ -131,3 +131,18 @@
     border: solid 3px #F9C38F;
     border-radius: 4px;
 }
+
+@media screen and (max-width: 1200px) {
+    .productWrapper {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .buttonsWrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 16px;
+        margin-top: 16px;
+    }
+}

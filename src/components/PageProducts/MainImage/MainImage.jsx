@@ -28,17 +28,22 @@ const MainImage = ({ mainImage, title }) => {
     const productZoomOut = () => setShowImage(true)
     
     return (
-        <div 
-            onMouseMove={productZoom}
-            onMouseLeave={productZoomOut}
-            className={style.mainImg}
-            ref={mainImg}
-            style={backgroundStyle}
-        >
-            {showImage && (
+        <>
+            <div 
+                onMouseMove={productZoom}
+                onMouseLeave={productZoomOut}
+                className={style.mainImg}
+                ref={mainImg}
+                style={backgroundStyle}
+            >
+                {showImage && (
+                    <Image src={mainImage} alt={title} />
+                )}
+            </div>
+            <div className={style.mainImg__mobile}>
                 <Image src={mainImage} alt={title} />
-            )}
-        </div> 
+            </div>
+        </>
     )
 }
 

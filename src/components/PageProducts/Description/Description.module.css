@@ -21,3 +21,9 @@
 .medidasWrapper {
     width: 70%;
 }
+
+@media screen and (max-width: 1200px) {
+    .descriptionWrapper {
+        width: 90%;
+    }
+}
