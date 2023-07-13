@@ -4,6 +4,8 @@ import { Item } from './Item/Item';
 import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
 import { formatPrice } from '@/utils/formatPrice';
 import { useProductCartContext } from "@/context/ProductCartContext";
+import { useAuth } from "@/context/AuthContext";
+import Link from 'next/link';
 
 const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal}) => {
     const { cuponActiveInCart } = useProductCartContext();
@@ -11,6 +13,7 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
     const [total, setTotal] = useState(0)
     const [envio, setEnvio] = useState(null)
     const [envioMessage, setEnvioMessage] = useState(false)
+    const { currentUser } = useAuth()
 
     let discount = 0;
 
@@ -64,62 +67,77 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
     }
 
     return (
-        <div className={style.summary}>
-            <div>
-                <h2>Resumen del pedido</h2>
+        <>
+            
+            
+            <div className={style.summary}>
+            
                 <div>
-                    <div className={style.summary__container}>
+                    <h2>Resumen del pedido</h2>
+                    <div>
+                        <div className={style.summary__container}>
+                            {
+                                pedido?.map((item, index) => (
+                                    <Item key={index} item={item} />
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        {cuponActiveInCart && cuponActiveInCart.length > 0 && (
+                            <>
+                                <div className={style.summary__subtotal}>
+                                    <h3>Productos</h3>
+                                    <p>{formatPrice(priceWithoutDiscount)}</p>
+                                </div>
+                                <div className={style.summary__subtotal}>
+                                    <h3>Descuento</h3>
+                                    <span>{cuponActiveInCart[0]?.code}</span>
+                                    <p>{discount}</p>
+                                </div>
+                            </>
+                        )}
+                        <div className={style.summary__subtotal}>
+                            <h3>Subtotal</h3>
+                            <p>{
+                                cuponActiveInCart && cuponActiveInCart.length > 0 ? (
+                                    formatPrice(formattedPrice)
+                                ) : (
+                                    formatPrice(priceWithoutDiscount)
+                                )
+                            }</p>
+                        </div>
+                        <div className={style.summary__subtotal}>
+                            <h3>Envio</h3>
+                            <p>{envio ? formatPrice(envio) : "Por definir"}</p>
+                        </div>
                         {
-                            pedido?.map((item, index) => (
-                                <Item key={index} item={item} />
-                            ))
+                            envioMessage && (
+                                <p className={style.envioMessage}>
+                                    Para compras fuera de Lima, el envío se cotizará por separado y se le enviará un correo con el monto a pagar.
+                                </p>
+                            )
                         }
                     </div>
-                </div>
-                <div>
-                    {cuponActiveInCart && cuponActiveInCart.length > 0 && (
-                        <>
-                            <div className={style.summary__subtotal}>
-                                <h3>Productos</h3>
-                                <p>{formatPrice(priceWithoutDiscount)}</p>
-                            </div>
-                            <div className={style.summary__subtotal}>
-                                <h3>Descuento</h3>
-                                <span>{cuponActiveInCart[0]?.code}</span>
-                                <p>{discount}</p>
-                            </div>
-                        </>
-                    )}
-                    <div className={style.summary__subtotal}>
-                        <h3>Subtotal</h3>
-                        <p>{
-                            cuponActiveInCart && cuponActiveInCart.length > 0 ? (
-                                formatPrice(formattedPrice)
-                            ) : (
-                                formatPrice(priceWithoutDiscount)
-                            )
-                        }</p>
-                    </div>
-                    <div className={style.summary__subtotal}>
-                        <h3>Envio</h3>
-                        <p>{envio ? formatPrice(envio) : "Por definir"}</p>
-                    </div>
-                    {
-                        envioMessage && (
-                            <p className={style.envioMessage}>
-                                Para compras fuera de Lima, el envío se cotizará por separado y se le enviará un correo con el monto a pagar.
-                            </p>
-                        )
-                    }
-                </div>
-                <div>
-                    <div className={style.summary__subtotal}>
-                        <h3>Total</h3>
-                        <p>{formatPrice(total)}</p>
+                    <div>
+                        <div className={style.summary__subtotal}>
+                            <h3>Total</h3>
+                            <p>{formatPrice(total)}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            {
+                !currentUser && (
+                    <div className={style.iniciarMessage}>
+                        <p>Inicia sesión para disfrutar de nuestros beneficios</p>
+                        <Link href="/user">
+                            Iniciar sesión
+                        </Link>
+                    </div>
+                )
+            }
+        </>
     )
 }
 

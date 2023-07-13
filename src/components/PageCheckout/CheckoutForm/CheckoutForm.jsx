@@ -44,12 +44,23 @@ const CheckoutForm = ({
             <form className={style.form}>
                 <h2>Información del Cliente</h2>
                 <div className={style.formGroup_fRow}>
-                    <div className={style.formGroup_internalCol}>
+
+
+                    <div className={style.formGroup_internalRow}>
                         <div className={style.formGroup_element}>
                             <label htmlFor="name">Nombre*</label>
                             <input type="text" id="name" onChange={handleChange} />
                         </div>
 
+                        <div className={style.formGroup_element}>
+                            <label htmlFor="lastName">Apellido*</label>
+                            <input type="text" id="lastName" onChange={handleChange} />
+                        </div>
+
+                        
+                    </div>
+
+                    <div className={style.formGroup_internalRow}>
                         <div className={style.formGroup_element}>
                             <label htmlFor="dni">Documento de identidad*</label>
                             <select name="dni" id="typeDocument" onChange={handleChange}>
@@ -59,20 +70,17 @@ const CheckoutForm = ({
                         </div>
 
                         <div className={style.formGroup_element}>
-                            <label htmlFor="email">Email*</label>
-                            <input type="email" id="email" onChange={handleChange} />
+                            <label htmlFor="address">Nº de documento*</label>
+                            <input type="text" id="document" onChange={handleChange} />
                         </div>
                     </div>
 
-                    <div className={style.formGroup_internalCol}>
-                        <div className={style.formGroup_element}>
-                            <label htmlFor="lastName">Apellido*</label>
-                            <input type="text" id="lastName" onChange={handleChange} />
-                        </div>
+                    <div className={style.formGroup_internalRow}>
+                        
 
-                        <div className={style.formGroup_element}>
-                            <label htmlFor="address">Nº de documento*</label>
-                            <input type="text" id="document" onChange={handleChange} />
+                    <div className={style.formGroup_element}>
+                            <label htmlFor="email">Email*</label>
+                            <input type="email" id="email" onChange={handleChange} />
                         </div>
                         
                         <div className={style.formGroup_element}>
@@ -120,7 +128,7 @@ const CheckoutForm = ({
                             </select>
                         </div>
                     </div>
-                    <div className={style.formGroup_element}>
+                    <div className={`${style.formGroup_element} ${style.address}`}>
                         <label htmlFor="address">Dirección*</label>
                         <input type="text" id="address" onChange={handleChange} />
                     </div>

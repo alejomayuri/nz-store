@@ -1,12 +1,9 @@
 import style from './AccountData.module.css';
 import { uploadUserData } from '@/firebase/client';
-import { useAuth } from '@/context/AuthContext';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Alert } from '@/components/global/Alert/Alert';
 
 const AccountData = ({ data, setData }) => {
-    const { currentUser } = useAuth();
-
     const UPLOAD_STATES = {
         ERROR: -1,
         IDLE: 0,

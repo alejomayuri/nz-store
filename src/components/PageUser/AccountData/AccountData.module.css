@@ -82,3 +82,10 @@
     text-transform: uppercase;
     border: none;
 }
+
+@media (max-width: 1200px) {
+    .flexRow {
+        flex-direction: column;
+        gap: 24px;
+    }
+}

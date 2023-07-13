@@ -91,3 +91,13 @@
     text-transform: uppercase;
     border: solid 3px #000;
 }
+
+@media (max-width: 1200px) {
+    .submitButton {
+        width: 100%;
+    }
+
+    .toLogin {
+        width: 100%;
+    }
+  }

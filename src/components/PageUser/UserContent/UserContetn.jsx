@@ -16,7 +16,6 @@ const UserContent = () => {
             setUserInfo(userData);
         }
     }, [userData]);
-    console.log("userInfo", userInfo)
 
     const handleBlockToRender = (block) => {
         setBlockToRender(block);

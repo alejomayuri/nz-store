@@ -106,9 +106,11 @@
     }
 
     .couponForm div {
-        /* flex-direction: column;
-        align-items: flex-start;
-        gap: 8px; */
         margin: 16px 0px;
+        gap: 8px;
+    }
+
+    .couponForm input {
+        width: 160px;
     }
 }
