@@ -278,6 +278,8 @@ main {
     width: 80%;
     margin: 0 auto;
     margin-top: 40px;
+    height: 1837px;
+    gap: 10%;
 }
 
 /*page order*/
@@ -400,6 +402,8 @@ main {
         flex-direction: column-reverse;
         width: 100%;
         margin-top: 16px;
+        height: auto;
+        gap: 0;
     }
 
     .checkout-form {

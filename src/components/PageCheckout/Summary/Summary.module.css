@@ -2,8 +2,6 @@
     width: 600px;
     height: 100%;
     background-color: #f7f7f7;
-    position: absolute;
-    right: 0;
 }
 
 .summary > div {
@@ -66,6 +64,12 @@
     margin-top: 32px;
 }
 
+.summary__subtotal > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .summary__subtotal h3 {
     margin: 0;
     font-size: 18px;
@@ -81,11 +85,8 @@
 }
 
 .summary__subtotal span {
-    margin-left: -230px;
-    display: flex;
-    align-items: center;
     color: #777676;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .envioMessage {
@@ -128,10 +129,15 @@
     .summary {
         width: 100%;
         position: relative;
-        right: 0;
     }
 
     .iniciarMessage {
         display: block;
+    }
+
+    .summary__subtotal > div{
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 }

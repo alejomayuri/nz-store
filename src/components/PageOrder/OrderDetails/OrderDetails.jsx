@@ -1,11 +1,12 @@
 import style from './OrderDetails.module.css'
+import { useEffect, useState } from 'react'
 import { Item } from './Item/Item'
 import { useTotalCartPrice } from "@/hooks/useTotalCartPrice";
 import { formatPrice } from '@/utils/formatPrice';
 
 const OrderDetails = ({ cart, envio, cupon }) => {
     const {formattedPrice, priceWithoutDiscount} = useTotalCartPrice({cart: cart, cupon: cupon})
-    
+    const [total, setTotal] = useState(0)
     let discount = 0;
     
     if (cupon && cupon.length > 0) {
@@ -16,6 +17,17 @@ const OrderDetails = ({ cart, envio, cupon }) => {
             discount = `- ${valor}%`;
         }
     }
+
+    useEffect(() => {
+        if(typeof formattedPrice === "number" || priceWithoutDiscount.length > 0){
+            let envioForTotal = envio ? envio : 0
+            if (cupon &&cupon.length > 0) {
+                setTotal(formattedPrice + envioForTotal)
+            } else {
+                setTotal(priceWithoutDiscount + envioForTotal)
+            }
+        }
+    }, [formattedPrice, envio, priceWithoutDiscount])
 
     return (
         <div className={style.orderDetails__container}>
@@ -60,7 +72,7 @@ const OrderDetails = ({ cart, envio, cupon }) => {
                 </div>
                 <div className={style.orderDetails__total}>
                     <h3>Total:</h3>
-                    <h3>{formatPrice(formattedPrice + envio)}</h3>
+                    <h3>{formatPrice(total)}</h3>
                 </div>
             </div>
         </div>

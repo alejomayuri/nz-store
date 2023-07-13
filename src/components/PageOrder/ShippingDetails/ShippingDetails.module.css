@@ -23,3 +23,14 @@
     letter-spacing: 0.9px;
     margin-bottom: 0;
 }
+
+@media (max-width: 1200px) {
+    .shippingDetails__container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .shippingDetails__content__item {
+        gap: 16px;
+    }
+}

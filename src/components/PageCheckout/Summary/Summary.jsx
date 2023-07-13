@@ -34,7 +34,6 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
     useEffect(() => {
         if(typeof formattedPrice === "number" || priceWithoutDiscount.length > 0){
             let envioForTotal = envio ? envio : 0
-            console.log("priceWithoutDiscount", priceWithoutDiscount)
             if (cuponActiveInCart &&cuponActiveInCart.length > 0) {
                 setTotal(formattedPrice + envioForTotal)
             } else {
@@ -96,8 +95,10 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
                                     <p>{formatPrice(priceWithoutDiscount)}</p>
                                 </div>
                                 <div className={style.summary__subtotal}>
-                                    <h3>Descuento</h3>
-                                    <span>{cuponActiveInCart[0]?.code}</span>
+                                    <div>
+                                        <h3>Descuento</h3>
+                                        <span>{cuponActiveInCart[0]?.code}</span>
+                                    </div>
                                     <p>{discount}</p>
                                 </div>
                             </>

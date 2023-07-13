@@ -54,11 +54,10 @@ export const useCheckout = ({
         total: null,
         status: 0
     }
-    console.log(termsAndConditions)
+    
     const [form, setForm] = useState(FORM_STATE);
     const [loading, setLoading] = useState(false);
     const [conFactura, setConFactura] = useState(false)
-    console.log(form)
     const [disable, setDisable] = useState(true)
     const [prevImage, setPrevImage] = useState(FORM_STATE.image)
     const [showProgress, setShowProgress] = useState(false)
