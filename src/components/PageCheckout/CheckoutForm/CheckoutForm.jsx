@@ -26,7 +26,6 @@ const CheckoutForm = ({
     const handleOnSubmit = () => {
         handleSubmit(form);
     }
-
     const { currentUser } = useAuth()
 
     return (

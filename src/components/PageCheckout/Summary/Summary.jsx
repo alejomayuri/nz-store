@@ -44,10 +44,15 @@ const Summary = ({pedido, ubigeo, handleChangeSubtotal, handleEnvio, handleTotal
     }, [formattedPrice, envio])
 
     useEffect(() => {
-        if(typeof formattedPrice === "number") {
-            handleChangeSubtotal(formattedPrice)
+        if(typeof formattedPrice === "number" || priceWithoutDiscount.length > 0) {
+            // handleChangeSubtotal(formattedPrice)
+            if (cuponActiveInCart &&cuponActiveInCart.length > 0) {
+                handleChangeSubtotal(formattedPrice)
+            } else {
+                handleChangeSubtotal(priceWithoutDiscount)
+            }
         }
-    }, [formattedPrice])
+    }, [formattedPrice, cuponActiveInCart, priceWithoutDiscount])
     
     useEffect(() => {
         handleEnvio(envio)
