@@ -17,7 +17,7 @@ const LoginBtn = () => {
     if (userData?.name) {
       text = `Hola, ${userData?.name}`
     } else {
-      text = "Usuario"
+      text = "Mi cuenta"
     }
   } else {
     text = "Ingresar"

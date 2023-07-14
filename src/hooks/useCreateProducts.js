@@ -51,6 +51,7 @@ export default function useCreateProduct({getStorage} = {}) {
                 setPrevImage(url)
                 setUploadValue(100)
                 setDisabledButton(false)
+                setShowProgress(false)
             })
         }).catch(err => console.log(err))
 

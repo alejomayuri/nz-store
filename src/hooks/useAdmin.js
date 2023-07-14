@@ -25,7 +25,7 @@ export const useAdmin = () => {
                             if (userData.admin) {
                                 setIsAdmin(userData.admin);
                             } else {
-                                router.push("/");
+                                setIsAdmin(false);
                             }
                         }
                     }
@@ -39,7 +39,7 @@ export const useAdmin = () => {
 
     useEffect(() => {
         if (isLoading) return;
-        if (!isAdmin && !auth.currentUser && router.pathname !== '/back-plataform') {
+        if (!isAdmin && !auth.currentUser && path !== '/back-plataform') {
             router.push('/back-plataform');
         } else if (!isAdmin && path !== '/back-plataform') {
             router.push('/');

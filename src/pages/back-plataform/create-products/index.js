@@ -59,10 +59,11 @@ const BackPlataform_CreateProducts = () => {
             formProduct?.currency && formProduct?.currency !== "" &&
             formProduct?.active !== "" &&
             formProduct?.categories && formProduct?.categories.length > 0 && formProduct?.categories[0] !== "" &&
-            formProduct?.subcategory && formProduct?.subcategory !== "" &&
-            formProduct?.keywords && formProduct?.keywords !== ""
+            formProduct?.subcategory && formProduct?.subcategory !== "" 
+            // formProduct?.keywords && formProduct?.keywords !== ""
         ) {
-            if (formProduct?.stock && formProduct?.stock !== "" &&
+            if (
+                // formProduct?.stock && formProduct?.stock !== "" &&
                 formProduct?.price && formProduct?.price !== ""
             ) {
                 setDisabledButton(false)
