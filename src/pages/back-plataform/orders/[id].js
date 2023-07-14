@@ -13,7 +13,7 @@ export default function OrderDetail(props) {
     const router = useRouter();
     const { id } = router.query;
     const { order, loading } = useOrder({ id })
-    console.log(order)
+    // console.log(order)
     
     return (
         <BackLayout>

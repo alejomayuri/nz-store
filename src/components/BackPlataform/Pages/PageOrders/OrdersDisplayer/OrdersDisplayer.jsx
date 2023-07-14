@@ -13,7 +13,7 @@ const OrdersDisplayer = ({ orders }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (searchTerm) => {
-        console.log(searchTerm);
+        // console.log(searchTerm);
     }
 
     return (

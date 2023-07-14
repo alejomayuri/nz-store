@@ -393,6 +393,11 @@ main {
 }
 
 @media (max-width: 1200px) {
+    .order__container > ul {
+        width: 90%;
+        margin: 0 auto;
+    }
+    
     .catalogo__container {
         flex-direction: column;
         width: 90%;

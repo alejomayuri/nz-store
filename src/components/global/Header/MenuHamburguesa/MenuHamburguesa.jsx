@@ -30,10 +30,10 @@ const MenuHamburguesa = () => {
         window.removeEventListener('click', handleWindowClick);
     };
   }, []);
-  console.log(router.pathname)
+//   console.log(router.pathname)
     useEffect(() => {
         setIsActive(false);
-        console.log(cat)
+        // console.log(cat)
     }, [cat]);
 
   return (
@@ -69,8 +69,20 @@ const MenuHamburguesa = () => {
                 </ul>
                 <footer className={style.menuFooter}>
                     <div className={style.footer__social}>
-                        <a href="#"><FacebookIcon fill={"#fff"} width={"36px"} height={"36px"} /></a>
-                        <a href="#"><InstagramIcon height={"36px"} stroke={"#fff"} width={"36px"} /></a>
+                        <a  
+                            href="https://www.facebook.com/nz.thefrenchieworld/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <FacebookIcon fill={"#fff"} width={"36px"} height={"36px"} />
+                        </a>
+                        <a  
+                            href="https://www.instagram.com/nz.thefrenchieworld/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <InstagramIcon height={"36px"} stroke={"#fff"} width={"36px"} />
+                        </a>
                     </div>
                 </footer>
             </div>

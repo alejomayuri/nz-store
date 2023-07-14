@@ -65,8 +65,8 @@ const Payment = ({ order }) => {
     }
 
     const {formattedPrice, priceWithoutDiscount} = useTotalCartPrice({cart: orderCart, cupon: orderCupon})
-    console.log("formattedPrice", formattedPrice)
-    console.log("priceWithoutDiscount", priceWithoutDiscount)
+    // console.log("formattedPrice", formattedPrice)
+    // console.log("priceWithoutDiscount", priceWithoutDiscount)
 
     let discount = 0;
     

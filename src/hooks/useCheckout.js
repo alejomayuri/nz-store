@@ -54,7 +54,7 @@ export const useCheckout = ({
         total: null,
         status: 0
     }
-    
+
     const [form, setForm] = useState(FORM_STATE);
     const [loading, setLoading] = useState(false);
     const [conFactura, setConFactura] = useState(false)
@@ -200,7 +200,7 @@ export const useCheckout = ({
         const task = storageRef.put(file)
 
         task.then(res => {
-            console.log(res)
+            // console.log(res)
             const imgUrl = res.ref.getDownloadURL()
             imgUrl.then(url => {
                 setForm((prevState) => ({

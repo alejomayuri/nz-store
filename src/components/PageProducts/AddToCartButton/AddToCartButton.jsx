@@ -12,8 +12,8 @@ const AddToCartButton = ({
   const router = useRouter();
 
   const { products, setProducts } = useProductCartContext();
-  console.log("product", product)
-  console.log("products", products)
+  // console.log("product", product)
+  // console.log("products", products)
   const handleClick = () => {
     handleAddToCart(product, features);
     // router.push("/cart");
@@ -39,9 +39,9 @@ const AddToCartButton = ({
 
     if (products) {
       if (products.find((item) => item.product === newProduct && sonObjetosIguales(item?.features, features))) {
-        console.log(
-          products.find((item) => item.product === newProduct && sonObjetosIguales(item?.features, features))
-        )
+        // console.log(
+        //   products.find((item) => item.product === newProduct && sonObjetosIguales(item?.features, features))
+        // )
         setProducts((prev) => {
           return prev.map((item) => {
             if (item.product === newProduct && sonObjetosIguales(item?.features, features)) {

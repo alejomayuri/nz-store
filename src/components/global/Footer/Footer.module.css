@@ -17,7 +17,12 @@
     font-size: 24px;
 }
 
-.footer h3 > span {
+.footer h3 > a {
+    text-decoration: none;
+    margin-left: 8px;
+}
+
+.footer h3 > a > span {
     color: #F49394;
     font-size: 22px;
 }
@@ -66,5 +71,13 @@
 
     .footerContainer {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer h3 {
+        font-size: 18px;
+    }
+
+    .footer h3 > a > span {
+        font-size: 18px;
     }
 }

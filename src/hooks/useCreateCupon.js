@@ -16,7 +16,7 @@ export default function useCreateCupon() {
 
     const handleCreateCupon = (e) => {
         e.preventDefault()
-        console.log(formCupon)
+        // console.log(formCupon)
         createCupon(formCupon)
     }
 

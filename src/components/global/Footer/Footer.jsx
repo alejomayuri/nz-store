@@ -12,7 +12,15 @@ const Footer = () => {
 
     return (
         <footer className={style.footer}>
-            <h3>Siguenos en instagram <span>@nz.thefrenchieworld</span></h3>
+            <h3>Siguenos en instagram 
+                <a  
+                    href="https://www.facebook.com/nz.thefrenchieworld/"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    <span>@nz.thefrenchieworld</span>
+                </a>
+            </h3>
             <div className={style.footerContainer}>
                 <div className={style.footer_image}>
                     <img src="/logo.jpg" alt="logo" />
@@ -24,8 +32,20 @@ const Footer = () => {
                     <p>{info.email}</p>
                     <div className={style.follow}>
                         <b>Síguenos en: </b>
-                        <FacebookIcon width={"30px"} height={"30px"} />
-                        <InstagramIcon width={"30px"} />
+                        <a  
+                            href="https://www.facebook.com/nz.thefrenchieworld/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <FacebookIcon width={"30px"} height={"30px"} />
+                        </a>
+                        <a  
+                            href="https://www.instagram.com/nz.thefrenchieworld/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <InstagramIcon stroke={"#000"} width={"30px"} height={"30px"} />
+                        </a>
                     </div>
                 </div>
                 <div>

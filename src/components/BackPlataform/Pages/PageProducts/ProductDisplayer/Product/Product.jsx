@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import EditIcon from '@/components/global/Icons/editIcon';
 import Link from 'next/link';
 import {editProduct} from '@/firebase/client';
+import { deleteProduct } from '@/firebase/client';
+import { useRouter } from 'next/router';
 // editProduct --> prop para después editar el producto
 const Product = ({ product, productPrice, productStock }) => {
     const [price, setPrice] = useState(productPrice);
@@ -10,6 +12,8 @@ const Product = ({ product, productPrice, productStock }) => {
 
     const priceRef = useRef(null);
     const stockRef = useRef(null);
+
+    const router = useRouter();
 
     const productWithouVariation = (product) => {
         const productToUpdate = {...product}
@@ -102,6 +106,16 @@ const Product = ({ product, productPrice, productStock }) => {
         }
     }
 
+    const handleDeleteProduct = () => {
+        if (deleteProduct) {
+            deleteProduct(product?.id)
+                .then(() => {
+                    handleShowMessage()
+                    router.reload()
+                })
+        }
+    }
+
     return (
         <>
             {
@@ -156,6 +170,11 @@ const Product = ({ product, productPrice, productStock }) => {
                         </div>
                     )
                 } 
+                <div>
+                    <button onClick={handleDeleteProduct}>
+                        Eliminar producto
+                    </button>
+                </div>
             </div>
         </>
     );

@@ -141,3 +141,7 @@ export const createProduct = (form) => {
 export const createCupon = (form) => {
   return db.collection('cupones').add(form)
 }
+
+export const deleteProduct = (id) => {
+  return db.collection('prueba').doc(id).delete()
+}
