@@ -146,10 +146,11 @@ const BackPlataform_EditProduct = () => {
             editFormProduct?.currency && editFormProduct?.currency !== "" &&
             editFormProduct?.active !== "" &&
             editFormProduct?.categories && editFormProduct?.categories.length > 0 && editFormProduct?.categories[0] !== "" &&
-            editFormProduct?.subcategory && editFormProduct?.subcategory !== "" &&
-            editFormProduct?.keywords && editFormProduct?.keywords !== ""
+            editFormProduct?.subcategory && editFormProduct?.subcategory !== ""
+            // editFormProduct?.keywords && editFormProduct?.keywords !== ""
         ) {
-            if (editFormProduct?.stock && editFormProduct?.stock !== "" &&
+            if (
+                // editFormProduct?.stock && editFormProduct?.stock !== "" &&
                 editFormProduct?.price && editFormProduct?.price !== ""
             ) {
                 setDisabledButton(false)
