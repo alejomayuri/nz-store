@@ -39,6 +39,12 @@ const MainMenu = () => {
                         <p>Cupones</p>
                     </Link>
                 </li>
+                <li className={style.menu__item}>
+                    <Link href="/back-plataform/store" className={style.menu__link}>
+                        <span>🛒</span>
+                        <p>Tienda Online</p>
+                    </Link>
+                </li>
             </ul>
         </div>
     )

@@ -14,6 +14,7 @@ export const useAdmin = () => {
 
     useEffect(() => {
         const checkUser = async () => {
+            if (!currentUser) return;
             const db = firebase.firestore();
             const userRef = db.collection('users').doc(currentUser?.uid);
             const userDoc = await userRef.get();
@@ -39,12 +40,13 @@ export const useAdmin = () => {
 
     useEffect(() => {
         if (isLoading) return;
-        if (!isAdmin && !auth.currentUser && path !== '/back-plataform') {
+
+        if (!isAdmin && !currentUser && path !== '/back-plataform') {
             router.push('/back-plataform');
         } else if (!isAdmin && path !== '/back-plataform') {
             router.push('/');
         }
-    }, [isAdmin, path, router, isLoading]);
+    }, [isAdmin, path, router, isLoading, currentUser]);
 
     return {
         isAdmin,
