@@ -3,7 +3,7 @@ import { BoxLayout } from "../BoxLayout/BoxLayout";
 import { useState, useCallback, useEffect } from 'react'
 import { Option } from './Option/Option'
 
-const Options = ({ onChange, productOptions, create }) => {
+const Options = ({ onChange, productOptions, create, clearVariations }) => {
     const [theseProductsHaveOptions, setTheseProductsHaveOptions] = useState(false)
     const [optionId, setOptionId] = useState([{ id: 1}])
     const [initialOptions, setInitialOptions] = useState(null)
@@ -50,6 +50,11 @@ const Options = ({ onChange, productOptions, create }) => {
         } else {
             setOptions([])
         }
+
+        if(!initialOptions) {
+            // clearVariations([])
+        }
+        console.log(initialOptions)
     }
 
     const handleChangeOptions = useCallback((id, name, values) => {
@@ -98,6 +103,9 @@ const Options = ({ onChange, productOptions, create }) => {
                                 handleDeleteOptions={handleDeleteOptions}
                                 initialOptionValues={initialOptions && initialOptions.find(initialOption => initialOption.id === option.id)}
                                 create={create}
+                                clearVariations={clearVariations}
+                                optionQuantity={options.length}
+                                setTheseProductsHaveOptions={setTheseProductsHaveOptions}
                             />
                         ))}
                     </div>

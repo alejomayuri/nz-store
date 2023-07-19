@@ -12,7 +12,12 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const userData = useUser()
     const router = useRouter();
-
+    console.log(userData)
+    if (userData) {
+        if (userData.userData) {
+            console.log(userData.userData)
+        }
+    }
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -31,6 +36,7 @@ export const AuthProvider = ({ children }) => {
                 }
 
                 if (userData) {
+                    console.log("userExist")
                     if (userData.userData) {
                         const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid)
                         
@@ -63,10 +69,13 @@ export const AuthProvider = ({ children }) => {
                 }
 
                 if (userData) {
-                    if (userData.userData) {
+                    console.log("userExist")
+                    if (userData?.userData) {
                         const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid)
-                        
+                        console.log("userExist", userExist)
+                        console.log("aquí")
                         if (!userExist) {
+                            console.log("aquí también", user)
                             return db
                                 .collection('users')
                                 .doc(user.uid)

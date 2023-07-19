@@ -5,10 +5,14 @@ import Link from 'next/link';
 import {editProduct} from '@/firebase/client';
 import { deleteProduct } from '@/firebase/client';
 import { useRouter } from 'next/router';
-// editProduct --> prop para después editar el producto
+import { Modal } from '@/components/global/Modal/Modal';
+import Trash from '@/components/global/Icons/trash';
+
 const Product = ({ product, productPrice, productStock }) => {
     const [price, setPrice] = useState(productPrice);
     const [stock, setStock] = useState(productStock);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isMouseOnTheDiv, setIsMouseOnTheDiv] = useState(false);
 
     const priceRef = useRef(null);
     const stockRef = useRef(null);
@@ -106,6 +110,10 @@ const Product = ({ product, productPrice, productStock }) => {
         }
     }
 
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    }
+
     const handleDeleteProduct = () => {
         if (deleteProduct) {
             deleteProduct(product?.id)
@@ -115,6 +123,14 @@ const Product = ({ product, productPrice, productStock }) => {
                 })
         }
     }
+
+    const handleMouseEnter = () => {
+        setIsMouseOnTheDiv(true);
+    };
+    
+    const handleMouseLeave = () => {
+        setIsMouseOnTheDiv(false);
+    };
 
     return (
         <>
@@ -131,7 +147,11 @@ const Product = ({ product, productPrice, productStock }) => {
                     </div>
                 )
             }
-            <div className={style.product}>
+            <div 
+                className={style.product}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 <div className={style.product__image}>
                     <img src={product?.image} alt={product?.name} />
                 </div>
@@ -169,13 +189,28 @@ const Product = ({ product, productPrice, productStock }) => {
                             </button>
                         </div>
                     )
-                } 
-                <div>
-                    <button onClick={handleDeleteProduct}>
-                        Eliminar producto
+                }
+                {
+                    isMouseOnTheDiv && (
+                        <button className={style.deleteProductButton} onClick={handleOpenModal}>
+                            <Trash width={25} />
+                        </button>
+                    )
+                }
+            </div>
+            <Modal isOpen={isModalOpen} >
+                <h2 className={style.modalTitle}>Eliminar producto</h2>
+                <p>
+                    ¿Estás seguro que deseas eliminar el producto <b>{product?.name}</b>?
+                    Si el producto tiene variaciones, se eliminarán <b>todas</b> las variaciones.
+                </p>
+                <div className={style.modalButtons}>
+                    <button className={style.closeModal} onClick={() => setIsModalOpen(false)}>Cancelar</button>
+                    <button className={style.deleteProduct} onClick={handleDeleteProduct}>
+                        Eliminar
                     </button>
                 </div>
-            </div>
+            </Modal>
         </>
     );
 }

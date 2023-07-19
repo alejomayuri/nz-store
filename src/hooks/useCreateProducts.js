@@ -6,9 +6,9 @@ export default function useCreateProduct({getStorage} = {}) {
         description: null,
         image: null,
         currency: "PEN",
-        price: null,
+        price: 0,
         comparisonPrice: null,
-        stock: null,
+        stock: 0,
         saleWithoutStock: false,
         options: null,
         variations: null,
@@ -20,6 +20,7 @@ export default function useCreateProduct({getStorage} = {}) {
     const [formProduct, setFormProduct] = useState(
         FORM_STATE 
     )
+    
     const [prevImage, setPrevImage] = useState(FORM_STATE.image)
 
     const [showProgress, setShowProgress] = useState(false)

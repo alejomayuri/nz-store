@@ -111,3 +111,74 @@
     border-radius: 8px;
     width: 100%;
 }
+
+.modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.closeModal {
+    width: 100px;
+    height: 40px;
+    background: transparent;
+    border: solid 2px #7f7e7e;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #7f7e7e;
+    font-weight: 600;
+}
+
+.closeModal:hover {
+    background: #f0f0f0;
+}
+
+.deleteProduct {
+    width: 100px;
+    height: 40px;
+    background: #F49394;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #fff;
+    font-weight: 600;
+}
+
+.modalTitle {
+    font-size: 16px;
+    margin: 0;
+    border-bottom: 1px solid #7f7e7e;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.deleteProductButton {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #fff;
+    font-weight: 600;
+}
+
+.deleteProductButton svg {
+    stroke: #b9b9b9;
+    transition: all 0.2s ease-in-out;
+}
+
+.deleteProductButton svg:hover {
+    stroke: #F49394;
+}

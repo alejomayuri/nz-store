@@ -31,6 +31,7 @@ const BackPlataform_CreateProducts = () => {
         handleOnChangeState,
         handleCategories
     } = useCreateProduct({getStorage: getStorage})
+    console.log("formProduct", formProduct)
     
     const variationWithoutPricek = useCallback(() => {
         if (formProduct.variations && formProduct.variations.length > 0) {
@@ -115,6 +116,7 @@ const BackPlataform_CreateProducts = () => {
                         <Options
                             onChange={handleOptions}
                             create={true}
+                            clearVariations={handleVariations}
                         />
                         {
                             formProduct?.options?.length > 0 && (

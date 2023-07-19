@@ -25,7 +25,7 @@ const BackPlataform_EditProduct = () => {
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
     const [disabledButton, setDisabledButton] = useState(true)
-
+    console.log("formProduct", formProduct)
     if (formProduct && formProduct.image && prevImage === '') {
         setPrevImage(formProduct.image)
     }
@@ -207,6 +207,7 @@ const BackPlataform_EditProduct = () => {
                             onChange={handleOptions}
                             productOptions={formProduct?.options}
                             create={formProduct?.options !== editFormProduct?.options}
+                            clearVariations={handleVariations}
                         />
                         {
                             formProduct?.options?.length > 0 && (
