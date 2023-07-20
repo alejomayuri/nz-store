@@ -11,7 +11,7 @@
 }
 
 .product__image img {
-    width: 100%;
+    width: 60px;
     height: 100%;
     border-radius: 8px;
 }
@@ -21,8 +21,8 @@
     flex-direction: column;
     gap: 8px;
     justify-content: center;
-    margin-right: 32px;
-    width: 270px;
+    margin-right: 0;
+    min-width: 200px;
 }
 
 .product__name h3 {
@@ -44,8 +44,8 @@
 }
 
 .product__sku {
-    min-width: 280px;
-    margin-right: 128px;
+    min-width: 220px;
+    margin-right: 40px;
 }
 
 .product__price {

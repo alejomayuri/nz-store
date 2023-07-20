@@ -145,3 +145,29 @@ export const createCupon = (form) => {
 export const deleteProduct = (id) => {
   return db.collection('prueba').doc(id).delete()
 }
+
+export const createBanner = (form) => {
+  return db.collection('banners').add(form)
+}
+
+export const fetchBanners = () => {
+  return db
+    .collection("banners")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data()
+        const id = doc.id
+
+        return {
+          ...data,
+          id
+        }
+      }
+    )
+  })
+}
+
+export const deleteBanner = (id) => {
+  return db.collection('banners').doc(id).delete()
+}

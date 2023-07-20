@@ -29,7 +29,6 @@ const Multimedia = ({ prevImage, showProgress, uploatValue, onChange, handleDele
                         </p>
                     </div>
                 )}
-                
             </div>
         </BoxLayout>
     )

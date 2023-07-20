@@ -12,85 +12,63 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const userData = useUser()
     const router = useRouter();
-    console.log(userData)
-    if (userData) {
-        if (userData.userData) {
-            console.log(userData.userData)
-        }
-    }
+
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
             setLoading(false);
         });
+
+        // Se debe cancelar la suscripción al desmontar el componente
+        return () => unsubscribe();
     }, []);
 
-    const singup = (email, password) => {
-        return auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                const { user } = userCredential;
+    const singup = async (email, password) => {
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const { user } = userCredential;
+            const newUser = {
+                userId: user.uid,
+            };
 
-                const newUser = {
-                    userId: user.uid,
+            if (userData && userData.userData) {
+                const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid);
+           
+                if (!userExist) {
+                    await db.collection('users').doc(user.uid).set({
+                        userId: newUser.userId,
+                    });
                 }
+            }
 
-                if (userData) {
-                    console.log("userExist")
-                    if (userData.userData) {
-                        const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid)
-                        
-                        if (!userExist) {
-                            return db
-                                .collection('users')
-                                .doc(user.uid)
-                                .set(
-                                    {
-                                        userId: newUser.userId
-                                    }
-                                )
-                                .then(() => {
-                                    router.reload()
-                                })
-                        }
-                    }
-                }
-            })
+            router.reload();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    const loginWithGoogle = () => {
-        return auth
-            .signInWithPopup(googleProvider)
-            .then((userCredential) => {
-                const { user } = userCredential;
+    const loginWithGoogle = async () => {
+        try {
+            const userCredential = await auth.signInWithPopup(googleProvider);
+            const { user } = userCredential;
+            const newUser = {
+                userId: user.uid,
+            };
 
-                const newUser = {
-                    userId: user.uid,
-                }
+            if (userData && userData.userData) {
+                const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid);
 
-                if (userData) {
-                    console.log("userExist")
-                    if (userData?.userData) {
-                        const userExist = userData.userData.find((u) => u.userId === user.uid || u.uid === user.uid)
-                        console.log("userExist", userExist)
-                        console.log("aquí")
-                        if (!userExist) {
-                            console.log("aquí también", user)
-                            return db
-                                .collection('users')
-                                .doc(user.uid)
-                                .set(
-                                    {
-                                        userId: newUser.userId
-                                    }
-                                )
-                                .then(() => {
-                                    router.reload()
-                                })
-                        }
-                    }
+                if (!userExist) {
+                    await db.collection('users').doc(user.uid).set({
+                        userId: newUser.userId,
+                    });
                 }
-            })
+            }
+
+            router.reload();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const login = (email, password) => {
