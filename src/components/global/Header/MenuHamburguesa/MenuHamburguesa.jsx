@@ -7,7 +7,7 @@ import { SearchBar } from '../../SearchBar/SearchBar';
 import { LoginBtn } from '../../LoginBtn/LoginBtn';
 import { useRouter } from 'next/router';
 
-const MenuHamburguesa = () => {
+const MenuHamburguesa = ({ colections }) => {
   const [isActive, setIsActive] = useState(false);
   const menuRef = useRef(null);
   const router = useRouter();
@@ -57,12 +57,17 @@ const MenuHamburguesa = () => {
                     <SearchBar />
                 </div>
                 <ul>
-                    <li><Link href="/catalogo/coleccion-de-verano">Colección de verano</Link></li>
-                    <li><Link href="/catalogo/juguetes">Juguetes</Link></li>
-                    <li><Link href="/catalogo/accesorios">Accesorios</Link></li>
-                    <li><Link href="/catalogo/ropa">Ropa</Link></li>
-                    <li><Link href="/catalogo/bandanas">Bandanas</Link></li>
-                    <li><Link href="/catalogo/ofertas">Ofertas</Link></li>
+                    {
+                        colections?.map((colection, index) => {
+                            return (
+                                <li key={index}>
+                                    <Link href={`/catalogo/${colection.slug}`}>
+                                        {colection.name}
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
                     <div className={style.loginBtn__wrapper}>
                         <LoginBtn />
                     </div>

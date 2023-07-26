@@ -23,7 +23,7 @@ const MainMenu = () => {
                     </Link>
                 </li>
                 <li className={style.menu__item}>
-                    <Link href="/back-plataform" className={style.menu__link}>
+                    <Link href="/back-plataform/colections" className={style.menu__link}>
                         <p>Colecciones</p>
                     </Link>
                 </li>

@@ -29,9 +29,10 @@ const BackPlataform_CreateProducts = () => {
         handleOptions,
         handleVariations,
         handleOnChangeState,
-        handleCategories
+        handleCategories,
+        handleAddImages
     } = useCreateProduct({getStorage: getStorage})
-    
+    console.log(formProduct)
     const variationWithoutPricek = useCallback(() => {
         if (formProduct.variations && formProduct.variations.length > 0) {
                 for (let i = 0; i < formProduct.variations.length; i++) {
@@ -55,7 +56,8 @@ const BackPlataform_CreateProducts = () => {
     useEffect(() => {
         if (formProduct?.name && formProduct?.name !== "" &&
             formProduct?.description && formProduct?.description !== "" &&
-            formProduct?.image && formProduct?.image !== "" &&
+            // formProduct?.image && formProduct?.image !== "" &&
+            formProduct?.images && formProduct?.images.length > 0 &&
             formProduct?.currency && formProduct?.currency !== "" &&
             formProduct?.active !== "" &&
             formProduct?.categories && formProduct?.categories.length > 0 && formProduct?.categories[0] !== "" &&
@@ -102,6 +104,7 @@ const BackPlataform_CreateProducts = () => {
                             showProgress={showProgress}
                             uploatValue={uploatValue}
                             handleDeleteImg={handleDeleteImg}
+                            images={formProduct?.images || []}
                         />
                         <Price
                             onChange={handleOnChange}

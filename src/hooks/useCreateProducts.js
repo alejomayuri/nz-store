@@ -5,6 +5,7 @@ export default function useCreateProduct({getStorage} = {}) {
         name: null,
         description: null,
         image: null,
+        images: [],
         currency: "PEN",
         price: 0,
         comparisonPrice: null,
@@ -33,47 +34,179 @@ export default function useCreateProduct({getStorage} = {}) {
         [e.target.name]: e.target.value
     })
 
-    const handleOnChangeImg = (e) => {
-        const file = e.target.files[0]
-        setFile(file)
-        setShowProgress(true)
-        setPrevImage('')
-        const storageRef = getStorage().ref(`products/${file?.name}`)
-        const task = storageRef.put(file)
-
-        task.then(res => {
-            // console.log(res)
-            const imgUrl = res.ref.getDownloadURL()
-            imgUrl.then(url => {
-                setFormProduct((prevState) => ({
-                    ...prevState,
-                    image: url
-                }))
-                setPrevImage(url)
-                setUploadValue(100)
-                setDisabledButton(false)
-                setShowProgress(false)
-            })
-        }).catch(err => console.log(err))
-
-        task.on('state_changed', snapshot => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
-            setUploadValue(progress)
+    const handleAddImages = (e) => {
+        const files = e.target.files
+        const images = []
+        for (let i = 0; i < files.length; i++) {
+            images.push(files[i])
+        }
+        setFormProduct({
+            ...formProduct,
+            images: images
         })
     }
 
-    const handleDeleteImg = () => {
-        setPrevImage('')
-        setFormProduct({
-            ...formProduct,
-            image: ''
-        })
-        if (file) {
-            const storageRef = getStorage().ref(`products/${file.name}`)
-            storageRef.delete()
+    const resizeImage = (file, maxWidth, maxHeight, callback) => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            const reader = new FileReader();
+        
+            reader.onload = function (e) {
+              img.onload = function () {
+                const canvas = document.createElement("canvas");
+                let width = img.width;
+                let height = img.height;
+        
+                if (width > maxWidth) {
+                  height *= maxWidth / width;
+                  width = maxWidth;
+                }
+        
+                if (height > maxHeight) {
+                  width *= maxHeight / height;
+                  height = maxHeight;
+                }
+        
+                canvas.width = width;
+                canvas.height = height;
+        
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+        
+                canvas.toBlob((blob) => {
+                  const resizedFile = new File([blob], file.name, { type: file.type });
+                  resolve(resizedFile); // Resolvemos la promesa con el archivo redimensionado
+                }, file.type);
+              };
+        
+              img.src = e.target.result;
+            };
+        
+            reader.readAsDataURL(file);
+        });
+    };
+      
+
+    const handleOnChangeImg = async  (e) => {
+        // const files = e.target.files
+        // const storageRefPromises = []
+
+        // for (let i = 0; i < files.length; i++) {
+        //     const file = files[i]
+        //     setFile(file)
+        //     setShowProgress(true)
+
+        //     const storageRef = getStorage().ref(`products/${file?.name}`)
+        //     const task = storageRef.put(file)
+
+        //     const promise = new Promise((resolve, reject) => {
+        //         task.then(res => {
+        //             const imgUrl = res.ref.getDownloadURL()
+        //             imgUrl.then(url => {
+        //                 resolve(url)
+        //             }).catch(err => reject(err))
+        //         }).catch(err => reject(err))
+
+        //         task.on('state_changed', snapshot => {
+                    // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
+                    // setUploadValue(progress)
+        //         })
+        //     })
+
+        //     storageRefPromises.push(promise)
+        // }
+
+        // Promise.all(storageRefPromises)
+        //     .then(urls => {
+        //         setFormProduct((prevState) => ({
+        //             ...prevState,
+        //             images: [...prevState.images, ...urls]
+        //         }))
+        //         setUploadValue(100)
+        //         setDisabledButton(false)
+        //         setShowProgress(false)
+        //     })
+        //     .catch(err => console.log(err))
+
+        const files = e.target.files;
+        const maxWidth = 600; // Tamaño máximo deseado
+        const maxHeight = 600;
+        const storageRef = getStorage().ref("products"); // Ruta de almacenamiento en Firebase Storage
+
+        const storageRefPromises = [];
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+        
+            try {
+              // Redimensionar cada imagen antes de subirla
+              const resizedFile = await resizeImage(file, maxWidth, maxHeight);
+              const storageChildRef = storageRef.child(resizedFile.name);
+        
+              const task = storageChildRef.put(resizedFile);
+        
+              const promise = new Promise((resolve, reject) => {
+                task.then((snapshot) => {
+                  snapshot.ref.getDownloadURL().then((url) => {
+                    resolve(url);
+                  });
+                }).catch((err) => reject(err));
+        
+                task.on("state_changed", (snapshot) => {
+                        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
+                        setUploadValue(progress)
+                    });
+                });
+          
+                storageRefPromises.push(promise);
+              } catch (err) {
+                console.log(err);
+              }
+            }
+
+  // Esperar a que se suban todas las imágenes y actualizar el estado con las URL de las imágenes
+        Promise.all(storageRefPromises)
+            .then((urls) => {
+            setFormProduct((prevState) => ({
+                ...prevState,
+                images: [...prevState.images, ...urls],
+            }));
+            setUploadValue(100);
+            setDisabledButton(false);
+            setShowProgress(false);
+            })
+            .catch((err) => console.log(err));
+    }
+
+    const handleDeleteImg = (url) => {
+        const imageIndex = formProduct.images.findIndex(img => img === url);
+
+        if (imageIndex !== -1) {
+            const updatedImages = formProduct.images.filter(img => img !== url)
+            console.log(updatedImages)
+            setFormProduct({
+                ...formProduct,
+                images: updatedImages
+            });
+
+            if (file) {
+                // Elimina el archivo correspondiente al índice de la imagen
+                const extractFileName = (url) => {
+                    const parts = url.split("/");
+                    const encodedFileName = parts[parts.length - 1].split("?")[0];
+                    const fileName = decodeURIComponent(encodedFileName);
+                    return fileName;
+                };
+                const imageName = extractFileName(url);
+                console.log(imageName)
+                const storageRef = getStorage().ref(`${imageName}`);
+                storageRef.delete();
+                setFile('');
+            }
         }
-        setShowProgress(false)
-        setUploadValue(0)
+
+        setShowProgress(false);
+        setUploadValue(0);
     }
 
     const handleSaleWithoutStock = (e) => {
@@ -125,6 +258,7 @@ export default function useCreateProduct({getStorage} = {}) {
         handleOptions,
         handleVariations,
         handleOnChangeState,
-        handleCategories
+        handleCategories,
+        handleAddImages
     }
 }

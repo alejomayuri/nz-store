@@ -171,3 +171,33 @@ export const fetchBanners = () => {
 export const deleteBanner = (id) => {
   return db.collection('banners').doc(id).delete()
 }
+
+export const createColection = (form) => {
+  return db.collection('colections').add(form)
+}
+
+export const fetchColections = () => {
+  return db
+    .collection("colections")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data()
+        const id = doc.id
+
+        return {
+          ...data,
+          id
+        }
+      }
+    )
+  })
+}
+
+export const editColection = (id, form) => {
+  return db.collection('colections').doc(id).update(form)
+}
+
+export const deleteColection = (id) => {
+  return db.collection('colections').doc(id).delete()
+}

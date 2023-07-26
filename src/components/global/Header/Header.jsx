@@ -7,6 +7,7 @@ import { SearchBar } from "../SearchBar/SearchBar"
 import { LoginBtn } from "../LoginBtn/LoginBtn"
 import { CartBtn } from "../CartBtn/CartBtn"
 import { MenuHamburguesa } from "./MenuHamburguesa/MenuHamburguesa"
+import { useColections } from '@/hooks/useColections';
 
 const CATEGORIES = [
     {
@@ -38,6 +39,8 @@ const CATEGORIES = [
 const Header = () => {
     const [scrollY, setScrollY] = useState(0);
     const [isDivHidden, setIsDivHidden] = useState(false);
+
+    const { colections, loading } = useColections();
 
     useEffect(() => {
         function handleScroll() {
@@ -72,16 +75,16 @@ const Header = () => {
                     </div>
                 </div> */}
                 <div className={style.menusContainer}>
-                    <MenuHamburguesa />
+                    <MenuHamburguesa colections={colections} />
                     <div className={style.navBar}>
                         <nav>
                             <ul>
                                 {
-                                    CATEGORIES.map((category, index) => {
+                                    colections.map((colection, index) => {
                                         return (
                                             <li key={index}>
-                                                <Link href={category.slug}>
-                                                    {category.name}
+                                                <Link href={`/catalogo/${colection.slug}`}>
+                                                    {colection.name}
                                                 </Link>
                                             </li>
                                         )

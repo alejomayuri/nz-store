@@ -15,10 +15,6 @@ export default function useCreateBanner({getStorage} = {}) {
     const [file, setFile] = useState('')
     const [disabledButton, setDisabledButton] = useState(true)
 
-    // if (formBanner.image && formBanner.image !== '') {
-    //     setDisabledButton(false)
-    // }
-
     const handleOnChange = (e) => setFormBanner({
         ...formBanner,
         [e.target.name]: e.target.value
