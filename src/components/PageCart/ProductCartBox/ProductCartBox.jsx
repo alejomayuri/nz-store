@@ -101,7 +101,7 @@ const ProductCartBox = ({ element, setProducts }) => {
         <div className={style.productCartElementWrapper}> 
             <div className={style.titleAndImage}>
                 <div className={style.imageContainer}>
-                    <img src={product[0]?.image} alt={product[0]?.name} />
+                    <img src={product[0]?.images[0]} alt={product[0]?.name} />
                 </div>
                 <div className={style.productInfoWrapper}>
                     <div className="product-cart-box__info">

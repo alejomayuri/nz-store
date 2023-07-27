@@ -12,7 +12,7 @@ const ProductCard = ({ product, typeContainer }) => {
             <Link href={`/products/${product?.id}`}>
                 <div className={style.productCard__image}>
                           
-                    <img loading="lazy" src={newResize.resize(product?.image, 500, 500)} alt={product.name} />
+                    <img loading="lazy" src={newResize.resize(product?.images[0], 500, 500)} alt={product.name} />
                 </div>
                 <h3 className={style.h3}>{product.name}</h3>
             </Link>

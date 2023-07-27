@@ -44,6 +44,8 @@ const ProductsGrid = ({ type, title, cards = false }) => {
         autoplaySpeed: 5000,
     };
 
+    if(products.length === 0) return null
+
     return (
         <section className={style.productsGrid__wrapper}>
             <h2 className={style.productsGrid__title}>{title}</h2>

@@ -28,12 +28,17 @@
 
 .text > p {
     font-weight: 600;
+    margin-bottom: 4px;
 }
 
 .listOfFeatures {
     display: flex;
     gap: 8px;
     /* margin-bottom: 16px; */
+}
+
+.listOfFeatures p {
+    margin-bottom: 4px;
 }
 
 .features {

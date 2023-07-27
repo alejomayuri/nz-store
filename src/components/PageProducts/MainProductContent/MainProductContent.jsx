@@ -108,7 +108,7 @@ const MainProductContent = ({ product }) => {
     return (
         <div className={style.productWrapper}>
            <div className={style.imageSite}>
-                <MainImage mainImage={product?.image} title={product?.name} />
+                <MainImage mainImage={product?.images[0]} title={product?.name} />
            </div>
            <div className={style.infoSite}>
                 <h1>{product?.name}</h1>

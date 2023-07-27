@@ -153,7 +153,7 @@ const Product = ({ product, productPrice, productStock }) => {
                 onMouseLeave={handleMouseLeave}
             >
                 <div className={style.product__image}>
-                    <img src={product?.image} alt={product?.name} />
+                    <img src={product?.images[0]} alt={product?.name} />
                 </div>
                 <div className={style.product__name}>
                     <Link href={`/back-plataform/edit-product/${product?.id}`}>

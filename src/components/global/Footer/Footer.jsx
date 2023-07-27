@@ -6,8 +6,8 @@ import Link from "next/link"
 const Footer = () => {
 
     const info = {
-        phone: '55 1234 5678',
-        email: 'ejemplo@ejemplo.com',
+        phone: '914 523 216',
+        email: 'nz.thefrenchie@gmail.com',
     }
 
     return (
@@ -52,15 +52,28 @@ const Footer = () => {
                     <Link href="/nosotros">
                         <p>¿Quienes somos?</p>
                     </Link>
-                    <p>Preguntas frecuentes</p>
+                    <Link href="/preguntas-frecuentes">
+                        <p>Preguntas frecuentes</p>
+                    </Link>
                 </div>
                 <div>
-                    <p>Políticas de privacidad</p>
-                    <p>Términos y condiciones</p>
+                    <Link href="/politicas-de-privacidad">
+                        <p>Políticas de privacidad</p>
+                    </Link>
+                    <Link href="/terminos-y-condiciones">
+                        <p>Términos y condiciones</p>
+                    </Link>
                     <Link href="/politicas-de-envio">
                         <p>Políticas de envio</p>
                     </Link>
-                    <p>Libro de reclamaciones</p>
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdJ5OcGziAgXmEmR2238T8dfqFyUM4-bCextRrEeC_76yH-kw/viewform"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <p>Libro de reclamaciones</p>
+                    </a>
+                    
                 </div>
             </div>
             <div className={style.bottomFooter}>

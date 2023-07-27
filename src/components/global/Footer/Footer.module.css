@@ -45,11 +45,24 @@
     width: 100%;
 }
 
+.footerContainer a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 24px;
+}
+
 .follow {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 32px;
+}
+
+.follow a {
+    margin-bottom: 0;
 }
 
 .bottomFooter {

@@ -60,8 +60,8 @@ const BackPlataform_CreateProducts = () => {
             formProduct?.images && formProduct?.images.length > 0 &&
             formProduct?.currency && formProduct?.currency !== "" &&
             formProduct?.active !== "" &&
-            formProduct?.categories && formProduct?.categories.length > 0 && formProduct?.categories[0] !== "" &&
-            formProduct?.subcategory && formProduct?.subcategory !== "" 
+            formProduct?.categories && formProduct?.categories.length > 0 && formProduct?.categories[0] !== ""
+            // formProduct?.subcategory && formProduct?.subcategory !== "" 
             // formProduct?.keywords && formProduct?.keywords !== ""
         ) {
             if (

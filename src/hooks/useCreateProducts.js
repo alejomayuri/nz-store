@@ -88,83 +88,58 @@ export default function useCreateProduct({getStorage} = {}) {
       
 
     const handleOnChangeImg = async  (e) => {
-        // const files = e.target.files
-        // const storageRefPromises = []
-
-        // for (let i = 0; i < files.length; i++) {
-        //     const file = files[i]
-        //     setFile(file)
-        //     setShowProgress(true)
-
-        //     const storageRef = getStorage().ref(`products/${file?.name}`)
-        //     const task = storageRef.put(file)
-
-        //     const promise = new Promise((resolve, reject) => {
-        //         task.then(res => {
-        //             const imgUrl = res.ref.getDownloadURL()
-        //             imgUrl.then(url => {
-        //                 resolve(url)
-        //             }).catch(err => reject(err))
-        //         }).catch(err => reject(err))
-
-        //         task.on('state_changed', snapshot => {
-                    // const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
-                    // setUploadValue(progress)
-        //         })
-        //     })
-
-        //     storageRefPromises.push(promise)
-        // }
-
-        // Promise.all(storageRefPromises)
-        //     .then(urls => {
-        //         setFormProduct((prevState) => ({
-        //             ...prevState,
-        //             images: [...prevState.images, ...urls]
-        //         }))
-        //         setUploadValue(100)
-        //         setDisabledButton(false)
-        //         setShowProgress(false)
-        //     })
-        //     .catch(err => console.log(err))
-
         const files = e.target.files;
         const maxWidth = 600; // Tamaño máximo deseado
         const maxHeight = 600;
         const storageRef = getStorage().ref("products"); // Ruta de almacenamiento en Firebase Storage
 
         const storageRefPromises = [];
+        const totalFiles = files.length;
+        let uploadedFiles = 0;
 
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
         
             try {
               // Redimensionar cada imagen antes de subirla
-              const resizedFile = await resizeImage(file, maxWidth, maxHeight);
-              const storageChildRef = storageRef.child(resizedFile.name);
-        
-              const task = storageChildRef.put(resizedFile);
-        
-              const promise = new Promise((resolve, reject) => {
-                task.then((snapshot) => {
-                  snapshot.ref.getDownloadURL().then((url) => {
-                    resolve(url);
-                  });
-                }).catch((err) => reject(err));
-        
-                task.on("state_changed", (snapshot) => {
+                const resizedFile = await resizeImage(file, maxWidth, maxHeight);
+                const storageChildRef = storageRef.child(resizedFile.name);
+            
+                const task = storageChildRef.put(resizedFile);
+            
+                const promise = new Promise((resolve, reject) => {
+                    task.then((snapshot) => {
+                        snapshot.ref.getDownloadURL().then((url) => {
+                            resolve(url);
+                        });
+                    }).catch((err) => reject(err));
+            
+                    task.on("state_changed", (snapshot) => {
                         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
                         setUploadValue(progress)
+                        setShowProgress(true)
+                        if (progress === 100) {
+                            uploadedFiles++;
+                          }
                     });
-                });
-          
-                storageRefPromises.push(promise);
-              } catch (err) {
-                console.log(err);
-              }
-            }
 
-  // Esperar a que se suban todas las imágenes y actualizar el estado con las URL de las imágenes
+                    task.then(() => {
+                        // Cuando todos los archivos se hayan subido, actualizamos el estado y ocultamos la barra de carga
+                        if (uploadedFiles === files.length) {
+                          setUploadValue(100);
+                          setDisabledButton(false);
+                          setShowProgress(false);
+                        }
+                      });
+                });
+            
+                storageRefPromises.push(promise);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        // Esperar a que se suban todas las imágenes y actualizar el estado con las URL de las imágenes
         Promise.all(storageRefPromises)
             .then((urls) => {
             setFormProduct((prevState) => ({

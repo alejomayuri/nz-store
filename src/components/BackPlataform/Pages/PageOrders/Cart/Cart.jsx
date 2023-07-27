@@ -60,7 +60,7 @@ const Cart = ({ cart }) => {
         <div className={style.cartWrapper}>
             <div className={style.dataWrapper}>
                 <div className={style.image}>
-                    <img src={product[0]?.image} alt={product[0]?.name} />
+                    <img src={product[0]?.images[0]} alt={product[0]?.name} />
                 </div>
                 <div className={style.text}>
                     <p>{product[0]?.name}</p>
