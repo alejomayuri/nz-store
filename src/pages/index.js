@@ -5,22 +5,23 @@ import { ProductSpotlight } from '@/components/PageHome/ProductSpotlight/Product
 import { MiddleBanner } from '@/components/PageHome/MiddleBanner/MiddleBanner'
 import { CategoryBanner } from '@/components/PageHome/CategoryBanner/CategoryBanner'
 
+
 export default function Home() {
   
+  
+
   return (
     <>
       <Layout>
         <MainSlider />
         <ProductsGrid type="juguetes" title="Lo nuevo en juguetes" />
         <ProductsGrid type="bandanas" title="Lo nuevo en Bandanas" />
-        <CategoryBanner 
-          img_one="https://i.ibb.co/7NTF9Rh/IMG-1700.jpg"
-          img_two="https://i.ibb.co/Gd9JM6V/Screenshot-2023-02-25-at-14-38-08-Pet-Fashion.png"
+        <CategoryBanner
+          hierarchy="first"
         />
         <ProductSpotlight type="ropa" title="Colección de Verano" background="#F9C38F" subtitle="Colección" />
         <CategoryBanner 
-          img_one="https://i.ibb.co/7NTF9Rh/IMG-1700.jpg"
-          img_two="https://i.ibb.co/Gd9JM6V/Screenshot-2023-02-25-at-14-38-08-Pet-Fashion.png"
+          hierarchy="second"
         />
         <ProductsGrid type="ropa" title="ropa" />
         <MiddleBanner />

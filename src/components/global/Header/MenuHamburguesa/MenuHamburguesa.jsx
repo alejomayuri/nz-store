@@ -50,7 +50,7 @@ const MenuHamburguesa = ({ colections }) => {
                         backgroundImage: "url(/hhh.png)",
                     }}></div>
                     <div className={style.logoContainer}>
-                        <img src="/logo.jpg" alt="logo" />
+                        <img src="/logo.png" alt="logo" />
                     </div>
                 </header>
                 <div className={style.searchBar__wrapper}>

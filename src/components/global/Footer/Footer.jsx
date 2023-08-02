@@ -23,7 +23,7 @@ const Footer = () => {
             </h3>
             <div className={style.footerContainer}>
                 <div className={style.footer_image}>
-                    <img src="/logo.jpg" alt="logo" />
+                    <img src="/logo.png" alt="logo" />
                 </div>
                 <div>
                     <p><b>Teléfono:</b></p>

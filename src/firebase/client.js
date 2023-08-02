@@ -172,6 +172,32 @@ export const deleteBanner = (id) => {
   return db.collection('banners').doc(id).delete()
 }
 
+export const createHomeImages = (form) => {
+  return db.collection('homeImages').add(form)
+}
+
+export const fetchHomeImages = () => {
+  return db
+    .collection("homeImages")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data()
+        const id = doc.id
+
+        return {
+          ...data,
+          id
+        }
+      }
+    )
+  })
+}
+
+export const deleteHomeImages = (id) => {
+  return db.collection('homeImages').doc(id).delete()
+}
+
 export const createColection = (form) => {
   return db.collection('colections').add(form)
 }
