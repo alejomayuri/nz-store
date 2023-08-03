@@ -137,6 +137,9 @@ export const editOrder = (id, order) => {
 export const createProduct = (form) => {
   return db.collection('prueba').add(form)
 }
+export const editProduct = (id, form) => {
+  return db.collection('prueba').doc(id).update(form)
+}
 
 export const createCupon = (form) => {
   return db.collection('cupones').add(form)
@@ -196,6 +199,32 @@ export const fetchHomeImages = () => {
 
 export const deleteHomeImages = (id) => {
   return db.collection('homeImages').doc(id).delete()
+}
+
+export const createSecondaryBanner = (form) => {
+  return db.collection('secondaryBanner').add(form)
+}
+
+export const fetchSecondaryBanner = () => {
+  return db
+    .collection("secondaryBanner")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data()
+        const id = doc.id
+
+        return {
+          ...data,
+          id
+        }
+      }
+    )
+  })
+}
+
+export const deleteSecondaryBanner = (id) => {
+  return db.collection('secondaryBanner').doc(id).delete()
 }
 
 export const createColection = (form) => {

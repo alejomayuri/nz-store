@@ -25,6 +25,15 @@
     min-width: 200px;
 }
 
+.product__name a {
+    text-decoration: none;
+    color: #000;
+}
+
+.product__name a:hover {
+    text-decoration: underline;
+}
+
 .product__name h3 {
     margin: 0;
     font-size: 16px;

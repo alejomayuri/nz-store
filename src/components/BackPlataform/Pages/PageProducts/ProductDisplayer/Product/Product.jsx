@@ -178,7 +178,7 @@ const Product = ({ product, productPrice, productStock }) => {
                     <input ref={priceRef} type="number" name='price' onChange={handlePrice}/>
                 </div>
                 <div className={style.product__stock}>
-                    <input ref={stockRef} type="number" name='stock' value={stock} onChange={handleStock} />
+                    <input ref={stockRef} type="number" name='stock' value={stock} onChange={handleStock}/>
                 </div>
                
                 {

@@ -16,13 +16,9 @@ export default function Home() {
         <MainSlider />
         <ProductsGrid type="juguetes" title="Lo nuevo en juguetes" />
         <ProductsGrid type="bandanas" title="Lo nuevo en Bandanas" />
-        <CategoryBanner
-          hierarchy="first"
-        />
+        <CategoryBanner hierarchy="first" />
         <ProductSpotlight type="ropa" title="Colección de Verano" background="#F9C38F" subtitle="Colección" />
-        <CategoryBanner 
-          hierarchy="second"
-        />
+        <CategoryBanner hierarchy="second" />
         <ProductsGrid type="ropa" title="ropa" />
         <MiddleBanner />
         <ProductsGrid type="gift-cards" title="Gift Cards" />

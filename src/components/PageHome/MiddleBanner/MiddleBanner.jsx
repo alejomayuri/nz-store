@@ -1,10 +1,17 @@
 import style from './MiddleBanner.module.css'
+import { useSecondaryBanner } from '@/hooks/useSecondaryBanner'
 
 const MiddleBanner = () => {
+    const { secondaryBanner, loading } = useSecondaryBanner()
+    console.log(secondaryBanner)
     return (
         <div className={style.middleBanner}>
             <div className={style.middleBanner__image}>
-                <img src="https://cdn.shopify.com/s/files/1/0423/0732/2007/files/novedades.jpg?v=1659391157" alt="middle-banner" />
+                {
+                    loading ? <p>Cargando...</p> : (
+                        <img src={secondaryBanner[0]?.image} alt="middle-banner" />
+                    )
+                }
             </div>
         </div>
     )

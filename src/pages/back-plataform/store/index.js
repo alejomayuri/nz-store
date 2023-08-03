@@ -1,6 +1,7 @@
 import { BackLayout } from "@/Layouts/BackLayout";
 import { MainBanner } from "@/components/BackPlataform/Pages/PageStore/MainBanner/MainBanner";
 import { HomeImages } from "@/components/BackPlataform/Pages/PageStore/HomeImages/HomeImages";
+import { SecondaryBanner } from "@/components/BackPlataform/Pages/PageStore/SecondaryBanner/SecondaryBanner";
 
 const BackPlataform_Products = () => {
     return (
@@ -10,6 +11,7 @@ const BackPlataform_Products = () => {
                 <div>
                     <MainBanner />
                     <HomeImages />
+                    <SecondaryBanner />
                 </div>
             </div>
         </BackLayout>
