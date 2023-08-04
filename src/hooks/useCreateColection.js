@@ -41,7 +41,6 @@ export default function useCreateColection() {
                 slug: removeAccents(formColection?.name)?.toLowerCase().replace(/ /g, '-')
             })
         }
-        console.log("aqui")
     }, [formColection.name])
 
     return {

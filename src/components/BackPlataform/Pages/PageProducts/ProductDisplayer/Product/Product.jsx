@@ -7,8 +7,9 @@ import { deleteProduct } from '@/firebase/client';
 import { useRouter } from 'next/router';
 import { Modal } from '@/components/global/Modal/Modal';
 import Trash from '@/components/global/Icons/trash';
+import { formatPrice } from '@/utils/formatPrice';
 
-const Product = ({ product, productPrice, productStock }) => {
+const Product = ({ product, productPrice, productStock, setProductsToDisplay }) => {
     const [price, setPrice] = useState(productPrice);
     const [stock, setStock] = useState(productStock);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,9 +30,9 @@ const Product = ({ product, productPrice, productStock }) => {
         }
     }
 
-    useEffect(() => {
-        priceRef.current.value = productPrice
-    }, [productPrice])
+    // useEffect(() => {
+    //     priceRef.current.value = productPrice
+    // }, [productPrice])
 
     const [showMessage, setShowMessage] = useState(false);
 
@@ -71,8 +72,26 @@ const Product = ({ product, productPrice, productStock }) => {
         } else {
             setProductToUpdate({...productToUpdate, price: e.target.value})
         }
-    }
 
+        // setProductsToDisplay((prevState) => {
+        //     return prevState.map((product) => {
+        //         const thisVariation = product?.variations?.find(variation => variation.name === product?.variation?.name)
+        //         console.log(thisVariation)
+        //         if (product?.id === productToUpdate?.id && thisVariation.name === product?.variation?.name) {
+                    
+        //             return {
+        //                 ...productToUpdate,
+        //                 variation: productToUpdate?.variations?.find(variation => variation.name === product?.variation?.name)
+        //             }
+        //         } else {
+        //             return product;
+        //         }
+        //     });
+        // });
+    }
+    // if (product?.variation) {
+    //     console.log("product", productToUpdate)
+    // }
     const handleStock = (e) => {
         setStock(e.target.value);
 
@@ -175,17 +194,31 @@ const Product = ({ product, productPrice, productStock }) => {
                     }
                 </div>
                 <div className={style.product__price}>
-                    <input ref={priceRef} type="number" name='price' onChange={handlePrice}/>
+                    <p>
+                        {
+                            product?.variation ? (
+                                <span>{formatPrice(product?.variation.price)}</span>
+                            ) : (
+                                <span>{formatPrice(product?.price)}</span>
+                            )
+                        }
+                    </p>
                 </div>
                 <div className={style.product__stock}>
-                    <input ref={stockRef} type="number" name='stock' value={stock} onChange={handleStock}/>
+                    {
+                        product?.variation ? (
+                            <p>{product?.variation.stock}</p>
+                        ) : (
+                            <input ref={stockRef} type="number" name='stock' value={stock} onChange={handleStock}/>
+                        )
+                    }
                 </div>
                
                 {
                     showEditButton && (
                         <div className={style.edit__product}>
                             <button onClick={haldleEditProduct}>
-                                <EditIcon width="30px" height="30px" fill="#646464" />
+                                <EditIcon width="25px" height="25px" />
                             </button>
                         </div>
                     )

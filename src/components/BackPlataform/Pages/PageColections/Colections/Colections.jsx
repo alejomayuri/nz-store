@@ -10,7 +10,7 @@ import { editColection } from '@/firebase/client'
 import CheckIcon from '@/components/global/Icons/check'
 import DeleteIcon from '@/components/global/Icons/deleteIcon'
 
-const Colection = ({ colection, setCreatedColections, createdColections }) => {
+const Colection = ({ colection, setCreatedColections, setActiveColection }) => {
     const {
         formColection,
         handleOnChange,
@@ -60,11 +60,16 @@ const Colection = ({ colection, setCreatedColections, createdColections }) => {
         )
     }
 
+    const handleActiveColection = () => {
+        setActiveColection(colection?.id)
+    }
+
     return (
         <div 
             className={style.colection}
             onMouseEnter={() => setShowButtons(true)}
             onMouseLeave={() => setShowButtons(false)}
+            onClick={handleActiveColection}
         >
             <div className={style.colection__name}>
                 {
@@ -95,7 +100,7 @@ const Colection = ({ colection, setCreatedColections, createdColections }) => {
     )
 }
 
-const Colections = () => {
+const Colections = ({ setActiveColection }) => {
     const {
         formColection,
         handleOnChange,
@@ -108,7 +113,7 @@ const Colections = () => {
 
     const [disabledButton, setDisabledButton] = useState(true)
 
-   useEffect(() => {
+    useEffect(() => {
         if (formColection.name && formColection.name !== "") {
             setDisabledButton(false)
         } else {
@@ -125,6 +130,10 @@ const Colections = () => {
         e.preventDefault()
         createColection(formColection)
         .then((res) => {
+            editColection(res.id, {
+                ...formColection,
+                id: res.id
+            })
             setCreatedColections([...createdColections, 
                 {
                     ...formColection,
@@ -156,6 +165,7 @@ const Colections = () => {
                             colection={colection}
                             setCreatedColections={setCreatedColections}
                             createdColections={createdColections}
+                            setActiveColection={setActiveColection}
                         />
                     ))}
                 </div>

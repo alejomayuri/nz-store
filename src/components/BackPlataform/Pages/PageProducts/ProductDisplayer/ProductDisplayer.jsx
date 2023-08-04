@@ -6,6 +6,7 @@ import { SearchBar } from '../SearchBar/SearchBar';
 
 const ProductDisplayer = ({ products, editProduct }) => {
     const [productsToDisplay, setProductsToDisplay] = useState([]);
+    console.log("productsToDisplay", productsToDisplay)
     const [searchTerm, setSearchTerm] = useState('');
     const [on, setOn] = useState(true);
 
@@ -66,6 +67,7 @@ const ProductDisplayer = ({ products, editProduct }) => {
                             productStock={product?.variation ? product?.variation.stock : product?.stock}
                             key={i}
                             product={product}
+                            setProductsToDisplay={setProductsToDisplay}
                             // editProduct={editProduct}
                         />
                     </>
