@@ -11,6 +11,9 @@ const OrdersDisplayer = ({ orders }) => {
     }, [orders]);
     
     const [searchTerm, setSearchTerm] = useState('');
+    let show = ordersToDisplay?.filter(
+        (order) => `${order.name.toLowerCase()} ${order?.lastName.toLowerCase()}`.includes(searchTerm.toLowerCase())
+    )
 
     const handleSearch = (searchTerm) => {
         // console.log(searchTerm);
@@ -19,7 +22,7 @@ const OrdersDisplayer = ({ orders }) => {
     return (
         <div className={style.wrapper}>
                 <div className={style.header__searchBar}>
-                    <SearchBar onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                    <SearchBar placeholder={"🔎 Buscar nombre del cliente"} onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 </div>
                 <div className={style.header}>
                     <div className={style.pedido}>
@@ -45,12 +48,12 @@ const OrdersDisplayer = ({ orders }) => {
                     </div>
                 </div>
                 {
-                    ordersToDisplay?.map((order, i) => (
+                    show?.map((order, i) => (
                        <Order
                             key={i}
                             order={order}
                             number={
-                                ordersToDisplay?.length - i
+                                show?.length - i
                             }
                         />
                     ))

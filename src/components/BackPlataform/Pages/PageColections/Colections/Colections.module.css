@@ -29,7 +29,11 @@
     box-sizing: border-box;
 }
 
-.colection:hover {
+.activeColection {
+    background-color: #dcdcdc;
+}
+
+.noActiveColectionHover:hover {
     background-color: #f1f1f1;
 }
 

@@ -10,7 +10,7 @@ import { editColection } from '@/firebase/client'
 import CheckIcon from '@/components/global/Icons/check'
 import DeleteIcon from '@/components/global/Icons/deleteIcon'
 
-const Colection = ({ colection, setCreatedColections, setActiveColection }) => {
+const Colection = ({ colection, setCreatedColections, activeColection, setActiveColection }) => {
     const {
         formColection,
         handleOnChange,
@@ -28,7 +28,6 @@ const Colection = ({ colection, setCreatedColections, setActiveColection }) => {
     }, [initialForm])
 
     const [showButtons, setShowButtons] = useState(false)
-
     const [editColectionActive, setEditColectionActive] = useState(false)
 
     const handleActiveEditColection = () => {
@@ -39,8 +38,8 @@ const Colection = ({ colection, setCreatedColections, setActiveColection }) => {
         deleteColection(colection?.id)
             .then(() => {
                 setCreatedColections(prev => prev.filter(b => b.id !== colection.id))
-            }
-        )
+                setActiveColection(null)
+            })
     }
 
     const handleEditColection = () => {
@@ -66,7 +65,11 @@ const Colection = ({ colection, setCreatedColections, setActiveColection }) => {
 
     return (
         <div 
-            className={style.colection}
+            className={`
+                ${style.colection}
+                ${colection?.id !== activeColection && style.noActiveColectionHover}
+                ${colection?.id === activeColection ? style.activeColection : ''}`
+            }
             onMouseEnter={() => setShowButtons(true)}
             onMouseLeave={() => setShowButtons(false)}
             onClick={handleActiveColection}
@@ -100,7 +103,7 @@ const Colection = ({ colection, setCreatedColections, setActiveColection }) => {
     )
 }
 
-const Colections = ({ setActiveColection }) => {
+const Colections = ({ activeColection, setActiveColection }) => {
     const {
         formColection,
         handleOnChange,
@@ -165,6 +168,7 @@ const Colections = ({ setActiveColection }) => {
                             colection={colection}
                             setCreatedColections={setCreatedColections}
                             createdColections={createdColections}
+                            activeColection={activeColection}
                             setActiveColection={setActiveColection}
                         />
                     ))}

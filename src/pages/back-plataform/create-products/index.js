@@ -136,6 +136,7 @@ const BackPlataform_CreateProducts = () => {
                         <Organization
                             onChangeCats={handleCategories}
                             onChange={handleOnChange}
+                            categoriesActives={formProduct?.categories || []}
                         />
                         <CreateButton
                             disabled={disabledButton}

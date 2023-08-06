@@ -1,11 +1,29 @@
 import style from "./CreateCupon.module.css";
 import useCreateCupon from "@/hooks/useCreateCupon";
+import { useState, useEffect } from "react";
 
 const CreateCupon = () => {
     const { formCupon,
             handleOnChange,
             handleCreateCupon,
             handleChangeDate } = useCreateCupon();
+
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect(() => {
+        if(formCupon?.code && formCupon?.code !== "" &&
+            formCupon?.tipoCupon && formCupon?.tipoCupon !== "" && 
+            formCupon?.tipoDescuento && formCupon?.tipoDescuento !== "" && 
+            formCupon?.valor && formCupon?.valor !== "" && 
+            formCupon?.uses && formCupon?.uses !== "" && 
+            formCupon?.fechaInicio && formCupon?.fechaInicio !== "" && 
+            formCupon?.fechaFin && formCupon?.fechaFin !== ""
+            ) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    }, [formCupon])
 
     return (
         <div className={style.wrapper}>
@@ -25,10 +43,10 @@ const CreateCupon = () => {
                                 <input onChange={handleOnChange} type="radio" id="descCarrito" name="tipoCupon" value="descCarrito" />
                                 <label htmlFor="descCarrito">Descuento en el carrito</label>
                             </div>
-                            <div>
+                            {/* <div>
                                 <input onChange={handleOnChange} type="radio" id="descProducto" name="tipoCupon" value="descProducto" />
                                 <label htmlFor="descProducto">Descuento en el producto</label>
-                            </div>
+                            </div> */}
                         </div>
                         <h4>Tipo de descuento</h4>
                         <div className={style.type_wrapper}>
@@ -64,9 +82,9 @@ const CreateCupon = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={style.cupon_submit_wrapper}>
-                    <button onClick={handleCreateCupon} type="submit">Crear cupón</button>
+                    <div className={style.cupon_submit_wrapper}>
+                        <button disabled={disabled} onClick={handleCreateCupon} type="submit">Crear cupón</button>
+                    </div>
                 </div>
             </form>
         </div>

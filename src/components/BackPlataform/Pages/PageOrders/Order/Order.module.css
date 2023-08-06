@@ -48,8 +48,9 @@
     width: 100%;
     padding: 6px;
     font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1px;
+    font-weight: 600;
     color: #333;
     border-radius: 8px;
+    border: solid 2px #868686;
+    outline:none;
 }

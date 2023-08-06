@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"
 import 'firebase/compat/auth';
 import 'firebase/compat/storage';
+import {useEffect} from "react";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD1t565GQSz9Dr0vU3kAtySK077MG5YKks",
@@ -137,9 +138,11 @@ export const editOrder = (id, order) => {
 export const createProduct = (form) => {
   return db.collection('prueba').add(form)
 }
+
 export const editProduct = (id, form) => {
   return db.collection('prueba').doc(id).update(form)
 }
+
 
 export const createCupon = (form) => {
   return db.collection('cupones').add(form)

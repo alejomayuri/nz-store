@@ -2,7 +2,16 @@ import { useState } from "react"
 import { createCupon } from "@/firebase/client"
 
 export default function useCreateCupon() {
-    const [formCupon, setFormCupon] = useState({})
+    const INITIAL_STATE = {
+        code: null,
+        tipoCupon: null,
+        valor: null,
+        uses: null,
+        fechaInicio: null,
+        fechaFin: null,
+    }
+
+    const [formCupon, setFormCupon] = useState(INITIAL_STATE)
 
     const handleOnChange = (e) => setFormCupon({
         ...formCupon,

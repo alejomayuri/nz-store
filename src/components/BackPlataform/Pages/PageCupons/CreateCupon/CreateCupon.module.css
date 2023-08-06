@@ -149,3 +149,26 @@
     font-family: "Roboto", sans-serif;
     font-size: 16px;
 }
+
+.cupon_submit_wrapper > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    background-color: #BFD8D0;
+    border: 3px solid #BFD8D0;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.cupon_submit_wrapper > button:disabled {
+    background-color: #F48F8F;
+    border: 3px solid #F48F8F;
+    cursor: not-allowed;
+}

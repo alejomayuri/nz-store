@@ -64,11 +64,7 @@ export const useCheckout = ({
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
 
-    const { handleUploadOrder, uploadLoading } = useUploadOrder(
-        {
-            order: form
-        }
-    );
+    const { handleUploadOrder, uploadLoading } = useUploadOrder({ order: form });
 
     useEffect(() => {
         setForm({

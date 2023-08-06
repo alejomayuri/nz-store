@@ -11,7 +11,7 @@ const BackPlataform_Colections = () => {
             <div className="content__wrapper">
                 <h1>Colecciones</h1>
                 <div>
-                    <Colections setActiveColection={setActiveColection} />
+                    <Colections activeColection={activeColection} setActiveColection={setActiveColection} />
                     <Subcategories activeColection={activeColection} />
                 </div>
             </div>
