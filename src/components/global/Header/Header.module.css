@@ -55,7 +55,7 @@
     box-sizing: border-box;
     background-color: #fff;
     flex: 1;
-    max-width: 600px;
+    max-width: 620px;
     width: 100%;
 }
 
@@ -84,7 +84,7 @@
     font-size: 16px;
     position: relative;
     display: inline-block;
-    padding-bottom: 10px;
+    padding-bottom: 4px;
     transition: all 0.2s ease-in-out;
     font-weight: 600;
   }
@@ -121,12 +121,12 @@
 }
 
 .menusContainer > .logoContainer {
-    height: 100px;
+    height: 85px;
 }
 
 .menusContainer > .logoContainer img {
     height: 100%;
-    width: 100px;
+    width: 85px;
 }
 
 .headerComponents {

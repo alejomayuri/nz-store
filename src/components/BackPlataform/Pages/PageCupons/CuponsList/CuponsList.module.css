@@ -1,0 +1,54 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 24px 0;
+    border: solid 1px #e1e1e1;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 7px 2px #d9d8d8;
+    margin-bottom: 24px;
+}
+
+.title {
+    padding: 0 24px;
+}
+
+.cupon__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: solid 1px #e1e1e1;
+}
+
+.cupon__wrapper > div {
+    display: flex;
+    align-items: center;
+}
+
+.cupon__wrapper p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.number  {
+    width: 100px;
+}
+
+.number > p {
+    font-weight: 600;
+    color: #333;
+}
+
+.code {
+    width: 200px;
+}
+
+.discount, .inicio, .fin {
+    width: 150px;
+}
+
+.cupon__wrappe__header p {
+    font-size: 17px;
+    font-weight: 600;
+}

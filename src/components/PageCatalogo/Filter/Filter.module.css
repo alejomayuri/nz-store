@@ -144,6 +144,13 @@
     display: none;
 }
 
+.notActive > .filterContent__wrapper {
+    width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+}
+
 @media (max-width: 1200px) {
     .filter {
         position: fixed;
@@ -188,6 +195,7 @@
         overflow-y: scroll;
         width: 100%;
         box-sizing: border-box;
+        top: 0;
     }
 
     .categoriesFilter, .filterContainer {

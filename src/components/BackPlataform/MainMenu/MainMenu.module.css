@@ -25,10 +25,10 @@
 .menu__item {
     list-style: none;
     padding: 8px 16px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
-.menu__item:hover {
+.menu__item:hover, .submenu__item:hover {
     background-color: #ddd;
 }
 
@@ -47,3 +47,32 @@
 .menu__link > p {
     margin: 0;
 }
+
+.menu__item__active {
+    background-color: #e3e3e3;
+}
+
+.submenu__item {
+    display: none;
+    list-style: none;
+    padding: 8px 16px;
+    transition: all 0.1s ease-in-out;
+}
+
+.submenu__item a {
+    padding: 4px 0;
+}
+
+.submenu__item p {
+    padding-left: 34px;
+    font-size: 16px;
+}
+
+.submenu__item__show {
+    display: block;
+}
+
+.submenu__item__active p {
+    color: #000;
+    font-weight: 600;
+} 

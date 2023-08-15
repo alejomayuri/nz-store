@@ -8,6 +8,7 @@ export const ProductCartProvider = (props) => {
     const [products, setProducts] = useState([]);
     const [cuponActiveInCart, setCuponActiveInCart] = useState([])
     const [clientLoaded, setClientLoaded] = useState(false);
+    const [lastProductAdded, setLastProductAdded] = useState(null);
 
     const cart = {
         products: products,
@@ -16,6 +17,7 @@ export const ProductCartProvider = (props) => {
 
     useEffect(() => {
         setClientLoaded(true);
+        setLastProductAdded(null);
       }, []);
 
     useEffect(() => {
@@ -28,8 +30,9 @@ export const ProductCartProvider = (props) => {
             setCuponActiveInCart(newCupon);
         }
     }, [clientLoaded]);
+    
 
-    const value = { products, setProducts, cuponActiveInCart, setCuponActiveInCart, cart };
+    const value = { products, setProducts, cuponActiveInCart, setCuponActiveInCart, cart, lastProductAdded, setLastProductAdded };
 
     useEffect(() => {
         if(products.length > 0) {

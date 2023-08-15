@@ -3,7 +3,6 @@ import { BoxLayout } from "../BoxLayout/BoxLayout";
 import { useEffect, useState } from "react"
 
 const Variations = ({ options, onChange, productVariations }) => {
-    console.log("options", options)
     const [initialVariations, setInitialVariations] = useState(null)
 
     useEffect(() => {
@@ -31,7 +30,6 @@ const Variations = ({ options, onChange, productVariations }) => {
     }
 
     const arrays = options?.map(option => option.values)
-    console.log("arrays", arrays)
     const parseArrays = arrays.map(array => array.filter(el => el !== ""))
     const combinations = generateCombinations(parseArrays);
     const variations = combinations.map(combination => {

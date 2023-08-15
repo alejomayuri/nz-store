@@ -54,7 +54,6 @@ const Options = ({ onChange, productOptions, create, clearVariations }) => {
         if(!initialOptions) {
             // clearVariations([])
         }
-        console.log(initialOptions)
     }
 
     const handleChangeOptions = useCallback((id, name, values) => {

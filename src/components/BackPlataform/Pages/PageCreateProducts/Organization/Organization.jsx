@@ -12,8 +12,6 @@ const Organization = ({ categoriesActives, onChangeCats, onChange, categories, s
     const [keywordsState, setKeywordsState] = useState(null)
     const { colections, subcategories, loading } = useColections({colectionNames: categoriesActives});
 
-    console.log("subcategories", subcategories)
-
     const handleSubcatChange = (e) => {
         setSubcatState(e.target.value)
         onChange(e)

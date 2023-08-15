@@ -11,7 +11,7 @@ const AddToCartButton = ({
 })  => {
   const router = useRouter();
 
-  const { products, setProducts } = useProductCartContext();
+  const { products, setProducts, setLastProductAdded } = useProductCartContext();
   // console.log("product", product)
   // console.log("products", products)
   const handleClick = () => {
@@ -57,6 +57,8 @@ const AddToCartButton = ({
         setProducts((prev) => [...prev, { product, quantity: onAdd, features: features }]);
       }
     }
+
+    setLastProductAdded({ product, quantity: onAdd, features: features });
   };
 
   useEffect(() => {

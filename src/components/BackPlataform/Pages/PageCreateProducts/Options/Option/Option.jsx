@@ -74,13 +74,10 @@ const Option = ({
         handleDeleteOptions(optionId)
         setHideThisOption(true)
         if (optionQuantity === 1) {
-            console.log("optionQuantity", optionQuantity)
             clearVariations([])
             setTheseProductsHaveOptions(false)
         }
     }
-
-    console.log("optionQuantity", optionQuantity)
 
     const handleDeleteOption = (id) => {
         setInputs(inputs.filter(input => input.id !== id))

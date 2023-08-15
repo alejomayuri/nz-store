@@ -14,6 +14,9 @@ const Nosotros = () => {
                 <p>
                     Bienvenido a la familia NZ The Frenchie World
                 </p>
+                <div className="image__wrapper">
+                    <img src="/fotoquienessomos.jpeg" alt="nosotros" />
+                </div>
             </div>
         </Layout>
     )

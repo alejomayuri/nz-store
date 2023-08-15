@@ -28,7 +28,7 @@ const Filter = ({ filters, subcats, handlerSetFilters, handlerSubCats, filtersAc
             <button className={style.openFilterBtn} onClick={handleClick}>
                 Filtrar por:
             </button>
-            <div className={`${style.filter} ${isActive ? style.active : ''}`}>
+            <div className={`${style.filter} ${isActive ? style.active : style.notActive}`}>
                 <div className={style.filterContent__wrapper}>
                     <div className={style.title}>
                         <h3>Filtrar por:</h3>

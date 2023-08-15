@@ -38,7 +38,9 @@ export const useColections = ({id, colectionNames} = {id: null, colectionNames: 
             ))
             
             colectionsSelected.forEach(colection => {
-                subcategories = [...subcategories, ...colection?.subcategories]
+                if (colection?.subcategories) {
+                    subcategories = [...subcategories, ...colection?.subcategories]
+                }
             })
 
             setSubcategories(removeRepeat(subcategories))

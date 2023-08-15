@@ -34,8 +34,6 @@ const ImageProduct = ({ image, handleDeleteImg }) => {
 }
 
 const Multimedia = ({ prevImage, showProgress, uploatValue, onChange, handleDeleteImg, images }) => {
-    console.log("uploatValue", uploatValue)
-    console.log("showProgress", showProgress)
     return (
         <BoxLayout title="Elementos multimedia">
             <div className={style.prevImageWrapper}>

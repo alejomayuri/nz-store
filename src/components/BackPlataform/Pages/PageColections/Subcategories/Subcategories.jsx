@@ -14,7 +14,7 @@ const Subcategory = ({ subcategory, parentColection, createdSubcategories, setCr
         handleOnChange,
         setFormSubcategory
     } = useCreateSubcategory()
-    console.log(parentColection)
+
     useEffect(() => {
         if (!subcategory) return;
         setFormSubcategory({
@@ -145,8 +145,6 @@ const Subcategories = ({ activeColection }) => {
             ...colections[0],
             subcategories: [...subcats, formSubcategory],
         };
-        console.log("subcats", subcats)
-        console.log("coleccionActualizada", coleccionActualizada)
     
         try {
             await editColection(activeColection, coleccionActualizada);

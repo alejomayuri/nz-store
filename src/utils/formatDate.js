@@ -1,5 +1,5 @@
-export const formatDate = (seconds) => {
-    const milliseconds = seconds * 1000; // Convertir segundos a milisegundos
+export const formatDate = (seconds, ms = true) => {
+    const milliseconds = ms ? seconds * 1000 : seconds // Convertir segundos a milisegundos
 
     const date = new Date(milliseconds); // Crear objeto Date a partir de los milisegundos
 
