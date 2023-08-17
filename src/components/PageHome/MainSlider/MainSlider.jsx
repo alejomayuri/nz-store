@@ -1,3 +1,4 @@
+import style from './MainSlider.module.css';
 import Slider from "react-slick";
 import { useBanners } from '@/hooks/useBanners';
 
@@ -22,11 +23,14 @@ const MainSlider = () => {
     };
 
     return (
-        <div className="main-slider">
-            <Slider {...settings}>
-                {showImages}
-            </Slider>
-        </div>
+        <>{
+            loading ? <div className={style.placeholder}></div> :
+            <div  className={style.mainSlider}>
+                <Slider {...settings}>
+                    {showImages}
+                </Slider>
+            </div>
+        }</>
     );
 }
 

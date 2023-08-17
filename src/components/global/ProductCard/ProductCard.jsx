@@ -6,13 +6,13 @@ const newResize = new resizePrototype();
 
 const ProductCard = ({ product, typeContainer }) => {
     return (
-        <div className={style.productCard} style={{
-            maxWidth: typeContainer === 'flex' ? '19%' : ''
-        }}>
+        <div className={`${style.productCard} 
+            ${typeContainer === 'flex' ? style.flexWidth : style.gridWidth}
+        `}
+        >
             <Link href={`/products/${product?.id}`}>
-                <div className={style.productCard__image}>
-                          
-                    <img loading="lazy" src={newResize.resize(product?.images[0], 500, 500)} alt={product.name} />
+                <div className={style.imageWrapper}>
+                    <img src={product?.images[0]} alt={product.title} />
                 </div>
                 <h3 className={style.h3}>{product.name}</h3>
             </Link>

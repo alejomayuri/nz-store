@@ -22,7 +22,7 @@ export default function Home() {
         <ProductsGrid type="ropa" title="ropa" />
         <MiddleBanner />
         <ProductsGrid type="gift-cards" title="Gift Cards" />
-        <ProductSpotlight type="ropa" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />
+        <ProductSpotlight type="ofertas" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />
       </Layout>
     </>
   )
