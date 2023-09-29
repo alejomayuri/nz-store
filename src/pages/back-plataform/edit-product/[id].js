@@ -25,8 +25,10 @@ const BackPlataform_EditProduct = () => {
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
     const [disabledButton, setDisabledButton] = useState(true)
+    console.log("editFormProduct", editFormProduct)
     console.log("formProduct", formProduct)
-    if (formProduct && formProduct.image && prevImage === '') {
+    console.log("product", product)
+    if (editFormProduct && editFormProduct.image && prevImage === '') {
         setPrevImage(formProduct.image)
     }
     
@@ -37,21 +39,6 @@ const BackPlataform_EditProduct = () => {
         }
     }, [product])
 
-    const handleDeleteImg = () => {
-        setPrevImage('')
-        setFormProduct({
-            ...product[0],
-            image: ''
-        })
-
-        if (file) {
-        const storageRef = getStorage().ref(`products/${file.name}`)
-        storageRef.delete()
-        }
-        setShowProgress(false)
-        setUploadValue(0)
-    }
-
     const handleOnChange = (e) => {
         const { name, value } = e.target
         setEditFormProduct({
@@ -60,30 +47,139 @@ const BackPlataform_EditProduct = () => {
         })
     }
 
-    const handleOnChangeImg = (e) => {
-        const file = e.target.files[0]
-        setFile(file)
-        setShowProgress(true)
-        setPrevImage('')
-        const storageRef = getStorage().ref(`products/${file?.name}`)
-        const task = storageRef.put(file)
+    const resizeImage = (file, maxWidth, maxHeight, callback) => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            const reader = new FileReader();
+        
+            reader.onload = function (e) {
+              img.onload = function () {
+                const canvas = document.createElement("canvas");
+                let width = img.width;
+                let height = img.height;
+        
+                if (width > maxWidth) {
+                  height *= maxWidth / width;
+                  width = maxWidth;
+                }
+        
+                if (height > maxHeight) {
+                  width *= maxHeight / height;
+                  height = maxHeight;
+                }
+        
+                canvas.width = width;
+                canvas.height = height;
+        
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+        
+                canvas.toBlob((blob) => {
+                  const resizedFile = new File([blob], file.name, { type: file.type });
+                  resolve(resizedFile); // Resolvemos la promesa con el archivo redimensionado
+                }, file.type);
+              };
+        
+              img.src = e.target.result;
+            };
+        
+            reader.readAsDataURL(file);
+        });
+    };
 
-        task.then(res => {
-            const imgUrl = res.ref.getDownloadURL()
-            imgUrl.then(url => {
-                setEditFormProduct((prevState) => ({
-                    ...prevState,
-                    image: url
-                }))
-                setPrevImage(url)
-                setUploadValue(100)
+    const handleOnChangeImg = async  (e) => {
+        const files = e.target.files;
+        const maxWidth = 600; // Tamaño máximo deseado
+        const maxHeight = 600;
+        const storageRef = getStorage().ref("products"); // Ruta de almacenamiento en Firebase Storage
+
+        const storageRefPromises = [];
+        const totalFiles = files.length;
+        let uploadedFiles = 0;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+        
+            try {
+              // Redimensionar cada imagen antes de subirla
+                const resizedFile = await resizeImage(file, maxWidth, maxHeight);
+                const storageChildRef = storageRef.child(resizedFile.name);
+            
+                const task = storageChildRef.put(resizedFile);
+            
+                const promise = new Promise((resolve, reject) => {
+                    task.then((snapshot) => {
+                        snapshot.ref.getDownloadURL().then((url) => {
+                            resolve(url);
+                        });
+                    }).catch((err) => reject(err));
+            
+                    task.on("state_changed", (snapshot) => {
+                        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
+                        setUploadValue(progress)
+                        setShowProgress(true)
+                        if (progress === 100) {
+                            uploadedFiles++;
+                          }
+                    });
+
+                    task.then(() => {
+                        // Cuando todos los archivos se hayan subido, actualizamos el estado y ocultamos la barra de carga
+                        if (uploadedFiles === files.length) {
+                          setUploadValue(100);
+                          setDisabledButton(false);
+                          setShowProgress(false);
+                        }
+                      });
+                });
+            
+                storageRefPromises.push(promise);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        // Esperar a que se suban todas las imágenes y actualizar el estado con las URL de las imágenes
+        Promise.all(storageRefPromises)
+            .then((urls) => {
+            setEditFormProduct((prevState) => ({
+                ...prevState,
+                images: [...prevState.images, ...urls],
+            }));
+            setUploadValue(100);
+            setDisabledButton(false);
+            setShowProgress(false);
             })
-        }).catch(err => console.log(err))
+            .catch((err) => console.log(err));
+    }
 
-        task.on('state_changed', snapshot => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100) - 10
-            setUploadValue(progress)
-        })
+    const handleDeleteImg = (url) => {
+        const imageIndex = formProduct.images.findIndex(img => img === url);
+
+        if (imageIndex !== -1) {
+            const updatedImages = formProduct.images.filter(img => img !== url)
+            setEditFormProduct({
+                ...formProduct,
+                images: updatedImages
+            });
+
+            if (file) {
+                // Elimina el archivo correspondiente al índice de la imagen
+                const extractFileName = (url) => {
+                    const parts = url.split("/");
+                    const encodedFileName = parts[parts.length - 1].split("?")[0];
+                    const fileName = decodeURIComponent(encodedFileName);
+                    return fileName;
+                };
+                const imageName = extractFileName(url);
+                const storageRef = getStorage().ref(`${imageName}`);
+                storageRef.delete();
+                setFile('');
+            }
+        }
+
+        setShowProgress(false);
+        setUploadValue(0);
     }
 
     const handleSaleWithoutStock = (e) => {
@@ -108,10 +204,12 @@ const BackPlataform_EditProduct = () => {
     }
 
     const handleOptions = (options) => {
-        setEditFormProduct({
-            ...editFormProduct,
-            options: options
-        })
+        if (editFormProduct) {
+            setEditFormProduct({
+                ...editFormProduct,
+                options: options,
+            })
+        }
     }
 
     const handleVariations = (variations) => {
@@ -140,39 +238,51 @@ const BackPlataform_EditProduct = () => {
     }, [editFormProduct?.variations])
 
     useEffect(() => {
-        if (editFormProduct?.name && editFormProduct?.name !== "" &&
-            editFormProduct?.description && editFormProduct?.description !== "" &&
-            editFormProduct?.image && editFormProduct?.image !== "" &&
-            editFormProduct?.currency && editFormProduct?.currency !== "" &&
-            editFormProduct?.active !== "" &&
-            editFormProduct?.categories && editFormProduct?.categories.length > 0 && editFormProduct?.categories[0] !== "" &&
-            editFormProduct?.subcategory && editFormProduct?.subcategory !== ""
-            // editFormProduct?.keywords && editFormProduct?.keywords !== ""
-        ) {
-            if (
-                // editFormProduct?.stock && editFormProduct?.stock !== "" &&
-                editFormProduct?.price && editFormProduct?.price !== ""
-            ) {
-                setDisabledButton(false)
-            } else {
-                if (editFormProduct?.options && editFormProduct?.options.length > 0 &&
-                    editFormProduct?.options[0].name !== "" && editFormProduct.options[0].values[0] !== "" &&
-                    editFormProduct?.variations && editFormProduct?.variations.length > 0 &&
-                    variationWithoutPricek()
-                ) {
-                    setDisabledButton(false)
-                } else {
-                    setDisabledButton(true)
-                }
-            }
+        if (formProduct?.name && formProduct?.name !== "" &&
+            formProduct?.description && formProduct?.description !== "" &&
+            formProduct?.images && formProduct?.images.length > 0 &&
+            formProduct?.price && formProduct?.price !== "" &&
+            formProduct?.stock && formProduct?.stock !== "") {
+            setDisabledButton(false)
         } else {
             setDisabledButton(true)
         }
-    }, [
-        editFormProduct,
-        setDisabledButton,
-        variationWithoutPricek
-    ])
+    }, [formProduct, product])
+
+    // useEffect(() => {
+    //     if (editFormProduct?.name && editFormProduct?.name !== "" &&
+    //         editFormProduct?.description && editFormProduct?.description !== "" &&
+    //         editFormProduct?.image && editFormProduct?.image !== "" &&
+    //         editFormProduct?.currency && editFormProduct?.currency !== "" &&
+    //         editFormProduct?.active !== "" &&
+    //         editFormProduct?.categories && editFormProduct?.categories.length > 0 && editFormProduct?.categories[0] !== "" &&
+    //         editFormProduct?.subcategory && editFormProduct?.subcategory !== ""
+    //         // editFormProduct?.keywords && editFormProduct?.keywords !== ""
+    //     ) {
+    //         if (
+    //             // editFormProduct?.stock && editFormProduct?.stock !== "" &&
+    //             editFormProduct?.price && editFormProduct?.price !== ""
+    //         ) {
+    //             setDisabledButton(false)
+    //         } else {
+    //             if (editFormProduct?.options && editFormProduct?.options.length > 0 &&
+    //                 editFormProduct?.options[0].name !== "" && editFormProduct.options[0].values[0] !== "" &&
+    //                 editFormProduct?.variations && editFormProduct?.variations.length > 0 &&
+    //                 variationWithoutPricek()
+    //             ) {
+    //                 setDisabledButton(false)
+    //             } else {
+    //                 setDisabledButton(true)
+    //             }
+    //         }
+    //     } else {
+    //         setDisabledButton(true)
+    //     }
+    // }, [
+    //     editFormProduct,
+    //     setDisabledButton,
+    //     variationWithoutPricek
+    // ])
 
     return (
         <BackLayout>
@@ -191,6 +301,7 @@ const BackPlataform_EditProduct = () => {
                             showProgress={showProgress}
                             uploatValue={uploatValue}
                             handleDeleteImg={handleDeleteImg}
+                            images={formProduct?.images || []}
                         />
                         <Price
                             onChange={handleOnChange}
@@ -220,7 +331,7 @@ const BackPlataform_EditProduct = () => {
                         }
                     </div>
                     <div>
-                        <State
+                        {/* <State
                             onChange={handleOnChangeState}
                             productState={formProduct?.active}
                         />
@@ -230,7 +341,7 @@ const BackPlataform_EditProduct = () => {
                             categories={formProduct?.categories}
                             subcat={formProduct?.subcategory}
                             keywords={formProduct?.keywords}
-                        />
+                        /> */}
                         <CreateButton
                             disabled={disabledButton}
                             text="Editar producto"
