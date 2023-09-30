@@ -45,7 +45,7 @@ export const useColections = ({id, colectionNames} = {id: null, colectionNames: 
 
             setSubcategories(removeRepeat(subcategories))
         }
-    }, [colectionNames])
+    }, [colectionNames, colections])
 
     if(id) {
         return {colections: colections.filter(colection => colection.id === id), loading}

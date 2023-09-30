@@ -5,17 +5,27 @@ import { BoxLayout } from "../BoxLayout/BoxLayout";
 import { useColections } from '@/hooks/useColections';
 import { formatText } from '@/utils/formatText';
 
-const Organization = ({ categoriesActives, onChangeCats, onChange, categories, subcat, keywords }) => {
+const Organization = ({ categoriesActives, onChangeCats, onChangeSubcats, onChange, categories, subcat, keywords }) => {
     const [inputs, setInputs] = useState([])
     const [initialCategories, setInitialCategories] = useState([])
     const [subcatState, setSubcatState] = useState(null)
     const [keywordsState, setKeywordsState] = useState(null)
     const { colections, subcategories, loading } = useColections({colectionNames: categoriesActives});
-
+    // console.log("colections", colections)
+    // console.log("subcategories", subcategories)
+    // console.log("inputs", inputs)
     const handleSubcatChange = (e) => {
         setSubcatState(e.target.value)
         onChange(e)
     }
+
+    useEffect(() => {
+        onChangeSubcats(subcatState)
+        if (subcategories.length === 0) {
+            console.log("no hay subcategorias")
+            onChangeSubcats(null)
+        }
+    }, [subcatState, subcategories])
 
     const handleKeywordsChange = (e) => {
         setKeywordsState(e.target.value)
@@ -76,7 +86,7 @@ const Organization = ({ categoriesActives, onChangeCats, onChange, categories, s
                 {inputs.map(input => (
                     <div className={style.valueWrapper} key={input.id}>
                         <select
-                            name="state"
+                            name="categories"
                             onChange={e => handleInputChange(input.id, e.target.value)}
                         >
                             <option value="">Seleccionar</option>
@@ -109,15 +119,14 @@ const Organization = ({ categoriesActives, onChangeCats, onChange, categories, s
                     >
                         <option value="">Seleccionar</option>
                         {
-                            subcategories.map((subcategory, i) => (
+                            subcategories?.map((subcategory, i) => (
                                 <option selected={
-                                    subcatState === subcategory.name ? true : false
+                                    subcatState === formatText(subcategory.name) ? true : false
                                 } key={i} value={formatText(subcategory.name)}>{subcategory.name}</option>
                             ))
                         }
                     </select>
                 </div>
-                {/* <input value={subcatState} type="text" name="subcategory" onChange={handleSubcatChange} /> */}
                 <p>
                     La <b>subcategoría</b> es una forma de organizar los productos de tu tienda.
                 </p>

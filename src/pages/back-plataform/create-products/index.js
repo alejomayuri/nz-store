@@ -30,6 +30,7 @@ const BackPlataform_CreateProducts = () => {
         handleVariations,
         handleOnChangeState,
         handleCategories,
+        handleSubcategories,
         handleAddImages
     } = useCreateProduct({getStorage: getStorage})
     console.log(formProduct)
@@ -137,6 +138,7 @@ const BackPlataform_CreateProducts = () => {
                             onChangeCats={handleCategories}
                             onChange={handleOnChange}
                             categoriesActives={formProduct?.categories || []}
+                            onChangeSubcats={handleSubcategories}
                         />
                         <CreateButton
                             disabled={disabledButton}

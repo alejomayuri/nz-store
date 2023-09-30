@@ -219,6 +219,13 @@ export default function useCreateProduct({getStorage} = {}) {
         })
     }
 
+    const handleSubcategories = (subcat) => {
+        setFormProduct({
+            ...formProduct,
+            subcategory: subcat
+        })
+    }
+
     return {
         formProduct,
         showProgress,
@@ -234,6 +241,7 @@ export default function useCreateProduct({getStorage} = {}) {
         handleVariations,
         handleOnChangeState,
         handleCategories,
+        handleSubcategories,
         handleAddImages
     }
 }

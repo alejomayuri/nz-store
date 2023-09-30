@@ -25,9 +25,6 @@ const BackPlataform_EditProduct = () => {
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
     const [disabledButton, setDisabledButton] = useState(true)
-    console.log("editFormProduct", editFormProduct)
-    console.log("formProduct", formProduct)
-    console.log("product", product)
     if (editFormProduct && editFormProduct.image && prevImage === '') {
         setPrevImage(formProduct.image)
     }
@@ -197,10 +194,21 @@ const BackPlataform_EditProduct = () => {
     }
 
     const handleCategories = (cat) => {
-        setEditFormProduct({
-            ...editFormProduct,
-            categories: cat
-        })
+        if (editFormProduct) {
+            setEditFormProduct({
+                ...editFormProduct,
+                categories: cat
+            })
+        }
+    }
+
+    const handleSubcategories = (subcat) => {
+        if (editFormProduct) {
+            setEditFormProduct({
+                ...editFormProduct,
+                subcategory: subcat
+            })
+        }
     }
 
     const handleOptions = (options) => {
@@ -241,8 +249,7 @@ const BackPlataform_EditProduct = () => {
         if (formProduct?.name && formProduct?.name !== "" &&
             formProduct?.description && formProduct?.description !== "" &&
             formProduct?.images && formProduct?.images.length > 0 &&
-            formProduct?.price && formProduct?.price !== "" &&
-            formProduct?.stock && formProduct?.stock !== "") {
+            formProduct?.price && formProduct?.price !== "") {
             setDisabledButton(false)
         } else {
             setDisabledButton(true)
@@ -331,17 +338,19 @@ const BackPlataform_EditProduct = () => {
                         }
                     </div>
                     <div>
-                        {/* <State
+                        <State
                             onChange={handleOnChangeState}
                             productState={formProduct?.active}
                         />
                         <Organization
                             onChangeCats={handleCategories}
+                            onChangeSubcats={handleSubcategories}
                             onChange={handleOnChange}
                             categories={formProduct?.categories}
                             subcat={formProduct?.subcategory}
                             keywords={formProduct?.keywords}
-                        /> */}
+                            categoriesActives={editFormProduct?.categories || []}
+                        />
                         <CreateButton
                             disabled={disabledButton}
                             text="Editar producto"
