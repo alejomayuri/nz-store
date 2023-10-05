@@ -6,44 +6,9 @@ import { useEffect, useState } from 'react';
 import { createHomeImages } from '@/firebase/client';
 import { useHomeImages } from '@/hooks/useHomeImages';
 import DeleteIcon from '@/components/global/Icons/deleteIcon';
-import { deleteHomeImages } from '@/firebase/client';
+import ImageList from './ImageList/ImageList';
+import { ImageBox } from './ImageBox/ImageBox';
 
-const ImageBox = ({ image, banner, setCreatedBanners }) => {
-    const [showDelete, setShowDelete] = useState(false)
-
-    const handleEnter = () => {
-        setShowDelete(true)
-    }
-
-    const handleLeave = () => {
-        setShowDelete(false)
-    }
-
-    const handleDeleteBanner = () => {
-        deleteHomeImages(banner?.id)
-            .then(() => {
-                setCreatedBanners(prev => prev.filter(b => b.id !== banner.id))
-            }
-        )
-    }
-
-    return (
-        <div 
-            className={style.imageBox}
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-        >
-            <img src={image} alt="Imagen de producto" />
-            {
-                showDelete && (
-                    <button className={style.deleteImageBtn} onClick={handleDeleteBanner}>
-                        <DeleteIcon width="20px" height="20px" fill="#838383 " />
-                    </button>
-                )
-            }
-        </div>
-    );
-}
 
 const HomeImages = () => {
     const {
@@ -66,7 +31,7 @@ const HomeImages = () => {
 
     useEffect(() => {
         if (loading) return;
-        setCreatedHomeImages(homeImages)
+        setCreatedHomeImages(homeImages.sort((a, b) => a.order - b.order))
     }, [homeImages, loading])
 
     const handleSubmitHomeImage = () => {
@@ -137,13 +102,20 @@ const HomeImages = () => {
                     {
                         loading && <p>Cargando...</p>
                     }
-                    {
+                    {/* {
                         !loading && createdHomeImages.map((banner, index) => (
                             <ImageBox key={index} banner={banner} image={banner.image} setCreatedBanners={setCreatedHomeImages} />
                         ))
+                    } */}
+                    {
+                        !loading && createdHomeImages.length > 0 && <ImageList createdHomeImages={createdHomeImages} setCreatedHomeImages={setCreatedHomeImages} />
                     }
                 </div>
             </div>
+            {/* {
+                !loading && createdHomeImages.length > 0 && <ImageList createdHomeImages={createdHomeImages} setCreatedHomeImages={setCreatedHomeImages} />
+            } */}
+            
         </div>
     );
 }

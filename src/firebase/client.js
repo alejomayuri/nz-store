@@ -200,6 +200,10 @@ export const fetchHomeImages = () => {
   })
 }
 
+export const editHomeImages = (id, form) => {
+  return db.collection('homeImages').doc(id).update(form)
+}
+
 export const deleteHomeImages = (id) => {
   return db.collection('homeImages').doc(id).delete()
 }
