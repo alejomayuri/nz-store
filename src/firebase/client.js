@@ -148,6 +148,28 @@ export const createCupon = (form) => {
   return db.collection('cupones').add(form)
 }
 
+export const createPopUp = (form) => {
+  return db.collection('popup').add(form)
+}
+
+export const fetchPopUp = () => {
+  return db
+    .collection("popup")
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data()
+        const id = doc.id
+
+        return {
+          ...data,
+          id
+        }
+      }
+    )
+  })
+}
+
 export const deleteProduct = (id) => {
   return db.collection('prueba').doc(id).delete()
 }

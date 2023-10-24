@@ -5,17 +5,17 @@ export const useColections = ({id, colectionNames} = {id: null, colectionNames: 
     const [colections, setColections] = useState([])
     const [loading, setLoading] = useState(false)
     const [subcategories, setSubcategories] = useState([])
+    const [colectionsLength, setColectionsLength] = useState(0)
     
     useEffect(() => {
         setLoading(true)
         fetchColections().then((colections) => {
-            setColections(colections)
+            setColections(colections.sort(
+                (a, b) => a.order - b.order
+            ))
             setLoading(false)
         })
     }, [])
-
-    console.log("subcategories", subcategories)
-    console.log("colections", colections)
 
     const removeMayus = (string) => {
         return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
@@ -46,6 +46,10 @@ export const useColections = ({id, colectionNames} = {id: null, colectionNames: 
             setSubcategories(removeRepeat(subcategories))
         }
     }, [colectionNames, colections])
+
+    useEffect(() => {
+        setColectionsLength(colections.length)
+    }, [colections])
 
     if(id) {
         return {colections: colections.filter(colection => colection.id === id), loading}

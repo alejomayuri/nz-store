@@ -4,6 +4,7 @@ import { fetchHomeImages } from "@/firebase/client"
 export const useHomeImages = () => {
     const [homeImages, setHomeImages] = useState([])
     const [loading, setLoading] = useState(false)
+    const [homeImagesLength, setHomeImagesLength] = useState(0)
     
     useEffect(() => {
         setLoading(true)
@@ -13,5 +14,9 @@ export const useHomeImages = () => {
         })
     }, [])
 
-    return {homeImages, loading}
+    useEffect(() => {
+        setHomeImagesLength(homeImages.length)
+    }, [homeImages])
+
+    return {homeImages, loading, homeImagesLength}
 }

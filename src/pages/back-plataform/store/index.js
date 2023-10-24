@@ -2,6 +2,7 @@ import { BackLayout } from "@/Layouts/BackLayout";
 import { MainBanner } from "@/components/BackPlataform/Pages/PageStore/MainBanner/MainBanner";
 import { HomeImages } from "@/components/BackPlataform/Pages/PageStore/HomeImages/HomeImages";
 import { SecondaryBanner } from "@/components/BackPlataform/Pages/PageStore/SecondaryBanner/SecondaryBanner";
+import { PopUp } from "@/components/BackPlataform/Pages/PageStore/PopUp/PopUp";
 
 const BackPlataform_Products = () => {
     return (
@@ -12,6 +13,7 @@ const BackPlataform_Products = () => {
                     <MainBanner />
                     <HomeImages />
                     <SecondaryBanner />
+                    <PopUp />
                 </div>
             </div>
         </BackLayout>

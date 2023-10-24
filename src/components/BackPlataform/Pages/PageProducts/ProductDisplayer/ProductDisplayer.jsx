@@ -3,15 +3,12 @@ import { useEffect, useState } from "react";
 import { Product } from './Product/Product';
 // import { SearchBar } from '@/components/PageProducts/SearchBar/SearchBar';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { ProductWithVariation } from './ProductWithVariation/ProductWithVariation';
 
-const ProductDisplayer = ({ products, editProduct }) => {
+const ProductDisplayer = ({ products }) => {
     const [productsToDisplay, setProductsToDisplay] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [on, setOn] = useState(true);
-
-    const handleSearch = (searchTerm) => {
-        // console.log(searchTerm);
-    }
 
     let show = productsToDisplay?.filter(
         (product) => product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -22,13 +19,7 @@ const ProductDisplayer = ({ products, editProduct }) => {
             const newProductsToDisplay = [];
         
             products.forEach((product) => {
-            if (product?.variations?.length > 0) {
-                product.variations.forEach((variation) => {
-                newProductsToDisplay.push({ ...product, variation });
-                });
-            } else {
                 newProductsToDisplay.push(product);
-            }
             });
         
             setProductsToDisplay(newProductsToDisplay);
@@ -39,7 +30,7 @@ const ProductDisplayer = ({ products, editProduct }) => {
     return (
             <div className={style.wrapper}>
                 <div className={style.header__searchBar}>
-                    <SearchBar onSearch={handleSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                    <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                     <a href="./create-products">
                         <button>Crear producto</button>
                     </a>
@@ -59,18 +50,21 @@ const ProductDisplayer = ({ products, editProduct }) => {
                         <p>Stock</p>
                     </div>
                 </div>
-                {show.map((product, i) => (
-                    <>
-                        <Product 
-                            productPrice={product?.variation ? product?.variation.price : product?.price}
-                            productStock={product?.variation ? product?.variation.stock : product?.stock}
-                            key={i}
-                            product={product}
-                            setProductsToDisplay={setProductsToDisplay}
-                            // editProduct={editProduct}
-                        />
-                    </>
-                ))}
+                {
+                    show.map((product, i) => (
+                        product?.variations ? (
+                            <ProductWithVariation product={product} key={i} />
+                        ) : (
+                            <Product
+                                productPrice={product?.price}
+                                productStock={product?.stock}
+                                key={i}
+                                product={product}
+                                setProductsToDisplay={setProductsToDisplay}
+                            />
+                        )
+                    ))
+                }
         </div>
     );
 }

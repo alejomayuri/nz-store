@@ -95,7 +95,7 @@ const Header = () => {
                     </div>
                     <div className={style.logoContainer}>
                         <Link href="/">
-                            <img src="/logo.png" alt="logo" />
+                            <img src="/logonuevo.png" alt="logo" />
                         </Link>
                     </div>
                     <div className={`default__flex ${style.headerComponents}`}>

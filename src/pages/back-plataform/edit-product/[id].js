@@ -24,7 +24,7 @@ const BackPlataform_EditProduct = () => {
     const [prevImage, setPrevImage] = useState('')
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
-    const [disabledButton, setDisabledButton] = useState(true)
+    const [disabledButton, setDisabledButton] = useState(false)
     if (editFormProduct && editFormProduct.image && prevImage === '') {
         setPrevImage(formProduct.image)
     }
@@ -352,7 +352,7 @@ const BackPlataform_EditProduct = () => {
                             categoriesActives={editFormProduct?.categories || []}
                         />
                         <CreateButton
-                            disabled={disabledButton}
+                            disabled={false}
                             text="Editar producto"
                             onClick={handleEdit}
                         />

@@ -1,14 +1,28 @@
 import { useEffect, useState } from "react"
+import { useColections } from '@/hooks/useColections'
 
 export default function useCreateColection() {
+    const { colectionsLength } = useColections()
+
     const FORM_STATE = {
+        id: null,
         name: null,
-        slug: null
+        slug: null,
+        order: null
     }
 
     const [formColection, setFormColection] = useState(
         FORM_STATE 
     )
+
+    useEffect(() => {
+        if (colectionsLength) {
+            setFormColection({
+                ...formColection,
+                order: colectionsLength
+            })
+        }
+    }, [colectionsLength])
 
     const handleOnChange = (e) => setFormColection({
         ...formColection,

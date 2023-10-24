@@ -13,12 +13,16 @@ const CategoryBanner = ({ hierarchy }) => {
     }
 
     const [img_one, img_two] = mapping[hierarchy].map((index) => {
-        const image = homeImages[index] || {};
+        const arr = homeImages.sort((a, b) => a.order - b.order)
+        const image = arr[index] || {};
         return image?.image || '/'
     });
 
+    console.log(img_one, img_two)
+
     const [url_one, url_two] = mapping[hierarchy].map((index) => {
-        const url = homeImages[index] || {}
+        const arr = homeImages.sort((a, b) => a.order - b.order)
+        const url = arr[index] || {}
         return url?.url || '/'
     })
 

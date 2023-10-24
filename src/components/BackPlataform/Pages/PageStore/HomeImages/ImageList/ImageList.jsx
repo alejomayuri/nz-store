@@ -13,19 +13,23 @@ const ImageList = ({ createdHomeImages, setCreatedHomeImages }) => {
         return result;
     }
 
-    const newOrder = createdHomeImages.map((banner, index) => {
-        return {
-            id: banner.id,
-            order: index
-        }
-    })
+    const [newOrder, setNewOrder] = useState([])
+
+    useEffect(() => {
+        setNewOrder(createdHomeImages.map((banner, index) => {
+            return {
+                id: banner.id,
+                order: index
+            }
+        }))
+    }, [createdHomeImages])
+    console.log("newOrder", newOrder)
 
     useEffect(() => {
         newOrder.forEach((banner) => {
             editHomeImages(banner.id, banner)
         })
-    }
-    , [createdHomeImages, newOrder])
+    }, [newOrder])
 
     return (
         <DragDropContext onDragEnd={(result) => {
@@ -33,10 +37,6 @@ const ImageList = ({ createdHomeImages, setCreatedHomeImages }) => {
             if (!destination) return;
             if (destination.index === source.index) return;
             setCreatedHomeImages((prev) => reorder(prev, source.index, destination.index))
-
-            
-
-            
         }}>
             <Droppable droppableId='tasks' direction="horizontal">
                 {(droppableProvided) => (

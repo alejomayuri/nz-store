@@ -24,7 +24,7 @@ const HomeImages = () => {
         disabledButton,
         setDisabledButton
     } = useCreateHomeImage({getStorage: getStorage})
-
+    // console.log("formHomeImages", formHomeImages)
     const { homeImages, loading } = useHomeImages();
 
     const [createdHomeImages, setCreatedHomeImages] = useState([]);
@@ -36,8 +36,11 @@ const HomeImages = () => {
 
     const handleSubmitHomeImage = () => {
         createHomeImages(formHomeImages)
-            .then(() => {
-                setCreatedHomeImages([...createdHomeImages, formHomeImages]);
+            .then((res) => {
+                setCreatedHomeImages([...createdHomeImages, {
+                    ...formHomeImages,
+                    id: res.id
+                }])
                 setFormHomeImages({
                     image: "",
                     url: ""
@@ -102,20 +105,11 @@ const HomeImages = () => {
                     {
                         loading && <p>Cargando...</p>
                     }
-                    {/* {
-                        !loading && createdHomeImages.map((banner, index) => (
-                            <ImageBox key={index} banner={banner} image={banner.image} setCreatedBanners={setCreatedHomeImages} />
-                        ))
-                    } */}
                     {
                         !loading && createdHomeImages.length > 0 && <ImageList createdHomeImages={createdHomeImages} setCreatedHomeImages={setCreatedHomeImages} />
                     }
                 </div>
             </div>
-            {/* {
-                !loading && createdHomeImages.length > 0 && <ImageList createdHomeImages={createdHomeImages} setCreatedHomeImages={setCreatedHomeImages} />
-            } */}
-            
         </div>
     );
 }

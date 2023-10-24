@@ -1,11 +1,16 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useHomeImages } from '@/hooks/useHomeImages';
 
 export default function useCreateHomeImage({getStorage} = {}) {
-    const FORM_STATE = {
-        image: null,
-        url: null
-    }
+    const { homeImagesLength } = useHomeImages()
 
+    const FORM_STATE = {
+        id: null,
+        image: null,
+        url: null,
+        order: null
+    }
+    
     const [formHomeImages, setFormHomeImages] = useState(
         FORM_STATE 
     )
@@ -14,6 +19,15 @@ export default function useCreateHomeImage({getStorage} = {}) {
     const [uploatValue, setUploadValue] = useState(0)
     const [file, setFile] = useState('')
     const [disabledButton, setDisabledButton] = useState(true)
+
+    useEffect(() => {
+        if (homeImagesLength) {
+            setFormHomeImages({
+                ...formHomeImages,
+                order: homeImagesLength
+            })
+        }
+    }, [homeImagesLength])
 
     const handleOnChange = (e) => setFormHomeImages({
         ...formHomeImages,

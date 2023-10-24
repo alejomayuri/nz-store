@@ -4,12 +4,9 @@ import { ProductsGrid } from '@/components/PageHome/ProductsGrid/ProductsGrid'
 import { ProductSpotlight } from '@/components/PageHome/ProductSpotlight/ProductSpotlight'
 import { MiddleBanner } from '@/components/PageHome/MiddleBanner/MiddleBanner'
 import { CategoryBanner } from '@/components/PageHome/CategoryBanner/CategoryBanner'
-
+import { PopUp } from '@/components/PageHome/PopUp/PopUp'
 
 export default function Home() {
-  
-  
-
   return (
     <>
       <Layout>
@@ -23,6 +20,7 @@ export default function Home() {
         <MiddleBanner />
         <ProductsGrid type="gift-cards" title="Gift Cards" />
         <ProductSpotlight type="ofertas" title="Aprovecha las Ofertas" background="#E9B5AB" subtitle="Ofertas" />
+        <PopUp />
       </Layout>
     </>
   )
